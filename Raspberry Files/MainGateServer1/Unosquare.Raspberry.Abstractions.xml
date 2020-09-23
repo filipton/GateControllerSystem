@@ -1,0 +1,1044 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Unosquare.Raspberry.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.Definitions">
+            <summary>
+            Represents Definitions for GPIO information.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.Definitions.BcmToPhysicalPinNumber(Unosquare.RaspberryIO.Abstractions.BoardRevision,Unosquare.RaspberryIO.Abstractions.BcmPin)">
+            <summary>
+            BCMs to physical pin number.
+            </summary>
+            <param name="rev">The rev.</param>
+            <param name="bcmPin">The BCM pin.</param>
+            <returns>The physical pin number.</returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.SpiChannelNumber">
+            <summary>
+            Defines the SPI channel numbers.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.SpiChannelNumber.Channel0">
+            <summary>
+            The channel 0
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.SpiChannelNumber.Channel1">
+            <summary>
+            The channel 1
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.GpioPinValue">
+            <summary>
+            Defines the GPIO Pin values 0 for low, 1 for High.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinValue.High">
+            <summary>
+            Digital high
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinValue.Low">
+            <summary>
+            Digital low
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.GpioPinResistorPullMode">
+            <summary>
+            The GPIO pin resistor mode. This is used on input pins so that their
+            lines are not floating.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinResistorPullMode.Off">
+            <summary>
+            Pull resistor not active. Line floating
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinResistorPullMode.PullDown">
+            <summary>
+            Pull resistor sets a default value of 0 on no-connects
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinResistorPullMode.PullUp">
+            <summary>
+            Pull resistor sets a default value of 1 on no-connects
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.GpioPinDriveMode">
+            <summary>
+            Defines the different drive modes of a GPIO pin.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinDriveMode.Input">
+            <summary>
+            Input drive mode (perform reads)
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinDriveMode.Output">
+            <summary>
+            Output drive mode (perform writes)
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinDriveMode.PwmOutput">
+            <summary>
+            PWM output mode (only certain pins support this -- 2 of them at the moment)
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinDriveMode.GpioClock">
+            <summary>
+            GPIO Clock output mode (only a pin supports this at this time)
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinDriveMode.Alt0">
+            <summary>
+            The alt0 operating mode
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinDriveMode.Alt1">
+            <summary>
+            The alt1 operating mode
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinDriveMode.Alt2">
+            <summary>
+            The alt2 operating mode
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioPinDriveMode.Alt3">
+            <summary>
+            The alt3 operating mode
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.ThreadLockKey">
+            <summary>
+            Defines the different threading locking keys.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.ThreadLockKey.Lock0">
+            <summary>
+            The lock 0
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.ThreadLockKey.Lock1">
+            <summary>
+            The lock 1
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.ThreadLockKey.Lock2">
+            <summary>
+            The lock 2
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.ThreadLockKey.Lock3">
+            <summary>
+            The lock 3
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.EdgeDetection">
+            <summary>
+            Defines the different edge detection modes  for pin interrupts.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.EdgeDetection.FallingEdge">
+            <summary>
+            Falling Edge
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.EdgeDetection.RisingEdge">
+            <summary>
+            Rising edge
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.EdgeDetection.FallingAndRisingEdge">
+            <summary>
+            Both, falling and rising edges
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.BoardRevision">
+            <summary>
+            The hardware revision of the board.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BoardRevision.Rev1">
+            <summary>
+            Revision 1 (the early Model A and B's).
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BoardRevision.Rev2">
+            <summary>
+            Revision 2 (everything else - it covers the B, B+ and CM).
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.GpioHeader">
+            <summary>
+            Defines the Header connectors available.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioHeader.None">
+            <summary>
+            Not defined
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioHeader.P1">
+            <summary>
+            P1 connector (main connector)
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.GpioHeader.P5">
+            <summary>
+            P5 connector (auxiliary, not commonly used)
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.BcmPin">
+            <summary>
+            Defines all the BCM Pin numbers available for the user.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio00">
+            <summary>
+            GPIO 0
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio01">
+            <summary>
+            GPIO 1
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio02">
+            <summary>
+            GPIO02
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio03">
+            <summary>
+            GPIO 3
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio04">
+            <summary>
+            GPIO 4
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio05">
+            <summary>
+            GPIO 5
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio06">
+            <summary>
+            GPIO 6
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio07">
+            <summary>
+            GPIO 7
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio08">
+            <summary>
+            GPIO 8
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio09">
+            <summary>
+            GPIO 9
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio10">
+            <summary>
+            GPIO 10
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio11">
+            <summary>
+            GPIO 11
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio12">
+            <summary>
+            GPIO 12
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio13">
+            <summary>
+            GPIO 13
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio14">
+            <summary>
+            GPIO 14
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio15">
+            <summary>
+            GPIO 15
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio16">
+            <summary>
+            GPIO 16
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio17">
+            <summary>
+            GPIO 17
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio18">
+            <summary>
+            GPIO 18
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio19">
+            <summary>
+            GPIO 19
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio20">
+            <summary>
+            GPIO 20
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio21">
+            <summary>
+            GPIO 21
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio22">
+            <summary>
+            GPIO 22
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio23">
+            <summary>
+            GPIO 23
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio24">
+            <summary>
+            GPIO 24
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio25">
+            <summary>
+            GPIO 25
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio26">
+            <summary>
+            GPIO 26
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio27">
+            <summary>
+            GPIO 27
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio28">
+            <summary>
+            GPIO 28
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio29">
+            <summary>
+            GPIO 29
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio30">
+            <summary>
+            GPIO 30
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.BcmPin.Gpio31">
+            <summary>
+            GPIO 31
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.P1">
+            <summary>
+            Enumerates the different pins on the P1 Header.
+            Enumeration values correspond to the physical pin number.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin03">
+            <summary>
+            Header P1 Physical Pin 3. GPIO 0 for rev1 or GPIO 2 for rev2.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin05">
+            <summary>
+            Header P1 Physical Pin 5. GPIO 1 for rev1 or GPIO 3 for rev2.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin07">
+            <summary>
+            Header P1 Physical Pin 7. GPIO 4.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin11">
+            <summary>
+            Header P1 Physical Pin 11. GPIO 17.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin13">
+            <summary>
+            Header P1 Physical Pin 13. GPIO 21 for rev1 or GPIO 27 for rev2.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin15">
+            <summary>
+            Header P1 Physical Pin 15. GPIO 22.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin19">
+            <summary>
+            Header P1 Physical Pin 19. GPIO 10.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin21">
+            <summary>
+            Header P1 Physical Pin 21. GPIO 9.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin23">
+            <summary>
+            Header P1 Physical Pin 23. GPIO 11.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin27">
+            <summary>
+            Header P1 Physical Pin 27. GPIO 0.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin29">
+            <summary>
+            Header P1 Physical Pin 29. GPIO 5.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin31">
+            <summary>
+            Header P1 Physical Pin 31. GPIO 6.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin33">
+            <summary>
+            Header P1 Physical Pin 33. GPIO 13.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin35">
+            <summary>
+            Header P1 Physical Pin 35. GPIO 19.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin37">
+            <summary>
+            Header P1 Physical Pin 37. GPIO 26.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin08">
+            <summary>
+            Header P1 Physical Pin 8. GPIO 14.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin10">
+            <summary>
+            Header P1 Physical Pin 10. GPIO 15.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin12">
+            <summary>
+            Header P1 Physical Pin 12. GPIO 18.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin16">
+            <summary>
+            Header P1 Physical Pin 16. GPIO 23.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin18">
+            <summary>
+            Header P1 Physical Pin 18. GPIO 24.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin22">
+            <summary>
+            Header P1 Physical Pin 22. GPIO 25.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin24">
+            <summary>
+            Header P1 Physical Pin 24. GPIO 8.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin26">
+            <summary>
+            Header P1 Physical Pin 26. GPIO 7.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin28">
+            <summary>
+            Header P1 Physical Pin 28. GPIO 1.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin32">
+            <summary>
+            Header P1 Physical Pin 32. GPIO 12.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin36">
+            <summary>
+            Header P1 Physical Pin 36. GPIO 16.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin38">
+            <summary>
+            Header P1 Physical Pin 38. GPIO 20.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P1.Pin40">
+            <summary>
+            Header P1 Physical Pin 40. GPIO 21.
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.P5">
+            <summary>
+            Enumerates the different pins on the P5 Header
+            as commonly referenced by Raspberry Pi documentation.
+            Enumeration values correspond to the physical pin number.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P5.Pin03">
+            <summary>
+            Header P5 Physical Pin 3, GPIO 28.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P5.Pin04">
+            <summary>
+            Header P5 Physical Pin 4, GPIO 29.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P5.Pin05">
+            <summary>
+            Header P5 Physical Pin 5, GPIO 30.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Abstractions.P5.Pin06">
+            <summary>
+            Header P5 Physical Pin 6, GPIO 31.
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.IBootstrap">
+            <summary>
+            Interface for bootstrapping an <see cref="N:Unosquare.RaspberryIO.Abstractions"/> implementation.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IBootstrap.Bootstrap">
+            <summary>
+            Bootstraps an <see cref="N:Unosquare.RaspberryIO.Abstractions"/> implementation.
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.IGpioController">
+            <summary>
+            Interface for Raspberry Pi GPIO controller.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IReadOnlyCollection`1" />
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.IGpioController.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Unosquare.RaspberryIO.Abstractions.IGpioPin"/> with the specified BCM pin.
+            </summary>
+            <value>
+            The <see cref="T:Unosquare.RaspberryIO.Abstractions.IGpioPin"/>.
+            </value>
+            <param name="bcmPinNumber">The BCM pin number.</param>
+            <returns>A reference to the GPIO pin.</returns>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.IGpioController.Item(Unosquare.RaspberryIO.Abstractions.BcmPin)">
+            <summary>
+            Gets the <see cref="T:Unosquare.RaspberryIO.Abstractions.IGpioPin"/> with the specified BCM pin.
+            </summary>
+            <value>
+            The <see cref="T:Unosquare.RaspberryIO.Abstractions.IGpioPin"/>.
+            </value>
+            <param name="bcmPin">The BCM pin.</param>
+            <returns>A reference to the GPIO pin.</returns>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.IGpioController.Item(Unosquare.RaspberryIO.Abstractions.P1)">
+            <summary>
+            Gets the <see cref="T:Unosquare.RaspberryIO.Abstractions.IGpioPin"/> with the specified pin number.
+            </summary>
+            <value>
+            The <see cref="T:Unosquare.RaspberryIO.Abstractions.IGpioPin"/>.
+            </value>
+            <param name="pinNumber">The pin number in header P1.</param>
+            <returns>A reference to the GPIO pin.</returns>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.IGpioController.Item(Unosquare.RaspberryIO.Abstractions.P5)">
+            <summary>
+            Gets the <see cref="T:Unosquare.RaspberryIO.Abstractions.IGpioPin"/> with the specified pin number.
+            </summary>
+            <value>
+            The <see cref="T:Unosquare.RaspberryIO.Abstractions.IGpioPin"/>.
+            </value>
+            <param name="pinNumber">The pin number in header P5.</param>
+            <returns>A reference to the GPIO pin.</returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.IGpioPin">
+            <summary>
+            Interface for GPIO Pin on a RaspberryPi board.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.IGpioPin.BcmPin">
+            <summary>
+            Gets the <see cref="T:Unosquare.RaspberryIO.Abstractions.BcmPin"/>.
+            </summary>
+            <value>
+            The pin number.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.IGpioPin.BcmPinNumber">
+            <summary>
+            Gets the BCM chip (hardware) pin number.
+            </summary>
+            <value>
+            The pin number.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.IGpioPin.PhysicalPinNumber">
+            <summary>
+            Gets the physical (header) pin number.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.IGpioPin.Header">
+            <summary>
+            Gets the pin's header (physical board) location.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.IGpioPin.PinMode">
+            <summary>
+            Gets or sets the pin operating mode.
+            </summary>
+            <value>
+            The pin mode.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.IGpioPin.InputPullMode">
+            <summary>
+            This sets or gets the pull-up or pull-down resistor mode on the pin, which should be set as an input.
+            Unlike the Arduino, the BCM2835 has both pull-up an down internal resistors.
+            The parameter pud should be; PUD_OFF, (no pull up/down), PUD_DOWN (pull to ground) or PUD_UP (pull to 3.3v)
+            The internal pull up/down resistors have a value of approximately 50KΩ on the Raspberry Pi.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.IGpioPin.Value">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Unosquare.RaspberryIO.Abstractions.IGpioPin"/> is value.
+            </summary>
+            <value>
+              <c>true</c> if value; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IGpioPin.Read">
+            <summary>
+            Reads the digital value on the pin as a boolean value.
+            </summary>
+            <returns>The state of the pin.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IGpioPin.Write(System.Boolean)">
+            <summary>
+            Writes the specified bit value.
+            This method performs a digital write.
+            </summary>
+            <param name="value">if set to <c>true</c> [value].</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IGpioPin.Write(Unosquare.RaspberryIO.Abstractions.GpioPinValue)">
+            <summary>
+            Writes the specified pin value.
+            This method performs a digital write.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IGpioPin.WaitForValue(Unosquare.RaspberryIO.Abstractions.GpioPinValue,System.Int32)">
+            <summary>
+            Wait for specific pin status.
+            </summary>
+            <param name="status">status to check.</param>
+            <param name="timeOutMillisecond">timeout to reach status.</param>
+            <returns>true/false.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IGpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Abstractions.EdgeDetection,System.Action)">
+            <summary>
+            Registers the interrupt callback on the pin. Pin mode has to be set to Input.
+            </summary>
+            <param name="edgeDetection">The edge detection.</param>
+            <param name="callback">The callback function. This function is called whenever
+            the interrupt occurs.</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IGpioPin.RemoveInterruptCallback(Unosquare.RaspberryIO.Abstractions.EdgeDetection,System.Action)">
+            <summary>
+            Removes the registered interrupt callback on the pin.
+            </summary>
+            <param name="edgeDetection">The edge detection.</param>
+            <param name="callback">The callback function. This function is called whenever
+            the interrupt occurs.</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IGpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Abstractions.EdgeDetection,System.Action{System.Int32,System.Int32,System.UInt32})">
+            <summary>
+            Registers the interrupt callback on the pin. Pin mode has to be set to Input.
+            </summary>
+            <param name="edgeDetection">The edge detection.</param>
+            <param name="callback">The callback function. This function is called whenever the interrupt occurs.
+            The function is passed the GPIO, the current level, and the current tick
+            (The number of microseconds since boot).</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IGpioPin.RemoveInterruptCallback(Unosquare.RaspberryIO.Abstractions.EdgeDetection,System.Action{System.Int32,System.Int32,System.UInt32})">
+            <summary>
+            Removes the registered interrupt callback on the pin.
+            </summary>
+            <param name="edgeDetection">The edge detection.</param>
+            <param name="callback">The callback function. This function is called whenever
+            the interrupt occurs.</param>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.II2CBus">
+            <summary>
+            Interfaces the I2c bus on the Raspberry Pi.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.II2CBus.Devices">
+            <summary>
+            Gets the registered devices as a read only collection.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.II2CBus.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Unosquare.RaspberryIO.Abstractions.II2CDevice"/> with the specified device identifier.
+            </summary>
+            <value>
+            The <see cref="T:Unosquare.RaspberryIO.Abstractions.II2CDevice"/>.
+            </value>
+            <param name="deviceId">The device identifier.</param>
+            <returns>A reference to an I2C device.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.II2CBus.GetDeviceById(System.Int32)">
+            <summary>
+            Gets the device by identifier.
+            </summary>
+            <param name="deviceId">The device identifier.</param>
+            <returns>The device reference.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.II2CBus.AddDevice(System.Int32)">
+            <summary>
+            Adds a device to the bus by its Id. If the device is already registered it simply returns the existing device.
+            </summary>
+            <param name="deviceId">The device identifier.</param>
+            <returns>The device reference.</returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.II2CDevice">
+            <summary>
+            Interfaces a device on the I2C Bus.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.II2CDevice.DeviceId">
+            <summary>
+            Gets the device identifier.
+            </summary>
+            <value>
+            The device identifier.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.II2CDevice.FileDescriptor">
+            <summary>
+            Gets the standard POSIX file descriptor.
+            </summary>
+            <value>
+            The file descriptor.
+            </value>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.II2CDevice.Read">
+            <summary>
+            Reads a byte from the specified file descriptor.
+            </summary>
+            <returns>The byte from device.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.II2CDevice.Read(System.Int32)">
+            <summary>
+            Reads a buffer of the specified length, one byte at a time.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The byte array from device.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.II2CDevice.Write(System.Byte)">
+            <summary>
+            Writes a byte of data the specified file descriptor.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.II2CDevice.Write(System.Byte[])">
+            <summary>
+            Writes a set of bytes to the specified file descriptor.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.II2CDevice.WriteAddressByte(System.Int32,System.Byte)">
+            <summary>
+            These write an 8 or 16-bit data value into the device register indicated.
+            </summary>
+            <param name="address">The register.</param>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.II2CDevice.WriteAddressWord(System.Int32,System.UInt16)">
+            <summary>
+            These write an 8 or 16-bit data value into the device register indicated.
+            </summary>
+            <param name="address">The register.</param>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.II2CDevice.ReadAddressByte(System.Int32)">
+            <summary>
+            These read an 8 or 16-bit value from the device register indicated.
+            </summary>
+            <param name="address">The register.</param>
+            <returns>The address byte from device.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.II2CDevice.ReadAddressWord(System.Int32)">
+            <summary>
+            These read an 8 or 16-bit value from the device register indicated.
+            </summary>
+            <param name="address">The register.</param>
+            <returns>The address word from device.</returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.ISpiBus">
+            <summary>
+            Interfaces a SPI Bus containing the 2 SPI channels.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ISpiBus.DefaultFrequency">
+            <summary>
+            Gets the default frequency.
+            </summary>
+            <value>
+            The default frequency.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ISpiBus.Channel0Frequency">
+            <summary>
+            Gets or sets the channel 0 frequency in Hz.
+            </summary>
+            <value>
+            The channel0 frequency.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ISpiBus.Channel1Frequency">
+            <summary>
+            Gets or sets the channel 1 frequency in Hz.
+            </summary>
+            <value>
+            The channel1 frequency.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ISpiBus.Channel0">
+            <summary>
+            Gets the SPI bus on channel 0.
+            </summary>
+            <value>
+            The channel0.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ISpiBus.Channel1">
+            <summary>
+            Gets the SPI bus on channel 1.
+            </summary>
+            <value>
+            The channel0.
+            </value>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.ISpiChannel">
+            <summary>
+            Interfaces a SPI buses on the GPIO.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ISpiChannel.FileDescriptor">
+            <summary>
+            Gets the standard initialization file descriptor.
+            anything negative means error.
+            </summary>
+            <value>
+            The file descriptor.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ISpiChannel.Channel">
+            <summary>
+            Gets the channel.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ISpiChannel.Frequency">
+            <summary>
+            Gets the frequency.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.ISpiChannel.SendReceive(System.Byte[])">
+            <summary>
+            Sends data and simultaneously receives the data in the return buffer.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <returns>The read bytes from the ring-style bus.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.ISpiChannel.Write(System.Byte[])">
+            <summary>
+            Writes the specified buffer the the underlying FileDescriptor.
+            Do not use this method if you expect data back.
+            This method is efficient if used in a fire-and-forget scenario
+            like sending data over to those long RGB LED strips.
+            </summary>
+            <param name="buffer">The buffer.</param>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.ISystemInfo">
+            <summary>
+            Interface for system info.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ISystemInfo.BoardRevision">
+            <summary>
+            Gets the board revision (1 or 2).
+            </summary>
+            <value>
+            The board revision.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ISystemInfo.LibraryVersion">
+            <summary>
+            Gets the library version.
+            </summary>
+            <value>
+            The library version.
+            </value>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.IThreading">
+            <summary>
+            Interface to represent threading methods using interop.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IThreading.StartThread(System.Action)">
+            <summary>
+            Starts a new thread of execution which runs concurrently with your main program.
+            </summary>
+            <param name="worker">The thread routine.</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IThreading.StartThreadEx(System.Action{System.UIntPtr},System.UIntPtr)">
+            <summary>
+            Starts a new thread of execution which runs concurrently with your main program.
+            </summary>
+            <param name="worker">The thread routine.</param>
+            <param name="userData">A pointer to the user data.</param>
+            <returns>A pointer to the new thread.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.IThreading.StopThreadEx(System.UIntPtr)">
+            <summary>
+            Stops the thread pointed at by handle.
+            </summary>
+            <param name="handle">A thread pointer returned by <see cref="M:Unosquare.RaspberryIO.Abstractions.IThreading.StartThreadEx(System.Action{System.UIntPtr},System.UIntPtr)"/>.</param>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.ITiming">
+            <summary>
+            Interface for timing methods using interop.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ITiming.Milliseconds">
+            <summary>
+            This returns a number representing the number of milliseconds since system boot.
+            </summary>
+            <returns>The milliseconds since system boot.</returns>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.ITiming.Microseconds">
+            <summary>
+            This returns a number representing the number of microseconds since system boot.
+            </summary>
+            <returns>The microseconds since system boot.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.ITiming.SleepMilliseconds(System.UInt32)">
+            <summary>
+            This causes program execution to pause for at least how long milliseconds.
+            Due to the multi-tasking nature of Linux it could be longer.
+            Note that the maximum delay is an unsigned 32-bit integer or approximately 49 days.
+            </summary>
+            <param name="millis">The number of milliseconds to sleep.</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.ITiming.SleepMicroseconds(System.UInt32)">
+            <summary>
+            This causes program execution to pause for at least how long microseconds.
+            Due to the multi-tasking nature of Linux it could be longer.
+            Note that the maximum delay is an unsigned 32-bit integer microseconds or approximately 71 minutes.
+            Delays under 100 microseconds are timed using a hard-coded loop continually polling the system time,
+            Delays over 100 microseconds are done using the system nanosleep() function –
+            You may need to consider the implications of very short delays on the overall performance of the system,
+            especially if using threads.
+            </summary>
+            <param name="micros">The number of microseconds to sleep.</param>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.Native.HardwareException">
+            <summary>
+            Represents a low-level exception, typically thrown when return codes from a
+            low-level operation is non-zero or in some cases when it is less than zero.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.Native.HardwareException.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Unosquare.RaspberryIO.Abstractions.Native.HardwareException"/> class.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="component">The component.</param>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.Native.HardwareException.ErrorCode">
+            <summary>
+            Gets the error code.
+            </summary>
+            <value>
+            The error code.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.Native.HardwareException.Component">
+            <summary>
+            Gets the component.
+            </summary>
+            <value>
+            The component.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Abstractions.Native.HardwareException.ExtendedMessage">
+            <summary>
+            Gets the extended message (could be null).
+            </summary>
+            <value>
+            The extended message.
+            </value>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.Native.HardwareException.Throw(System.String,System.String)">
+            <summary>
+            Throws a new instance of a hardware error by retrieving the last error number (errno).
+            </summary>
+            <param name="className">Name of the class.</param>
+            <param name="methodName">Name of the method.</param>
+            <exception cref="T:Unosquare.RaspberryIO.Abstractions.Native.HardwareException">When an error thrown by an API call occurs.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.Native.HardwareException.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Abstractions.Native.Standard">
+            <summary>
+            Provides standard 'libc' calls using platform-invoke.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Abstractions.Native.Standard.Strerror(System.Int32)">
+            <summary>
+            Strerrors the specified error.
+            </summary>
+            <param name="error">The error.</param>
+            <returns>The error string.</returns>
+        </member>
+    </members>
+</doc>

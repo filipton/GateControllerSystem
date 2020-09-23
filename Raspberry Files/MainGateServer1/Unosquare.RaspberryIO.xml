@@ -1,0 +1,2076 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Unosquare.RaspberryIO</name>
+    </assembly>
+    <members>
+        <member name="T:Unosquare.RaspberryIO.BluetoothErrorException">
+            <inheritdoc />
+            <summary>
+            Occurs when an exception is thrown in the <c>Bluetooth</c> component.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.BluetoothErrorException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Unosquare.RaspberryIO.BluetoothErrorException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraColor">
+            <summary>
+            A simple RGB color class to represent colors in RGB and YUV colorspaces.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraColor.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Unosquare.RaspberryIO.Camera.CameraColor"/> class.
+            </summary>
+            <param name="r">The red.</param>
+            <param name="g">The green.</param>
+            <param name="b">The blue.</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraColor.#ctor(System.Int32,System.Int32,System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Unosquare.RaspberryIO.Camera.CameraColor"/> class.
+            </summary>
+            <param name="r">The red.</param>
+            <param name="g">The green.</param>
+            <param name="b">The blue.</param>
+            <param name="name">The well-known color name.</param>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraColor.White">
+            <summary>
+            Gets the predefined white color.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraColor.Red">
+            <summary>
+            Gets the predefined red color.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraColor.Green">
+            <summary>
+            Gets the predefined green color.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraColor.Blue">
+            <summary>
+            Gets the predefined blue color.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraColor.Black">
+            <summary>
+            Gets the predefined black color.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraColor.Name">
+            <summary>
+            Gets the well-known color name.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraColor.R">
+            <summary>
+            Gets the red byte.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraColor.G">
+            <summary>
+            Gets the green byte.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraColor.B">
+            <summary>
+            Gets the blue byte.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraColor.RGB">
+            <summary>
+            Gets the RGB byte array (3 bytes).
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraColor.YUV">
+            <summary>
+            Gets the YUV byte array (3 bytes).
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraColor.ToRgbHex(System.Boolean)">
+            <summary>
+            Returns a hexadecimal representation of the RGB byte array.
+            Preceded by 0x and all in lowercase.
+            </summary>
+            <param name="reverse">if set to <c>true</c> [reverse].</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraColor.ToYuvHex(System.Boolean)">
+            <summary>
+            Returns a hexadecimal representation of the YUV byte array.
+            Preceded by 0x and all in lowercase.
+            </summary>
+            <param name="reverse">if set to <c>true</c> [reverse].</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraColor.ToHex(System.Byte[])">
+            <summary>
+            Returns a hexadecimal representation of the data byte array.
+            </summary>
+            <param name="data">The data.</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraController">
+            <summary>
+            The Raspberry Pi's camera controller wrapping raspistill and raspivid programs.
+            This class is a singleton.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraController.IsBusy">
+            <summary>
+            Gets a value indicating whether the camera module is busy.
+            </summary>
+            <value>
+              <c>true</c> if this instance is busy; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings,System.Threading.CancellationToken)">
+            <summary>
+            Captures an image asynchronously.
+            </summary>
+            <param name="settings">The settings.</param>
+            <param name="ct">The ct.</param>
+            <returns>The image bytes.</returns>
+            <exception cref="T:System.InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraController.CaptureImage(Unosquare.RaspberryIO.Camera.CameraStillSettings)">
+            <summary>
+            Captures an image.
+            </summary>
+            <param name="settings">The settings.</param>
+            <returns>The image bytes.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpegAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Captures a JPEG encoded image asynchronously at 90% quality.
+            </summary>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <param name="ct">The ct.</param>
+            <returns>The image bytes.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpeg(System.Int32,System.Int32)">
+            <summary>
+            Captures a JPEG encoded image at 90% quality.
+            </summary>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <returns>The image bytes.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Action)">
+            <summary>
+            Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
+            No preview is shown.
+            </summary>
+            <param name="onDataCallback">The on data callback.</param>
+            <param name="onExitCallback">The on exit callback.</param>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings,System.Action{System.Byte[]},System.Action)">
+            <summary>
+            Opens the video stream with the supplied settings. Capture Timeout Milliseconds has to be 0 or greater.
+            </summary>
+            <param name="settings">The settings.</param>
+            <param name="onDataCallback">The on data callback.</param>
+            <param name="onExitCallback">The on exit callback.</param>
+            <exception cref="T:System.InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
+            <exception cref="T:System.ArgumentException">CaptureTimeoutMilliseconds.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraController.CloseVideoStream">
+            <summary>
+            Closes the video stream of a video stream is open.
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraRect">
+            <summary>
+            Defines the Raspberry Pi camera's sensor ROI (Region of Interest).
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraRect.Default">
+            <summary>
+            The default ROI which is the entire area.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraRect.X">
+            <summary>
+            Gets or sets the x in relative coordinates. (0.0 to 1.0).
+            </summary>
+            <value>
+            The x.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraRect.Y">
+            <summary>
+            Gets or sets the y location in relative coordinates.  (0.0 to 1.0).
+            </summary>
+            <value>
+            The y.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraRect.W">
+            <summary>
+            Gets or sets the width in relative coordinates.  (0.0 to 1.0).
+            </summary>
+            <value>
+            The w.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraRect.H">
+            <summary>
+            Gets or sets the height in relative coordinates.  (0.0 to 1.0).
+            </summary>
+            <value>
+            The h.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraRect.IsDefault">
+            <summary>
+            Gets a value indicating whether this instance is equal to the default (The entire area).
+            </summary>
+            <value>
+            <c>true</c> if this instance is default; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraRect.Clamp">
+            <summary>
+            Clamps the members of this ROI to their minimum and maximum values.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraRect.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraSettingsBase">
+            <summary>
+            A base class to implement raspistill and raspivid wrappers
+            Full documentation available at
+            https://www.raspberrypi.org/documentation/raspbian/applications/camera.md.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraSettingsBase.Ci">
+            <summary>
+            The Invariant Culture shorthand.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureTimeoutMilliseconds">
+            <summary>
+            Gets or sets the timeout milliseconds.
+            Default value is 5000
+            Recommended value is at least 300 in order to let the light collectors open.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDisplayPreview">
+            <summary>
+            Gets or sets a value indicating whether or not to show a preview window on the screen.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDisplayPreviewInFullScreen">
+            <summary>
+            Gets or sets a value indicating whether a preview window is shown in full screen  mode if enabled.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureVideoStabilizationEnabled">
+            <summary>
+            Gets or sets a value indicating whether video stabilization should be enabled.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDisplayPreviewOpacity">
+            <summary>
+            Gets or sets the display preview opacity only if the display preview property is enabled.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureSensorRoi">
+            <summary>
+            Gets or sets the capture sensor region of interest in relative coordinates.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureShutterSpeedMicroseconds">
+            <summary>
+            Gets or sets the capture shutter speed in microseconds.
+            Default -1, Range 0 to 6000000 (equivalent to 6 seconds).
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureExposure">
+            <summary>
+            Gets or sets the exposure mode.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureExposureCompensation">
+            <summary>
+            Gets or sets the picture EV compensation. Default is 0, Range is -10 to 10
+            Camera exposure compensation is commonly stated in terms of EV units;
+            1 EV is equal to one exposure step (or stop), corresponding to a doubling of exposure.
+            Exposure can be adjusted by changing either the lens f-number or the exposure time;
+            which one is changed usually depends on the camera's exposure mode.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureMeteringMode">
+            <summary>
+            Gets or sets the capture metering mode.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceControl">
+            <summary>
+            Gets or sets the automatic white balance mode. By default it is set to Auto.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceGainBlue">
+            <summary>
+            Gets or sets the capture white balance gain on the blue channel. Example: 1.25
+            Only takes effect if White balance control is set to off.
+            Default is 0.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceGainRed">
+            <summary>
+            Gets or sets the capture white balance gain on the red channel. Example: 1.75
+            Only takes effect if White balance control is set to off.
+            Default is 0.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDynamicRangeCompensation">
+            <summary>
+            Gets or sets the dynamic range compensation.
+            DRC changes the images by increasing the range of dark areas, and decreasing the brighter areas. This can improve the image in low light areas.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWidth">
+            <summary>
+            Gets or sets the width of the picture to take.
+            Less than or equal to 0 in either width or height means maximum resolution available.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureHeight">
+            <summary>
+            Gets or sets the height of the picture to take.
+            Less than or equal to 0 in either width or height means maximum resolution available.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageSharpness">
+            <summary>
+            Gets or sets the picture sharpness. Default is 0, Range form -100 to 100.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageContrast">
+            <summary>
+            Gets or sets the picture contrast. Default is 0, Range form -100 to 100.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageBrightness">
+            <summary>
+            Gets or sets the picture brightness. Default is 50, Range form 0 to 100.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageSaturation">
+            <summary>
+            Gets or sets the picture saturation. Default is 0, Range form -100 to 100.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageIso">
+            <summary>
+            Gets or sets the picture ISO. Default is -1 Range is 100 to 800
+            The higher the value, the more light the sensor absorbs.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageEffect">
+            <summary>
+            Gets or sets the image capture effect to be applied.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageColorEffectU">
+            <summary>
+            Gets or sets the color effect U coordinates.
+            Default is -1, Range is 0 to 255
+            128:128 should be effectively a monochrome image.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageColorEffectV">
+            <summary>
+            Gets or sets the color effect V coordinates.
+            Default is -1, Range is 0 to 255
+            128:128 should be effectively a monochrome image.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageRotation">
+            <summary>
+            Gets or sets the image rotation. Default is no rotation.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageFlipHorizontally">
+            <summary>
+            Gets or sets a value indicating whether the image should be flipped horizontally.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageFlipVertically">
+            <summary>
+            Gets or sets a value indicating whether the image should be flipped vertically.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotations">
+            <summary>
+            Gets or sets the image annotations using a bitmask (or flags) notation.
+            Apply a bitwise OR to the enumeration to include multiple annotations.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationsText">
+            <summary>
+            Gets or sets the image annotations text.
+            Text may include date/time placeholders by using the '%' character, as used by strftime.
+            Example: ABC %Y-%m-%d %X will output ABC 2015-10-28 20:09:33.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationFontSize">
+            <summary>
+            Gets or sets the font size of the text annotations
+            Default is -1, range is 6 to 160.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationFontColor">
+            <summary>
+            Gets or sets the color of the text annotations.
+            </summary>
+            <value>
+            The color of the image annotation font.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationBackground">
+            <summary>
+            Gets or sets the background color for text annotations.
+            </summary>
+            <value>
+            The image annotation background.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CommandName">
+            <summary>
+            Gets the command file executable.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CreateProcessArguments">
+            <summary>
+            Creates the process arguments.
+            </summary>
+            <returns>The string that represents the process arguments.</returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraStillSettings">
+            <summary>
+            Defines a wrapper for the raspistill program and its settings (command-line arguments).
+            </summary>
+            <seealso cref="T:Unosquare.RaspberryIO.Camera.CameraSettingsBase" />
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraStillSettings.CommandName">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureDisplayPreviewAtResolution">
+            <summary>
+            Gets or sets a value indicating whether the preview window (if enabled) uses native capture resolution
+            This may slow down preview FPS.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureEncoding">
+            <summary>
+            Gets or sets the encoding format the hardware will use for the output.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegQuality">
+            <summary>
+            Gets or sets the quality for JPEG only encoding mode.
+            Value ranges from 0 to 100.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegIncludeRawBayerMetadata">
+            <summary>
+            Gets or sets a value indicating whether the JPEG encoder should add raw bayer metadata.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegExtendedInfo">
+            <summary>
+            JPEG EXIF data
+            Keys and values must be already properly escaped. Otherwise the command will fail.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip">
+            <summary>
+            Gets or sets a value indicating whether [horizontal flip].
+            </summary>
+            <value>
+              <c>true</c> if [horizontal flip]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraStillSettings.VerticalFlip">
+            <summary>
+            Gets or sets a value indicating whether [vertical flip].
+            </summary>
+            <value>
+              <c>true</c> if [vertical flip]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotation">
+            <summary>
+            Gets or sets the rotation.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">Valid range 0-359.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraStillSettings.CreateProcessArguments">
+            <inheritdoc />
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraVideoSettings">
+            <summary>
+            Represents the raspivid camera settings for video capture functionality.
+            </summary>
+            <seealso cref="T:Unosquare.RaspberryIO.Camera.CameraSettingsBase" />
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CommandName">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureBitrate">
+            <summary>
+            Use bits per second, so 10Mbits/s would be -b 10000000. For H264, 1080p30 a high quality bitrate would be 15Mbits/s or more. 
+            Maximum bitrate is 25Mbits/s (-b 25000000), but much over 17Mbits/s won't show noticeable improvement at 1080p30.
+            Default -1.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureFramerate">
+            <summary>
+            Gets or sets the framerate.
+            Default 25, range 2 to 30.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureKeyframeRate">
+            <summary>
+            Sets the intra refresh period (GoP) rate for the recorded video. H264 video uses a complete frame (I-frame) every intra 
+            refresh period, from which subsequent frames are based. This option specifies the number of frames between each I-frame. 
+            Larger numbers here will reduce the size of the resulting video, and smaller numbers make the stream less error-prone.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureQuantisation">
+            <summary>
+            Sets the initial quantisation parameter for the stream. Varies from approximately 10 to 40, and will greatly affect 
+            the quality of the recording. Higher values reduce quality and decrease file size. Combine this setting with a 
+            bitrate of 0 to set a completely variable bitrate.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureProfile">
+            <summary>
+            Gets or sets the profile.
+            Sets the H264 profile to be used for the encoding.
+            Default is Main mode.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureInterleaveHeaders">
+            <summary>
+            Forces the stream to include PPS and SPS headers on every I-frame. Needed for certain streaming cases 
+            e.g. Apple HLS. These headers are small, so don't greatly increase the file size.
+            </summary>
+            <value>
+              <c>true</c> if [interleave headers]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.Fullscreen">
+            <summary>
+            Toggle fullscreen mode for video preview.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.VideoFileName">
+            <summary>
+            Specifies the path to save video files.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.LengthInSeconds">
+            <summary>
+            Video stream length in seconds.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureDisplayPreviewEncoded">
+            <summary>
+            Switch on an option to display the preview after compression. This will show any compression artefacts in the preview window. In normal operation, 
+            the preview will show the camera output prior to being compressed. This option is not guaranteed to work in future releases.
+            </summary>
+            <value>
+            <c>true</c> if [capture display preview encoded]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CreateProcessArguments">
+            <inheritdoc />
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraImageEncodingFormat">
+            <summary>
+            Defines the available encoding formats for the Raspberry Pi camera module.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEncodingFormat.Jpg">
+            <summary>
+            The JPG
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEncodingFormat.Bmp">
+            <summary>
+            The BMP
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEncodingFormat.Gif">
+            <summary>
+            The GIF
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEncodingFormat.Png">
+            <summary>
+            The PNG
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraExposureMode">
+            <summary>
+            Defines the different exposure modes for the Raspberry Pi's camera module.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.Auto">
+            <summary>
+            The automatic
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.Night">
+            <summary>
+            The night
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.NightPreview">
+            <summary>
+            The night preview
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.Backlight">
+            <summary>
+            The backlight
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.Spotlight">
+            <summary>
+            The spotlight
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.Sports">
+            <summary>
+            The sports
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.Snow">
+            <summary>
+            The snow
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.Beach">
+            <summary>
+            The beach
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.VeryLong">
+            <summary>
+            The very long
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.FixedFps">
+            <summary>
+            The fixed FPS
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.AntiShake">
+            <summary>
+            The anti shake
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraExposureMode.Fireworks">
+            <summary>
+            The fireworks
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode">
+            <summary>
+            Defines the different AWB (Auto White Balance) modes for the Raspberry Pi's camera module.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.Off">
+            <summary>
+            No white balance
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.Auto">
+            <summary>
+            The automatic
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.Sun">
+            <summary>
+            The sun
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.Cloud">
+            <summary>
+            The cloud
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.Shade">
+            <summary>
+            The shade
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.Tungsten">
+            <summary>
+            The tungsten
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.Fluorescent">
+            <summary>
+            The fluorescent
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.Incandescent">
+            <summary>
+            The incandescent
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.Flash">
+            <summary>
+            The flash
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.Horizon">
+            <summary>
+            The horizon
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraImageEffect">
+            <summary>
+            Defines the available image effects for the Raspberry Pi's camera module.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.None">
+            <summary>
+            No effect
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Negative">
+            <summary>
+            The negative
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Solarise">
+            <summary>
+            The solarise
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Whiteboard">
+            <summary>
+            The whiteboard
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Blackboard">
+            <summary>
+            The blackboard
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Sketch">
+            <summary>
+            The sketch
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Denoise">
+            <summary>
+            The denoise
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Emboss">
+            <summary>
+            The emboss
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.OilPaint">
+            <summary>
+            The oil paint
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Hatch">
+            <summary>
+            The hatch
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.GPen">
+            <summary>
+            Graphite Pen
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Pastel">
+            <summary>
+            The pastel
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.WaterColour">
+            <summary>
+            The water colour
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Film">
+            <summary>
+            The film
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Blur">
+            <summary>
+            The blur
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Saturation">
+            <summary>
+            The saturation
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.SolourSwap">
+            <summary>
+            The solour swap
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.WashedOut">
+            <summary>
+            The washed out
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.ColourPoint">
+            <summary>
+            The colour point
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.ColourBalance">
+            <summary>
+            The colour balance
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageEffect.Cartoon">
+            <summary>
+            The cartoon
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraMeteringMode">
+            <summary>
+            Defines the different metering modes for the Raspberry Pi's camera module.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraMeteringMode.Average">
+            <summary>
+            The average
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraMeteringMode.Spot">
+            <summary>
+            The spot
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraMeteringMode.Backlit">
+            <summary>
+            The backlit
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraMeteringMode.Matrix">
+            <summary>
+            The matrix
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraImageRotation">
+            <summary>
+            Defines the different image rotation modes for the Raspberry Pi's camera module.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageRotation.None">
+            <summary>
+            No rerotation
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageRotation.Degrees90">
+            <summary>
+            90 Degrees
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageRotation.Degrees180">
+            <summary>
+            180 Degrees
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraImageRotation.Degrees270">
+            <summary>
+            270 degrees
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraDynamicRangeCompensation">
+            <summary>
+            Defines the different DRC (Dynamic Range Compensation)  modes for the Raspberry Pi's camera module
+            Helpful for low light photos.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraDynamicRangeCompensation.Off">
+            <summary>
+            The off setting
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraDynamicRangeCompensation.Low">
+            <summary>
+            The low
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraDynamicRangeCompensation.Medium">
+            <summary>
+            The medium
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraDynamicRangeCompensation.High">
+            <summary>
+            The high
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraAnnotation">
+            <summary>
+            Defines the bit-wise mask flags for the available annotation elements for the Raspberry Pi's camera module.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraAnnotation.None">
+            <summary>
+            The none
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraAnnotation.Time">
+            <summary>
+            The time
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraAnnotation.Date">
+            <summary>
+            The date
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraAnnotation.ShutterSettings">
+            <summary>
+            The shutter settings
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraAnnotation.CafSettings">
+            <summary>
+            The caf settings
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraAnnotation.GainSettings">
+            <summary>
+            The gain settings
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraAnnotation.LensSettings">
+            <summary>
+            The lens settings
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraAnnotation.MotionSettings">
+            <summary>
+            The motion settings
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraAnnotation.FrameNumber">
+            <summary>
+            The frame number
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraAnnotation.SolidBackground">
+            <summary>
+            The solid background
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Camera.CameraH264Profile">
+            <summary>
+            Defines the different H.264 encoding profiles to be used when capturing video.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraH264Profile.Baseline">
+            <summary>
+            BP:  Primarily for lower-cost applications with limited computing resources, 
+            this profile is used widely in videoconferencing and mobile applications.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraH264Profile.Main">
+            <summary>
+            MP: Originally intended as the mainstream consumer profile for broadcast 
+            and storage applications, the importance of this profile faded when the High profile was developed for those applications.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Camera.CameraH264Profile.High">
+            <summary>
+            HiP: The primary profile for broadcast and disc storage applications, particularly 
+            for high-definition television applications (this is the profile adopted into HD DVD and Blu-ray Disc, for example).
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.AudioSettings">
+            <summary>
+            Settings for audio device.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.AudioSettings.GetState(System.Int32,System.String)">
+            <summary>
+            Gets the current audio state.
+            </summary>
+            <param name="cardNumber">The card number.</param>
+            <param name="controlName">Name of the control.</param>
+            <returns>An <see cref="T:Unosquare.RaspberryIO.Computer.AudioState"/> object.</returns>
+            <exception cref="T:System.InvalidOperationException">Invalid command, card number or control name.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage(System.Int32,System.Int32,System.String)">
+            <summary>
+            Sets the volume percentage.
+            </summary>
+            <param name="level">The percentage level.</param>
+            <param name="cardNumber">The card number.</param>
+            <param name="controlName">Name of the control.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+            <exception cref="T:System.InvalidOperationException">Invalid card number or control name.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels(System.Single,System.Int32,System.String)">
+            <summary>
+            Sets the volume by decibels.
+            </summary>
+            <param name="decibels">The decibels.</param>
+            <param name="cardNumber">The card number.</param>
+            <param name="controlName">Name of the control.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+            <exception cref="T:System.InvalidOperationException">Invalid card number or control name.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolume(System.Single,System.Int32,System.String)">
+            <summary>
+            Increments the volume by decibels.
+            </summary>
+            <param name="decibels">The decibels to increment or decrement.</param>
+            <param name="cardNumber">The card number.</param>
+            <param name="controlName">Name of the control.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+            <exception cref="T:System.InvalidOperationException">Invalid card number or control name.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.AudioSettings.ToggleMute(System.Boolean,System.Int32,System.String)">
+            <summary>
+            Toggles the mute state.
+            </summary>
+            <param name="mute">if set to <c>true</c>, mutes the audio.</param>
+            <param name="cardNumber">The card number.</param>
+            <param name="controlName">Name of the control.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+            <exception cref="T:System.InvalidOperationException">Invalid card number or control name.</exception>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.AudioState">
+            <summary>
+            Manage the volume of any sound device.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.AudioState.#ctor(System.Int32,System.String,System.Int32,System.Single,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Unosquare.RaspberryIO.Computer.AudioState"/> struct.
+            </summary>
+            <param name="cardNumber">The card number.</param>
+            <param name="controlName">Name of the control.</param>
+            <param name="level">The volume level in percentaje.</param>
+            <param name="decibels">The volume level in decibels.</param>
+            <param name="isMute">if set to <c>true</c> the audio is mute.</param>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.AudioState.CardNumber">
+            <summary>
+            Gets the card number.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.AudioState.ControlName">
+            <summary>
+            Gets the name of the current control.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.AudioState.Level">
+            <summary>
+            Gets the volume level in percentage.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.AudioState.Decibels">
+            <summary>
+            Gets the volume level in decibels.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.AudioState.IsMute">
+            <summary>
+            Gets a value indicating whether the audio is mute.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.AudioState.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents the audio state.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents the audio state.
+            </returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.Bluetooth">
+            <summary>
+            Represents the Bluetooth information.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn(System.Threading.CancellationToken)">
+            <summary>
+            Turns on the Bluetooth adapter.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns true or false depending if the controller was turned on.
+            </returns>
+            <exception cref="T:Unosquare.RaspberryIO.BluetoothErrorException">Failed to power on:.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff(System.Threading.CancellationToken)">
+            <summary>
+            Turns off the bluetooth adapter.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns true or false depending if the controller was turned off.
+            </returns>
+            <exception cref="T:Unosquare.RaspberryIO.BluetoothErrorException">Failed to power off:.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices(System.Threading.CancellationToken)">
+            <summary>
+            Gets the list of detected devices.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns the list of detected devices.
+            </returns>
+            <exception cref="T:Unosquare.RaspberryIO.BluetoothErrorException">Failed to retrieve devices:.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers(System.Threading.CancellationToken)">
+            <summary>
+            Gets the list of bluetooth controllers.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns the list of bluetooth controllers.
+            </returns>
+            <exception cref="T:Unosquare.RaspberryIO.BluetoothErrorException">Failed to retrieve controllers:.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Pairs a specific device with a specific controller.
+            </summary>
+            <param name="controllerAddress">The mac address of the controller that will be used to pair.</param>
+            <param name="deviceAddress">The mac address of the device that will be paired.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns true or false if the pair was successfully.
+            </returns>
+            <exception cref="T:Unosquare.RaspberryIO.BluetoothErrorException">Failed to Pair:.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.Bluetooth.Connect(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Performs a connection of a given controller with a given device.
+            </summary>
+            <param name="controllerAddress">The mac address of the controller that will be used to make the connection.</param>
+            <param name="deviceAddress">The mac address of the device that will be connected.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns true or false if the connection was successfully.
+            </returns>
+            <exception cref="T:Unosquare.RaspberryIO.BluetoothErrorException">Failed to connect:.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.Bluetooth.Trust(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Sets the device to re-pair automatically when it is turned on, which eliminates the need to pair all over again.
+            </summary>
+            <param name="controllerAddress">The mac address of the controller will be used.</param>
+            <param name="deviceAddress">The mac address of the device will be added to the trust list devices.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns true or false if the operation was successful.
+            </returns>
+            <exception cref="T:Unosquare.RaspberryIO.BluetoothErrorException">Failed to add to trust devices list:.</exception>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Displays information about a particular device.
+            </summary>
+            <param name="deviceAddress">The mac address of the device which info will be retrieved.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns the device info.
+            </returns>
+            <exception cref="T:Unosquare.RaspberryIO.BluetoothErrorException">Failed to retrieve  info for {deviceAddress}.</exception>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.DsiDisplay">
+            <summary>
+            The Official Raspberry Pi 7-inch touch display from the foundation
+            Some docs available here:
+            http://forums.pimoroni.com/t/official-7-raspberry-pi-touch-screen-faq/959.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.DsiDisplay.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Unosquare.RaspberryIO.Computer.DsiDisplay"/> class from being created.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.DsiDisplay.IsPresent">
+            <summary>
+            Gets a value indicating whether the Pi Foundation Display files are present.
+            </summary>
+            <value>
+            <c>true</c> if this instance is present; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.DsiDisplay.Brightness">
+            <summary>
+            Gets or sets the brightness of the DSI display via filesystem.
+            </summary>
+            <value>
+            The brightness.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.DsiDisplay.IsBacklightOn">
+            <summary>
+            Gets or sets a value indicating whether the backlight of the DSI display on.
+            This operation is performed via the file system.
+            </summary>
+            <value>
+            <c>true</c> if this instance is backlight on; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo">
+            <summary>
+            Represents a Network Adapter.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv4">
+            <summary>
+            Gets the IP V4 address.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv6">
+            <summary>
+            Gets the IP V6 address.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.AccessPointName">
+            <summary>
+            Gets the name of the access point.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.MacAddress">
+            <summary>
+            Gets the MAC (Physical) address.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IsWireless">
+            <summary>
+            Gets a value indicating whether this instance is wireless.
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.NetworkSettings">
+            <summary>
+            Represents the network information.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.NetworkSettings.HostName">
+            <summary>
+            Gets the local machine Host Name.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.NetworkSettings.RetrieveWirelessNetworks(System.String)">
+            <summary>
+            Retrieves the wireless networks.
+            </summary>
+            <param name="adapter">The adapter.</param>
+            <returns>A list of WiFi networks.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.NetworkSettings.RetrieveWirelessNetworks(System.String[])">
+            <summary>
+            Retrieves the wireless networks.
+            </summary>
+            <param name="adapters">The adapters.</param>
+            <returns>A list of WiFi networks.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.NetworkSettings.SetupWirelessNetwork(System.String,System.String,System.String,System.String)">
+            <summary>
+            Setups the wireless network.
+            </summary>
+            <param name="adapterName">Name of the adapter.</param>
+            <param name="networkSsid">The network ssid.</param>
+            <param name="password">The password (8 characters as minimum length).</param>
+            <param name="countryCode">The 2-letter country code in uppercase. Default is US.</param>
+            <returns>True if successful. Otherwise, false.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.NetworkSettings.RetrieveAdapters">
+            <summary>
+            Retrieves the network adapters.
+            </summary>
+            <returns>A list of network adapters.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.NetworkSettings.GetCurrentAdapterName">
+            <summary>
+            Retrieves the current network adapter.
+            </summary>
+            <returns>The name of the current network adapter.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.NetworkSettings.GetWirelessNetworkName">
+            <summary>
+            Retrieves current wireless connected network name.
+            </summary>
+            <returns>The connected network name.</returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.OsInfo">
+            <summary>
+            Represents the OS Information.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.OsInfo.SysName">
+            <summary>
+            System name.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.OsInfo.NodeName">
+            <summary>
+            Node name.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.OsInfo.Release">
+            <summary>
+            Release level.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.OsInfo.Version">
+            <summary>
+            Version level.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.OsInfo.Machine">
+            <summary>
+            Hardware level.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.OsInfo.DomainName">
+            <summary>
+            Domain name.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.OsInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.PiVersion">
+            <summary>
+            Defines the board revision codes of the different versions of the Raspberry Pi
+            http://www.raspberrypi-spy.co.uk/2012/09/checking-your-raspberry-pi-board-version/.
+            https://www.raspberrypi.org/documentation/hardware/raspberrypi/revision-codes/README.md.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Unknown">
+            <summary>
+            The unknown version
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBRev1">
+            <summary>
+            The model B Rev1
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBRev1ECN0001">
+            <summary>
+            The model B Rev1 ECN0001
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBRev2x04">
+            <summary>
+            The model B Rev2 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBRev2x05">
+            <summary>
+            The model B Rev2 Qisda
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBRev2x06">
+            <summary>
+            The model B Rev2 Egoman
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelAx07">
+            <summary>
+            The model A Rev2 Egoman
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelAx08">
+            <summary>
+            The model A Rev2 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelAx09">
+            <summary>
+            The model A Rev2 Qisda
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBRev2x0d">
+            <summary>
+            The model B Rev2 (512MB) Egoman
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBRev2x0e">
+            <summary>
+            The model B Rev2 (512MB) Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBRev2x0f">
+            <summary>
+            The model B Rev2 (512MB) Egoman
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBPlus0x10">
+            <summary>
+            The model B+ Rev1 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule0x11">
+            <summary>
+            The compute module 1 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelAPlus0x12">
+            <summary>
+            The model A+ Rev1.1 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBPlus0x13">
+            <summary>
+            The model B+ Rev1.2 Embest
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule0x14">
+            <summary>
+            The compute module 1 Embest
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelAPlus0x15">
+            <summary>
+            The model A+ Rev1.1 Embest
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelAPlus1v1Sony">
+            <summary>
+            The model A+ Rev1.1 (512MB) Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBPlus1v2Sony">
+            <summary>
+            The model B+ Rev1.2 sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v2">
+            <summary>
+            The Pi Zero Rev1.2 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v3">
+            <summary>
+            The Pi Zero Rev1.3 SOny
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.PiZeroW">
+            <summary>
+            The Pi Zero W Rev1.1
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelAPlus">
+            <summary>
+            The Pi 3 model A+ Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v2Embest">
+            <summary>
+            The Pi Zero Rev1.2 Embest
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v3Embest">
+            <summary>
+            The Pi Zero Rev1.3 Embest
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi2ModelB1v0Sony">
+            <summary>
+            The Pi 2 model B Rev1.0 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi2ModelB1v1Sony">
+            <summary>
+            The Pi 2 model B Rev1.1 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBSony">
+            <summary>
+            The Pi 3 model B Rev1.2 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3Sony">
+            <summary>
+            The compute module 3 Rev1.0 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBPlusSony">
+            <summary>
+            The Pi 3 model B+ Rev1.3 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi2ModelB1v1Embest">
+            <summary>
+            The Pi 2 model B Rev1.1 Embest
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi2ModelB1v2">
+            <summary>
+            The Pi 2 model B Rev1.2 Embest
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBEmbest">
+            <summary>
+            The Pi 3 model B Rev1.2 Embest
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3Embest">
+            <summary>
+            The compute module 3 Rev1.0 Embest
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBSonyJapan">
+            <summary>
+            The Pi 3 model B Rev1.2 Sony Japan
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBStadium">
+            <summary>
+            The Pi 3 model B Rev1.2 Stadium
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3PlusSony">
+            <summary>
+            The compute module 3+ Rev 1.0 Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB1Gb">
+            <summary>
+            The Pi 4 model B 1GB, Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB2Gb">
+            <summary>
+            The Pi 4 model B 2GB, Sony
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB4Gb">
+            <summary>
+            The Pi 4 model B 4GB, Sony
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.BoardModel">
+            <summary>
+            Defines the board model accordingly to new-style revision codes.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.ModelA">
+            <summary>
+            Model A
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.ModelB">
+            <summary>
+            Model B
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.ModelAPlus">
+            <summary>
+            Model A+
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.ModelBPlus">
+            <summary>
+            Model B+
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.Model2B">
+            <summary>
+            Model 2B
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.Alpha">
+            <summary>
+            Alpha (early prototype)
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.CM1">
+            <summary>
+            Compute Module 1
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.Model3B">
+            <summary>
+            Model 3B
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.Zero">
+            <summary>
+            Model Zero
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.CM3">
+            <summary>
+            Compute Module 3
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.ZeroW">
+            <summary>
+            Model Zero W
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.Model3BPlus">
+            <summary>
+            Model 3B+
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.Model3APlus">
+            <summary>
+            Model 3A+
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.InternalUse">
+            <summary>
+            Reserved (Internal use only)
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.CM3Plus">
+            <summary>
+            Compute Module 3+
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.BoardModel.Model4B">
+            <summary>
+            Model 4B
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.ProcessorModel">
+            <summary>
+            Defines the processor model accordingly to new-style revision codes.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2835">
+            <summary>
+            The BCMM2835 processor.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2836">
+            <summary>
+            The BCMM2836 processor.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2837">
+            <summary>
+            The BCMM2837 processor.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2711">
+            <summary>
+            The BCM2711 processor.
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.Manufacturer">
+            <summary>
+            Defines the manufacturer accordingly to new-style revision codes.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.Manufacturer.SonyUK">
+            <summary>
+            Sony UK
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.Manufacturer.Egoman">
+            <summary>
+            Egoman
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.Manufacturer.Embest">
+            <summary>
+            Embest
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.Manufacturer.SonyJapan">
+            <summary>
+            Sony Japan
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.Manufacturer.Embest2">
+            <summary>
+            Embest
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.Manufacturer.Stadium">
+            <summary>
+            Stadium
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.MemorySize">
+            <summary>
+            Defines the memory size accordingly to new-style revision codes.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.MemorySize.Memory256">
+            <summary>
+            256 MB
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.MemorySize.Memory512">
+            <summary>
+            512 MB
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.MemorySize.Memory1024">
+            <summary>
+            1 GB
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.MemorySize.Memory2048">
+            <summary>
+            2 GB
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Computer.MemorySize.Memory4096">
+            <summary>
+            4 GB
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.SystemInfo">
+             <summary>
+             Retrieves the RaspberryPI System Information.
+            
+             http://raspberry-pi-guide.readthedocs.io/en/latest/system.html.
+             </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.SystemInfo.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Unosquare.RaspberryIO.Computer.SystemInfo"/> class from being created.
+            </summary>
+            <exception cref="T:System.NotSupportedException">Could not initialize the GPIO controller.</exception>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.LibraryVersion">
+            <summary>
+            Gets the library version.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.OperatingSystem">
+            <summary>
+            Gets the OS information.
+            </summary>
+            <value>
+            The os information.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.RaspberryPiVersion">
+            <summary>
+            Gets the Raspberry Pi version.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.BoardRevision">
+            <summary>
+            Gets the board revision (1 or 2).
+            </summary>
+            <value>
+            The wiring pi board revision.
+            </value>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorCount">
+            <summary>
+            Gets the number of processor cores.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.InstalledRam">
+            <summary>
+            Gets the installed ram in bytes.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.IsLittleEndian">
+            <summary>
+            Gets a value indicating whether this CPU is little endian.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.ModelName">
+            <summary>
+            Gets the CPU model name.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.Features">
+            <summary>
+            Gets a list of supported CPU features.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.CpuImplementer">
+            <summary>
+            Gets the CPU implementer hex code.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.CpuArchitecture">
+            <summary>
+            Gets the CPU architecture code.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.CpuVariant">
+            <summary>
+            Gets the CPU variant code.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.CpuPart">
+            <summary>
+            Gets the CPU part code.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.CpuRevision">
+            <summary>
+            Gets the CPU revision code.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.Hardware">
+            <summary>
+            Gets the hardware model number.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.Revision">
+            <summary>
+            Gets the hardware revision number.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.RevisionNumber">
+            <summary>
+            Gets the revision number (accordingly to new-style revision codes).
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.BoardModel">
+            <summary>
+            Gets the board model (accordingly to new-style revision codes).
+            </summary>
+            /// <exception cref="T:System.InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}.</exception>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorModel">
+            <summary>
+            Gets processor model (accordingly to new-style revision codes).
+            </summary>
+            /// <exception cref="T:System.InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}.</exception>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.Manufacturer">
+            <summary>
+            Gets the manufacturer of the board (accordingly to new-style revision codes).
+            </summary>
+            <exception cref="T:System.InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}.</exception>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.MemorySize">
+            <summary>
+            Gets the size of the memory (accordingly to new-style revision codes).
+            </summary>
+            <exception cref="T:System.InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}.</exception>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.Serial">
+            <summary>
+            Gets the serial number.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.Uptime">
+            <summary>
+            Gets the system up-time (in seconds).
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.UptimeTimeSpan">
+            <summary>
+            Gets the uptime in TimeSpan.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.NewStyleRevisionCodes">
+            <summary>
+            Indicates if the board uses the new-style revision codes.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.SystemInfo.Processor">
+            <summary>
+            Placeholder for processor index.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Computer.SystemInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo">
+            <summary>
+            Represents a wireless network information.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Name">
+            <summary>
+            Gets the ESSID of the Wireless network.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Quality">
+            <summary>
+            Gets the network quality.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.IsEncrypted">
+            <summary>
+            Gets a value indicating whether this instance is encrypted.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Native.Standard.Uname(Unosquare.RaspberryIO.Native.SystemName@)">
+            <summary>
+            Fills in the structure with information about the system.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Native.SystemName">
+            <summary>
+            OS uname structure.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Native.SystemName.SysName">
+            <summary>
+            System name.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Native.SystemName.NodeName">
+            <summary>
+            Node name.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Native.SystemName.Release">
+            <summary>
+            Release level.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Native.SystemName.Version">
+            <summary>
+            Version level.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Native.SystemName.Machine">
+            <summary>
+            Hardware level.
+            </summary>
+        </member>
+        <member name="F:Unosquare.RaspberryIO.Native.SystemName.DomainName">
+            <summary>
+            Domain name.
+            </summary>
+        </member>
+        <member name="T:Unosquare.RaspberryIO.Pi">
+            <summary>
+            Our main character. Provides access to the Raspberry Pi's GPIO, system and board information and Camera.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Pi.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:Unosquare.RaspberryIO.Pi" /> class.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Pi.Info">
+            <summary>
+            Provides information on this Raspberry Pi's CPU and form factor.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Pi.Gpio">
+            <summary>
+            Provides access to the Raspberry Pi's GPIO as a collection of GPIO Pins.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Pi.Spi">
+            <summary>
+            Provides access to the 2-channel SPI bus.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Pi.I2C">
+            <summary>
+            Provides access to the functionality of the i2c bus.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Pi.Timing">
+            <summary>
+            Provides access to timing functionality.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Pi.Threading">
+            <summary>
+            Provides access to threading functionality.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Pi.Camera">
+            <summary>
+            Provides access to the official Raspberry Pi Camera.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Pi.PiDisplay">
+            <summary>
+            Provides access to the official Raspberry Pi 7-inch DSI Display.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Pi.Audio">
+            <summary>
+            Provides access to Raspberry Pi ALSA sound card driver.
+            </summary>
+        </member>
+        <member name="P:Unosquare.RaspberryIO.Pi.Bluetooth">
+            <summary>
+            Provides access to Raspberry Pi Bluetooth driver.
+            </summary>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Pi.RestartAsync">
+            <summary>
+            Restarts the Pi. Must be running as SU.
+            </summary>
+            <returns>The process result.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Pi.Restart">
+            <summary>
+            Restarts the Pi. Must be running as SU.
+            </summary>
+            <returns>The process result.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Pi.ShutdownAsync">
+            <summary>
+            Halts the Pi. Must be running as SU.
+            </summary>
+            <returns>The process result.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Pi.Shutdown">
+            <summary>
+            Halts the Pi. Must be running as SU.
+            </summary>
+            <returns>The process result.</returns>
+        </member>
+        <member name="M:Unosquare.RaspberryIO.Pi.Init``1">
+            <summary>
+            Initializes an Abstractions implementation.
+            </summary>
+            <typeparam name="T">An implementation of <see cref="T:Unosquare.RaspberryIO.Abstractions.IBootstrap"/>.</typeparam>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,3964 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Swan</name>
+    </assembly>
+    <members>
+        <member name="T:Swan.DependencyInjection.DependencyContainer">
+            <summary>
+            The concrete implementation of a simple IoC container
+            based largely on TinyIoC (https://github.com/grumpydev/TinyIoC).
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.DependencyInjection.DependencyContainer"/> class.
+            </summary>
+        </member>
+        <member name="P:Swan.DependencyInjection.DependencyContainer.Current">
+            <summary>
+            Lazy created Singleton instance of the container for simple scenarios.
+            </summary>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.GetChildContainer">
+            <summary>
+            Gets the child container.
+            </summary>
+            <returns>A new instance of the <see cref="T:Swan.DependencyInjection.DependencyContainer"/> class.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.AutoRegister(Swan.DependencyInjection.DependencyContainerDuplicateImplementationAction,System.Func{System.Type,System.Boolean})">
+            <summary>
+            Attempt to automatically register all non-generic classes and interfaces in the current app domain.
+            Types will only be registered if they pass the supplied registration predicate.
+            </summary>
+            <param name="duplicateAction">What action to take when encountering duplicate implementations of an interface/base class.</param>
+            <param name="registrationPredicate">Predicate to determine if a particular type should be registered.</param>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.AutoRegister(System.Collections.Generic.IEnumerable{System.Reflection.Assembly},Swan.DependencyInjection.DependencyContainerDuplicateImplementationAction,System.Func{System.Type,System.Boolean})">
+            <summary>
+            Attempt to automatically register all non-generic classes and interfaces in the specified assemblies
+            Types will only be registered if they pass the supplied registration predicate.
+            </summary>
+            <param name="assemblies">Assemblies to process.</param>
+            <param name="duplicateAction">What action to take when encountering duplicate implementations of an interface/base class.</param>
+            <param name="registrationPredicate">Predicate to determine if a particular type should be registered.</param>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Register(System.Type,System.String)">
+            <summary>
+            Creates/replaces a named container class registration with default options.
+            </summary>
+            <param name="registerType">Type to register.</param>
+            <param name="name">Name of registration.</param>
+            <returns>RegisterOptions for fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Register(System.Type,System.Type,System.String)">
+            <summary>
+            Creates/replaces a named container class registration with a given implementation and default options.
+            </summary>
+            <param name="registerType">Type to register.</param>
+            <param name="registerImplementation">Type to instantiate that implements RegisterType.</param>
+            <param name="name">Name of registration.</param>
+            <returns>RegisterOptions for fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Register(System.Type,System.Object,System.String)">
+            <summary>
+            Creates/replaces a named container class registration with a specific, strong referenced, instance.
+            </summary>
+            <param name="registerType">Type to register.</param>
+            <param name="instance">Instance of RegisterType to register.</param>
+            <param name="name">Name of registration.</param>
+            <returns>RegisterOptions for fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Register(System.Type,System.Type,System.Object,System.String)">
+            <summary>
+            Creates/replaces a named container class registration with a specific, strong referenced, instance.
+            </summary>
+            <param name="registerType">Type to register.</param>
+            <param name="registerImplementation">Type of instance to register that implements RegisterType.</param>
+            <param name="instance">Instance of RegisterImplementation to register.</param>
+            <param name="name">Name of registration.</param>
+            <returns>RegisterOptions for fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Register(System.Type,System.Func{Swan.DependencyInjection.DependencyContainer,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object},System.String)">
+            <summary>
+            Creates/replaces a container class registration with a user specified factory.
+            </summary>
+            <param name="registerType">Type to register.</param>
+            <param name="factory">Factory/lambda that returns an instance of RegisterType.</param>
+            <param name="name">Name of registration.</param>
+            <returns>RegisterOptions for fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Register``1(System.String)">
+            <summary>
+            Creates/replaces a named container class registration with default options.
+            </summary>
+            <typeparam name="TRegister">Type to register.</typeparam>
+            <param name="name">Name of registration.</param>
+            <returns>RegisterOptions for fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Register``2(System.String)">
+            <summary>
+            Creates/replaces a named container class registration with a given implementation and default options.
+            </summary>
+            <typeparam name="TRegister">Type to register.</typeparam>
+            <typeparam name="TRegisterImplementation">Type to instantiate that implements RegisterType.</typeparam>
+            <param name="name">Name of registration.</param>
+            <returns>RegisterOptions for fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Register``1(``0,System.String)">
+            <summary>
+            Creates/replaces a named container class registration with a specific, strong referenced, instance.
+            </summary>
+            <typeparam name="TRegister">Type to register.</typeparam>
+            <param name="instance">Instance of RegisterType to register.</param>
+            <param name="name">Name of registration.</param>
+            <returns>RegisterOptions for fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Register``2(``1,System.String)">
+            <summary>
+            Creates/replaces a named container class registration with a specific, strong referenced, instance.
+            </summary>
+            <typeparam name="TRegister">Type to register.</typeparam>
+            <typeparam name="TRegisterImplementation">Type of instance to register that implements RegisterType.</typeparam>
+            <param name="instance">Instance of RegisterImplementation to register.</param>
+            <param name="name">Name of registration.</param>
+            <returns>RegisterOptions for fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Register``1(System.Func{Swan.DependencyInjection.DependencyContainer,System.Collections.Generic.Dictionary{System.String,System.Object},``0},System.String)">
+            <summary>
+            Creates/replaces a named container class registration with a user specified factory.
+            </summary>
+            <typeparam name="TRegister">Type to register.</typeparam>
+            <param name="factory">Factory/lambda that returns an instance of RegisterType.</param>
+            <param name="name">Name of registration.</param>
+            <returns>RegisterOptions for fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.RegisterMultiple``1(System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Register multiple implementations of a type.
+            
+            Internally this registers each implementation using the full name of the class as its registration name.
+            </summary>
+            <typeparam name="TRegister">Type that each implementation implements.</typeparam>
+            <param name="implementationTypes">Types that implement RegisterType.</param>
+            <returns>MultiRegisterOptions for the fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.RegisterMultiple(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Register multiple implementations of a type.
+            
+            Internally this registers each implementation using the full name of the class as its registration name.
+            </summary>
+            <param name="registrationType">Type that each implementation implements.</param>
+            <param name="implementationTypes">Types that implement RegisterType.</param>
+            <returns>MultiRegisterOptions for the fluent API.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Unregister``1(System.String)">
+            <summary>
+            Remove a named container class registration.
+            </summary>
+            <typeparam name="TRegister">Type to unregister.</typeparam>
+            <param name="name">Name of registration.</param>
+            <returns><c>true</c> if the registration is successfully found and removed; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Unregister(System.Type,System.String)">
+            <summary>
+            Remove a named container class registration.
+            </summary>
+            <param name="registerType">Type to unregister.</param>
+            <param name="name">Name of registration.</param>
+            <returns><c>true</c> if the registration is successfully found and removed; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Resolve(System.Type,System.String,Swan.DependencyInjection.DependencyContainerResolveOptions)">
+             <summary>
+             Attempts to resolve a named type using specified options and the supplied constructor parameters.
+            
+             Parameters are used in conjunction with normal container resolution to find the most suitable constructor (if one exists).
+             All user supplied parameters must exist in at least one resolvable constructor of RegisterType or resolution will fail.
+             </summary>
+             <param name="resolveType">Type to resolve.</param>
+             <param name="name">Name of registration.</param>
+             <param name="options">Resolution options.</param>
+             <returns>Instance of type.</returns>
+             <exception cref="T:Swan.DependencyInjection.DependencyContainerResolutionException">Unable to resolve the type.</exception>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.Resolve``1(System.String,Swan.DependencyInjection.DependencyContainerResolveOptions)">
+             <summary>
+             Attempts to resolve a named type using specified options and the supplied constructor parameters.
+            
+             Parameters are used in conjunction with normal container resolution to find the most suitable constructor (if one exists).
+             All user supplied parameters must exist in at least one resolvable constructor of RegisterType or resolution will fail.
+             </summary>
+             <typeparam name="TResolveType">Type to resolve.</typeparam>
+             <param name="name">Name of registration.</param>
+             <param name="options">Resolution options.</param>
+             <returns>Instance of type.</returns>
+             <exception cref="T:Swan.DependencyInjection.DependencyContainerResolutionException">Unable to resolve the type.</exception>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.CanResolve(System.Type,System.String,Swan.DependencyInjection.DependencyContainerResolveOptions)">
+            <summary>
+            Attempts to predict whether a given type can be resolved with the supplied constructor parameters options.
+            Parameters are used in conjunction with normal container resolution to find the most suitable constructor (if one exists).
+            All user supplied parameters must exist in at least one resolvable constructor of RegisterType or resolution will fail.
+            Note: Resolution may still fail if user defined factory registrations fail to construct objects when called.
+            </summary>
+            <param name="resolveType">Type to resolve.</param>
+            <param name="name">The name.</param>
+            <param name="options">Resolution options.</param>
+            <returns>
+            Bool indicating whether the type can be resolved.
+            </returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.CanResolve``1(System.String,Swan.DependencyInjection.DependencyContainerResolveOptions)">
+             <summary>
+             Attempts to predict whether a given named type can be resolved with the supplied constructor parameters options.
+            
+             Parameters are used in conjunction with normal container resolution to find the most suitable constructor (if one exists).
+             All user supplied parameters must exist in at least one resolvable constructor of RegisterType or resolution will fail.
+             
+             Note: Resolution may still fail if user defined factory registrations fail to construct objects when called.
+             </summary>
+             <typeparam name="TResolveType">Type to resolve.</typeparam>
+             <param name="name">Name of registration.</param>
+             <param name="options">Resolution options.</param>
+             <returns>Bool indicating whether the type can be resolved.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.TryResolve(System.Type,System.Object@)">
+            <summary>
+            Attempts to resolve a type using the default options.
+            </summary>
+            <param name="resolveType">Type to resolve.</param>
+            <param name="resolvedType">Resolved type or default if resolve fails.</param>
+            <returns><c>true</c> if resolved successfully, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.TryResolve(System.Type,Swan.DependencyInjection.DependencyContainerResolveOptions,System.Object@)">
+            <summary>
+            Attempts to resolve a type using the given options.
+            </summary>
+            <param name="resolveType">Type to resolve.</param>
+            <param name="options">Resolution options.</param>
+            <param name="resolvedType">Resolved type or default if resolve fails.</param>
+            <returns><c>true</c> if resolved successfully, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.TryResolve(System.Type,System.String,System.Object@)">
+            <summary>
+            Attempts to resolve a type using the default options and given name.
+            </summary>
+            <param name="resolveType">Type to resolve.</param>
+            <param name="name">Name of registration.</param>
+            <param name="resolvedType">Resolved type or default if resolve fails.</param>
+            <returns><c>true</c> if resolved successfully, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.TryResolve(System.Type,System.String,Swan.DependencyInjection.DependencyContainerResolveOptions,System.Object@)">
+            <summary>
+            Attempts to resolve a type using the given options and name.
+            </summary>
+            <param name="resolveType">Type to resolve.</param>
+            <param name="name">Name of registration.</param>
+            <param name="options">Resolution options.</param>
+            <param name="resolvedType">Resolved type or default if resolve fails.</param>
+            <returns><c>true</c> if resolved successfully, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.TryResolve``1(``0@)">
+            <summary>
+            Attempts to resolve a type using the default options.
+            </summary>
+            <typeparam name="TResolveType">Type to resolve.</typeparam>
+            <param name="resolvedType">Resolved type or default if resolve fails.</param>
+            <returns><c>true</c> if resolved successfully, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.TryResolve``1(Swan.DependencyInjection.DependencyContainerResolveOptions,``0@)">
+            <summary>
+            Attempts to resolve a type using the given options.
+            </summary>
+            <typeparam name="TResolveType">Type to resolve.</typeparam>
+            <param name="options">Resolution options.</param>
+            <param name="resolvedType">Resolved type or default if resolve fails.</param>
+            <returns><c>true</c> if resolved successfully, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.TryResolve``1(System.String,``0@)">
+            <summary>
+            Attempts to resolve a type using the default options and given name.
+            </summary>
+            <typeparam name="TResolveType">Type to resolve.</typeparam>
+            <param name="name">Name of registration.</param>
+            <param name="resolvedType">Resolved type or default if resolve fails.</param>
+            <returns><c>true</c> if resolved successfully, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.TryResolve``1(System.String,Swan.DependencyInjection.DependencyContainerResolveOptions,``0@)">
+            <summary>
+            Attempts to resolve a type using the given options and name.
+            </summary>
+            <typeparam name="TResolveType">Type to resolve.</typeparam>
+            <param name="name">Name of registration.</param>
+            <param name="options">Resolution options.</param>
+            <param name="resolvedType">Resolved type or default if resolve fails.</param>
+            <returns><c>true</c> if resolved successfully, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.ResolveAll(System.Type,System.Boolean)">
+            <summary>
+            Returns all registrations of a type.
+            </summary>
+            <param name="resolveType">Type to resolveAll.</param>
+            <param name="includeUnnamed">Whether to include un-named (default) registrations.</param>
+            <returns>IEnumerable.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.ResolveAll``1(System.Boolean)">
+            <summary>
+            Returns all registrations of a type.
+            </summary>
+            <typeparam name="TResolveType">Type to resolveAll.</typeparam>
+            <param name="includeUnnamed">Whether to include un-named (default) registrations.</param>
+            <returns>IEnumerable.</returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.BuildUp(System.Object,Swan.DependencyInjection.DependencyContainerResolveOptions)">
+            <summary>
+            Attempts to resolve all public property dependencies on the given object using the given resolve options.
+            </summary>
+            <param name="input">Object to "build up".</param>
+            <param name="resolveOptions">Resolve options to use.</param>
+        </member>
+        <member name="T:Swan.DependencyInjection.DependencyContainer.TypeRegistration">
+            <summary>
+            Represents a Type Registration within the IoC Container.
+            </summary>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.TypeRegistration.#ctor(System.Type,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.DependencyInjection.DependencyContainer.TypeRegistration"/> class.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:Swan.DependencyInjection.DependencyContainer.TypeRegistration.Type">
+            <summary>
+            Gets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="P:Swan.DependencyInjection.DependencyContainer.TypeRegistration.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.TypeRegistration.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" />, is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainer.TypeRegistration.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="T:Swan.DependencyInjection.DependencyContainerRegistrationException">
+            <summary>
+            Generic Constraint Registration Exception.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainerRegistrationException.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException"/> class.
+            </summary>
+            <param name="registerType">Type of the register.</param>
+            <param name="types">The types.</param>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainerRegistrationException.#ctor(System.Type,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException" /> class.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="method">The method.</param>
+            <param name="isTypeFactory">if set to <c>true</c> [is type factory].</param>
+        </member>
+        <member name="T:Swan.DependencyInjection.DependencyContainerResolutionException">
+            <summary>
+            An exception for dependency resolutions.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainerResolutionException.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.DependencyInjection.DependencyContainerResolutionException"/> class.
+            </summary>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainerResolutionException.#ctor(System.Type,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.DependencyInjection.DependencyContainerResolutionException"/> class.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="T:Swan.DependencyInjection.DependencyContainerResolveOptions">
+            <summary>
+            Resolution settings.
+            </summary>
+        </member>
+        <member name="P:Swan.DependencyInjection.DependencyContainerResolveOptions.Default">
+            <summary>
+            Gets the default options (attempt resolution of unregistered types, fail on named resolution if name not found).
+            </summary>
+        </member>
+        <member name="P:Swan.DependencyInjection.DependencyContainerResolveOptions.UnregisteredResolutionAction">
+            <summary>
+            Gets or sets the unregistered resolution action.
+            </summary>
+            <value>
+            The unregistered resolution action.
+            </value>
+        </member>
+        <member name="P:Swan.DependencyInjection.DependencyContainerResolveOptions.NamedResolutionFailureAction">
+            <summary>
+            Gets or sets the named resolution failure action.
+            </summary>
+            <value>
+            The named resolution failure action.
+            </value>
+        </member>
+        <member name="P:Swan.DependencyInjection.DependencyContainerResolveOptions.ConstructorParameters">
+            <summary>
+            Gets the constructor parameters.
+            </summary>
+            <value>
+            The constructor parameters.
+            </value>
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainerResolveOptions.Clone">
+            <summary>
+            Clones this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Swan.DependencyInjection.DependencyContainerUnregisteredResolutionAction">
+            <summary>
+            Defines Resolution actions.
+            </summary>
+        </member>
+        <member name="F:Swan.DependencyInjection.DependencyContainerUnregisteredResolutionAction.AttemptResolve">
+            <summary>
+            Attempt to resolve type, even if the type isn't registered.
+            
+            Registered types/options will always take precedence.
+            </summary>
+        </member>
+        <member name="F:Swan.DependencyInjection.DependencyContainerUnregisteredResolutionAction.Fail">
+            <summary>
+            Fail resolution if type not explicitly registered
+            </summary>
+        </member>
+        <member name="F:Swan.DependencyInjection.DependencyContainerUnregisteredResolutionAction.GenericsOnly">
+            <summary>
+            Attempt to resolve unregistered type if requested type is generic
+            and no registration exists for the specific generic parameters used.
+            
+            Registered types/options will always take precedence.
+            </summary>
+        </member>
+        <member name="T:Swan.DependencyInjection.DependencyContainerNamedResolutionFailureAction">
+            <summary>
+            Enumerates failure actions.
+            </summary>
+        </member>
+        <member name="F:Swan.DependencyInjection.DependencyContainerNamedResolutionFailureAction.AttemptUnnamedResolution">
+            <summary>
+            The attempt unnamed resolution
+            </summary>
+        </member>
+        <member name="F:Swan.DependencyInjection.DependencyContainerNamedResolutionFailureAction.Fail">
+            <summary>
+            The fail
+            </summary>
+        </member>
+        <member name="T:Swan.DependencyInjection.DependencyContainerDuplicateImplementationAction">
+            <summary>
+            Enumerates duplicate definition actions.
+            </summary>
+        </member>
+        <member name="F:Swan.DependencyInjection.DependencyContainerDuplicateImplementationAction.RegisterSingle">
+            <summary>
+            The register single
+            </summary>
+        </member>
+        <member name="F:Swan.DependencyInjection.DependencyContainerDuplicateImplementationAction.RegisterMultiple">
+            <summary>
+            The register multiple
+            </summary>
+        </member>
+        <member name="F:Swan.DependencyInjection.DependencyContainerDuplicateImplementationAction.Fail">
+            <summary>
+            The fail
+            </summary>
+        </member>
+        <member name="T:Swan.DependencyInjection.DependencyContainerWeakReferenceException">
+            <summary>
+            Weak Reference Exception.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:Swan.DependencyInjection.DependencyContainerWeakReferenceException.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.DependencyInjection.DependencyContainerWeakReferenceException"/> class.
+            </summary>
+            <param name="type">The type.</param>
+        </member>
+        <member name="T:Swan.DependencyInjection.ObjectFactoryBase">
+            <summary>
+            Represents an abstract class for Object Factory.
+            </summary>
+        </member>
+        <member name="P:Swan.DependencyInjection.ObjectFactoryBase.AssumeConstruction">
+            <summary>
+            Whether to assume this factory successfully constructs its objects
+            
+            Generally set to true for delegate style factories as CanResolve cannot delve
+            into the delegates they contain.
+            </summary>
+        </member>
+        <member name="P:Swan.DependencyInjection.ObjectFactoryBase.CreatesType">
+            <summary>
+            The type the factory instantiates.
+            </summary>
+        </member>
+        <member name="P:Swan.DependencyInjection.ObjectFactoryBase.Constructor">
+            <summary>
+            Constructor to use, if specified.
+            </summary>
+        </member>
+        <member name="P:Swan.DependencyInjection.ObjectFactoryBase.SingletonVariant">
+            <summary>
+            Gets the singleton variant.
+            </summary>
+            <value>
+            The singleton variant.
+            </value>
+            <exception cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException">singleton.</exception>
+        </member>
+        <member name="P:Swan.DependencyInjection.ObjectFactoryBase.MultiInstanceVariant">
+            <summary>
+            Gets the multi instance variant.
+            </summary>
+            <value>
+            The multi instance variant.
+            </value>
+            <exception cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException">multi-instance.</exception>
+        </member>
+        <member name="P:Swan.DependencyInjection.ObjectFactoryBase.StrongReferenceVariant">
+            <summary>
+            Gets the strong reference variant.
+            </summary>
+            <value>
+            The strong reference variant.
+            </value>
+            <exception cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException">strong reference.</exception>
+        </member>
+        <member name="P:Swan.DependencyInjection.ObjectFactoryBase.WeakReferenceVariant">
+            <summary>
+            Gets the weak reference variant.
+            </summary>
+            <value>
+            The weak reference variant.
+            </value>
+            <exception cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException">weak reference.</exception>
+        </member>
+        <member name="M:Swan.DependencyInjection.ObjectFactoryBase.GetObject(System.Type,Swan.DependencyInjection.DependencyContainer,Swan.DependencyInjection.DependencyContainerResolveOptions)">
+            <summary>
+            Create the type.
+            </summary>
+            <param name="requestedType">Type user requested to be resolved.</param>
+            <param name="container">Container that requested the creation.</param>
+            <param name="options">The options.</param>
+            <returns> Instance of type. </returns>
+        </member>
+        <member name="M:Swan.DependencyInjection.ObjectFactoryBase.GetFactoryForChildContainer(System.Type,Swan.DependencyInjection.DependencyContainer,Swan.DependencyInjection.DependencyContainer)">
+            <summary>
+            Gets the factory for child container.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="parent">The parent.</param>
+            <param name="child">The child.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Swan.DependencyInjection.MultiInstanceFactory">
+            <inheritdoc />
+            <summary>
+            IObjectFactory that creates new instances of types for each resolution.
+            </summary>
+        </member>
+        <member name="T:Swan.DependencyInjection.DelegateFactory">
+            <inheritdoc />
+            <summary>
+            IObjectFactory that invokes a specified delegate to construct the object.
+            </summary>
+        </member>
+        <member name="T:Swan.DependencyInjection.WeakDelegateFactory">
+            <inheritdoc />
+            <summary>
+            IObjectFactory that invokes a specified delegate to construct the object
+            Holds the delegate using a weak reference.
+            </summary>
+        </member>
+        <member name="T:Swan.DependencyInjection.InstanceFactory">
+            <summary>
+            Stores an particular instance to return for a type.
+            </summary>
+        </member>
+        <member name="T:Swan.DependencyInjection.WeakInstanceFactory">
+            <summary>
+            Stores the instance with a weak reference.
+            </summary>
+        </member>
+        <member name="T:Swan.DependencyInjection.SingletonFactory">
+            <summary>
+            A factory that lazy instantiates a type and always returns the same instance.
+            </summary>
+        </member>
+        <member name="T:Swan.DependencyInjection.RegisterOptions">
+            <summary>
+            Registration options for "fluent" API.
+            </summary>
+        </member>
+        <member name="M:Swan.DependencyInjection.RegisterOptions.#ctor(Swan.DependencyInjection.TypesConcurrentDictionary,Swan.DependencyInjection.DependencyContainer.TypeRegistration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.DependencyInjection.RegisterOptions" /> class.
+            </summary>
+            <param name="registeredTypes">The registered types.</param>
+            <param name="registration">The registration.</param>
+        </member>
+        <member name="M:Swan.DependencyInjection.RegisterOptions.AsSingleton">
+            <summary>
+            Make registration a singleton (single instance) if possible.
+            </summary>
+            <returns>A registration options  for fluent API.</returns>
+            <exception cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException">Generic constraint registration exception.</exception>
+        </member>
+        <member name="M:Swan.DependencyInjection.RegisterOptions.AsMultiInstance">
+            <summary>
+            Make registration multi-instance if possible.
+            </summary>
+            <returns>A registration options  for fluent API.</returns>
+            <exception cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException">Generic constraint registration exception.</exception>
+        </member>
+        <member name="M:Swan.DependencyInjection.RegisterOptions.WithWeakReference">
+            <summary>
+            Make registration hold a weak reference if possible.
+            </summary>
+            <returns>A registration options  for fluent API.</returns>
+            <exception cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException">Generic constraint registration exception.</exception>
+        </member>
+        <member name="M:Swan.DependencyInjection.RegisterOptions.WithStrongReference">
+            <summary>
+            Make registration hold a strong reference if possible.
+            </summary>
+            <returns>A registration options  for fluent API.</returns>
+            <exception cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException">Generic constraint registration exception.</exception>
+        </member>
+        <member name="T:Swan.DependencyInjection.MultiRegisterOptions">
+            <summary>
+            Registration options for "fluent" API when registering multiple implementations.
+            </summary>
+        </member>
+        <member name="M:Swan.DependencyInjection.MultiRegisterOptions.#ctor(System.Collections.Generic.IEnumerable{Swan.DependencyInjection.RegisterOptions})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.DependencyInjection.MultiRegisterOptions"/> class.
+            </summary>
+            <param name="registerOptions">The register options.</param>
+        </member>
+        <member name="M:Swan.DependencyInjection.MultiRegisterOptions.AsSingleton">
+            <summary>
+            Make registration a singleton (single instance) if possible.
+            </summary>
+            <returns>A registration multi-instance for fluent API.</returns>
+            <exception cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException">Generic Constraint Registration Exception.</exception>
+        </member>
+        <member name="M:Swan.DependencyInjection.MultiRegisterOptions.AsMultiInstance">
+            <summary>
+            Make registration multi-instance if possible.
+            </summary>
+            <returns>A registration multi-instance for fluent API.</returns>
+            <exception cref="T:Swan.DependencyInjection.DependencyContainerRegistrationException">Generic Constraint Registration Exception.</exception>
+        </member>
+        <member name="T:Swan.DependencyInjection.TypesConcurrentDictionary">
+            <summary>
+            Represents a Concurrent Dictionary for TypeRegistration.
+            </summary>
+        </member>
+        <member name="T:Swan.DependencyInjection.TypesConcurrentDictionary.ObjectConstructor">
+            <summary>
+            Represents a delegate to build an object with the parameters.
+            </summary>
+            <param name="parameters">The parameters.</param>
+            <returns>The built object.</returns>
+        </member>
+        <member name="T:Swan.Diagnostics.RealTimeClock">
+            <summary>
+            A time measurement artifact.
+            </summary>
+        </member>
+        <member name="M:Swan.Diagnostics.RealTimeClock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Diagnostics.RealTimeClock"/> class.
+            The clock starts paused and at the 0 position.
+            </summary>
+        </member>
+        <member name="P:Swan.Diagnostics.RealTimeClock.Position">
+            <summary>
+            Gets or sets the clock position.
+            </summary>
+        </member>
+        <member name="P:Swan.Diagnostics.RealTimeClock.IsRunning">
+            <summary>
+            Gets a value indicating whether the clock is running.
+            </summary>
+        </member>
+        <member name="P:Swan.Diagnostics.RealTimeClock.SpeedRatio">
+            <summary>
+            Gets or sets the speed ratio at which the clock runs.
+            </summary>
+        </member>
+        <member name="M:Swan.Diagnostics.RealTimeClock.Update(System.TimeSpan)">
+            <summary>
+            Sets a new position value atomically.
+            </summary>
+            <param name="value">The new value that the position property will hold.</param>
+        </member>
+        <member name="M:Swan.Diagnostics.RealTimeClock.Play">
+            <summary>
+            Starts or resumes the clock.
+            </summary>
+        </member>
+        <member name="M:Swan.Diagnostics.RealTimeClock.Pause">
+            <summary>
+            Pauses the clock.
+            </summary>
+        </member>
+        <member name="M:Swan.Diagnostics.RealTimeClock.Reset">
+            <summary>
+            Sets the clock position to 0 and stops it.
+            The speed ratio is not modified.
+            </summary>
+        </member>
+        <member name="M:Swan.Diagnostics.RealTimeClock.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:Swan.SmtpExtensions">
+            <summary>
+            Extension methods.
+            </summary>
+        </member>
+        <member name="M:Swan.SmtpExtensions.ToMimeMessage(System.Net.Mail.MailMessage)">
+            <summary>
+            The raw contents of this MailMessage as a MemoryStream.
+            </summary>
+            <param name="this">The caller.</param>
+            <returns>A MemoryStream with the raw contents of this MailMessage.</returns>
+        </member>
+        <member name="T:Swan.NetworkExtensions">
+            <summary>
+            Provides various extension methods for networking-related tasks.
+            </summary>
+        </member>
+        <member name="M:Swan.NetworkExtensions.IsPrivateAddress(System.Net.IPAddress)">
+            <summary>
+            Determines whether the IP address is private.
+            </summary>
+            <param name="this">The IP address.</param>
+            <returns>
+            True if the IP Address is private; otherwise, false.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">address.</exception>
+        </member>
+        <member name="M:Swan.NetworkExtensions.ToUInt32(System.Net.IPAddress)">
+            <summary>
+            Converts an IPv4 Address to its Unsigned, 32-bit integer representation.
+            </summary>
+            <param name="this">The address.</param>
+            <returns>
+            A 32-bit unsigned integer converted from four bytes at a specified position in a byte array.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">address.</exception>
+            <exception cref="T:System.ArgumentException">InterNetwork - address.</exception>
+        </member>
+        <member name="T:Swan.Messaging.IMessageHub">
+            <summary>
+            Messenger hub responsible for taking subscriptions/publications and delivering of messages.
+            </summary>
+        </member>
+        <member name="M:Swan.Messaging.IMessageHub.Subscribe``1(System.Action{``0},System.Boolean,Swan.Messaging.IMessageHubProxy)">
+            <summary>
+            Subscribe to a message type with the given destination and delivery action.
+            Messages will be delivered via the specified proxy.
+            
+            All messages of this type will be delivered.
+            </summary>
+            <typeparam name="TMessage">Type of message.</typeparam>
+            <param name="deliveryAction">Action to invoke when message is delivered.</param>
+            <param name="useStrongReferences">Use strong references to destination and deliveryAction.</param>
+            <param name="proxy">Proxy to use when delivering the messages.</param>
+            <returns>MessageSubscription used to unsubscribing.</returns>
+        </member>
+        <member name="M:Swan.Messaging.IMessageHub.Subscribe``1(System.Action{``0},System.Func{``0,System.Boolean},System.Boolean,Swan.Messaging.IMessageHubProxy)">
+            <summary>
+            Subscribe to a message type with the given destination and delivery action with the given filter.
+            Messages will be delivered via the specified proxy.
+            All references are held with WeakReferences
+            Only messages that "pass" the filter will be delivered.
+            </summary>
+            <typeparam name="TMessage">Type of message.</typeparam>
+            <param name="deliveryAction">Action to invoke when message is delivered.</param>
+            <param name="messageFilter">The message filter.</param>
+            <param name="useStrongReferences">Use strong references to destination and deliveryAction.</param>
+            <param name="proxy">Proxy to use when delivering the messages.</param>
+            <returns>
+            MessageSubscription used to unsubscribing.
+            </returns>
+        </member>
+        <member name="M:Swan.Messaging.IMessageHub.Unsubscribe``1(Swan.Messaging.MessageHubSubscriptionToken)">
+            <summary>
+            Unsubscribe from a particular message type.
+            
+            Does not throw an exception if the subscription is not found.
+            </summary>
+            <typeparam name="TMessage">Type of message.</typeparam>
+            <param name="subscriptionToken">Subscription token received from Subscribe.</param>
+        </member>
+        <member name="M:Swan.Messaging.IMessageHub.Publish``1(``0)">
+            <summary>
+            Publish a message to any subscribers.
+            </summary>
+            <typeparam name="TMessage">Type of message.</typeparam>
+            <param name="message">Message to deliver.</param>
+        </member>
+        <member name="M:Swan.Messaging.IMessageHub.PublishAsync``1(``0)">
+            <summary>
+            Publish a message to any subscribers asynchronously.
+            </summary>
+            <typeparam name="TMessage">Type of message.</typeparam>
+            <param name="message">Message to deliver.</param>
+            <returns>A task from Publish action.</returns>
+        </member>
+        <member name="T:Swan.Messaging.IMessageHubMessage">
+            <summary>
+            A Message to be published/delivered by Messenger.
+            </summary>
+        </member>
+        <member name="P:Swan.Messaging.IMessageHubMessage.Sender">
+            <summary>
+            The sender of the message, or null if not supported by the message implementation.
+            </summary>
+        </member>
+        <member name="T:Swan.Messaging.IMessageHubSubscription">
+            <summary>
+            Represents a message subscription.
+            </summary>
+        </member>
+        <member name="P:Swan.Messaging.IMessageHubSubscription.SubscriptionToken">
+            <summary>
+            Token returned to the subscribed to reference this subscription.
+            </summary>
+        </member>
+        <member name="M:Swan.Messaging.IMessageHubSubscription.ShouldAttemptDelivery(Swan.Messaging.IMessageHubMessage)">
+            <summary>
+            Whether delivery should be attempted.
+            </summary>
+            <param name="message">Message that may potentially be delivered.</param>
+            <returns><c>true</c> - ok to send, <c>false</c> - should not attempt to send.</returns>
+        </member>
+        <member name="M:Swan.Messaging.IMessageHubSubscription.Deliver(Swan.Messaging.IMessageHubMessage)">
+            <summary>
+            Deliver the message.
+            </summary>
+            <param name="message">Message to deliver.</param>
+        </member>
+        <member name="T:Swan.Messaging.IMessageHubProxy">
+            <summary>
+            Message proxy definition.
+            
+            A message proxy can be used to intercept/alter messages and/or
+            marshal delivery actions onto a particular thread.
+            </summary>
+        </member>
+        <member name="M:Swan.Messaging.IMessageHubProxy.Deliver(Swan.Messaging.IMessageHubMessage,Swan.Messaging.IMessageHubSubscription)">
+            <summary>
+            Delivers the specified message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="subscription">The subscription.</param>
+        </member>
+        <member name="T:Swan.Messaging.MessageHubDefaultProxy">
+            <summary>
+            Default "pass through" proxy.
+            
+            Does nothing other than deliver the message.
+            </summary>
+        </member>
+        <member name="P:Swan.Messaging.MessageHubDefaultProxy.Instance">
+            <summary>
+            Singleton instance of the proxy.
+            </summary>
+        </member>
+        <member name="M:Swan.Messaging.MessageHubDefaultProxy.Deliver(Swan.Messaging.IMessageHubMessage,Swan.Messaging.IMessageHubSubscription)">
+            <summary>
+            Delivers the specified message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="subscription">The subscription.</param>
+        </member>
+        <member name="T:Swan.Messaging.MessageHub">
+            <inheritdoc />
+            <example>
+            The following code describes how to use a MessageHub. Both the
+            subscription and the message sending are done in the same place but this is only for explanatory purposes.
+            <code>
+            class Example
+            {
+                using Swan;
+                using Swan.Components;
+                
+                static void Main()
+                {
+                    // using DependencyContainer to create an instance of MessageHub
+                    var messageHub = DependencyContainer
+                        .Current
+                        .Resolve&lt;IMessageHub&gt;() as MessageHub;
+                        
+                    // create an instance of the publisher class 
+                    // which has a string as its content
+                    var message = new MessageHubGenericMessage&lt;string&gt;(new object(), "SWAN");
+                    
+                    // subscribe to the publisher's event 
+                    // and just print out the content which is a string 
+                    // a token is returned which can be used to unsubscribe later on
+                     var token = messageHub
+                        .Subscribe&lt;MessageHubGenericMessage&lt;string&gt;&gt;(m =&gt; m.Content.Info());
+                        
+                     // publish the message described above which is
+                     // the string 'SWAN'
+                     messageHub.Publish(message);
+                     
+                    // unsubscribe, we will no longer receive any messages 
+                    messageHub.Unsubscribe&lt;MessageHubGenericMessage&lt;string&gt;&gt;(token);
+                    
+                    Terminal.Flush();
+                }
+                
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Swan.Messaging.MessageHub.WeakMessageSubscription`1.#ctor(Swan.Messaging.MessageHubSubscriptionToken,System.Action{`0},System.Func{`0,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Messaging.MessageHub.WeakMessageSubscription`1" /> class.
+            </summary>
+            <param name="subscriptionToken">The subscription token.</param>
+            <param name="deliveryAction">The delivery action.</param>
+            <param name="messageFilter">The message filter.</param>
+            <exception cref="T:System.ArgumentNullException">subscriptionToken
+            or
+            deliveryAction
+            or
+            messageFilter.</exception>
+        </member>
+        <member name="M:Swan.Messaging.MessageHub.StrongMessageSubscription`1.#ctor(Swan.Messaging.MessageHubSubscriptionToken,System.Action{`0},System.Func{`0,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Messaging.MessageHub.StrongMessageSubscription`1" /> class.
+            </summary>
+            <param name="subscriptionToken">The subscription token.</param>
+            <param name="deliveryAction">The delivery action.</param>
+            <param name="messageFilter">The message filter.</param>
+            <exception cref="T:System.ArgumentNullException">subscriptionToken
+            or
+            deliveryAction
+            or
+            messageFilter.</exception>
+        </member>
+        <member name="M:Swan.Messaging.MessageHub.Subscribe``1(System.Action{``0},System.Boolean,Swan.Messaging.IMessageHubProxy)">
+            <summary>
+            Subscribe to a message type with the given destination and delivery action.
+            Messages will be delivered via the specified proxy.
+            
+            All messages of this type will be delivered.
+            </summary>
+            <typeparam name="TMessage">Type of message.</typeparam>
+            <param name="deliveryAction">Action to invoke when message is delivered.</param>
+            <param name="useStrongReferences">Use strong references to destination and deliveryAction. </param>
+            <param name="proxy">Proxy to use when delivering the messages.</param>
+            <returns>MessageSubscription used to unsubscribing.</returns>
+        </member>
+        <member name="M:Swan.Messaging.MessageHub.Subscribe``1(System.Action{``0},System.Func{``0,System.Boolean},System.Boolean,Swan.Messaging.IMessageHubProxy)">
+            <summary>
+            Subscribe to a message type with the given destination and delivery action with the given filter.
+            Messages will be delivered via the specified proxy.
+            All references are held with WeakReferences
+            Only messages that "pass" the filter will be delivered.
+            </summary>
+            <typeparam name="TMessage">Type of message.</typeparam>
+            <param name="deliveryAction">Action to invoke when message is delivered.</param>
+            <param name="messageFilter">The message filter.</param>
+            <param name="useStrongReferences">Use strong references to destination and deliveryAction.</param>
+            <param name="proxy">Proxy to use when delivering the messages.</param>
+            <returns>
+            MessageSubscription used to unsubscribing.
+            </returns>
+        </member>
+        <member name="M:Swan.Messaging.MessageHub.Unsubscribe``1(Swan.Messaging.MessageHubSubscriptionToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Messaging.MessageHub.Publish``1(``0)">
+            <summary>
+            Publish a message to any subscribers.
+            </summary>
+            <typeparam name="TMessage">Type of message.</typeparam>
+            <param name="message">Message to deliver.</param>
+        </member>
+        <member name="M:Swan.Messaging.MessageHub.PublishAsync``1(``0)">
+            <summary>
+            Publish a message to any subscribers asynchronously.
+            </summary>
+            <typeparam name="TMessage">Type of message.</typeparam>
+            <param name="message">Message to deliver.</param>
+            <returns>A task with the publish.</returns>
+        </member>
+        <member name="T:Swan.Messaging.MessageHubMessageBase">
+            <summary>
+            Base class for messages that provides weak reference storage of the sender.
+            </summary>
+        </member>
+        <member name="F:Swan.Messaging.MessageHubMessageBase._sender">
+            <summary>
+            Store a WeakReference to the sender just in case anyone is daft enough to
+            keep the message around and prevent the sender from being collected.
+            </summary>
+        </member>
+        <member name="M:Swan.Messaging.MessageHubMessageBase.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Messaging.MessageHubMessageBase"/> class.
+            </summary>
+            <param name="sender">The sender.</param>
+            <exception cref="T:System.ArgumentNullException">sender.</exception>
+        </member>
+        <member name="P:Swan.Messaging.MessageHubMessageBase.Sender">
+            <inheritdoc />
+        </member>
+        <member name="T:Swan.Messaging.MessageHubGenericMessage`1">
+            <summary>
+            Generic message with user specified content.
+            </summary>
+            <typeparam name="TContent">Content type to store.</typeparam>
+        </member>
+        <member name="M:Swan.Messaging.MessageHubGenericMessage`1.#ctor(System.Object,`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Messaging.MessageHubGenericMessage`1"/> class.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="content">The content.</param>
+        </member>
+        <member name="P:Swan.Messaging.MessageHubGenericMessage`1.Content">
+            <summary>
+            Contents of the message.
+            </summary>
+        </member>
+        <member name="T:Swan.Messaging.MessageHubSubscriptionToken">
+            <summary>
+            Represents an active subscription to a message.
+            </summary>
+        </member>
+        <member name="M:Swan.Messaging.MessageHubSubscriptionToken.#ctor(Swan.Messaging.IMessageHub,System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Messaging.MessageHubSubscriptionToken"/> class.
+            </summary>
+            <param name="hub">The hub.</param>
+            <param name="messageType">Type of the message.</param>
+            <exception cref="T:System.ArgumentNullException">hub.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">messageType.</exception>
+        </member>
+        <member name="M:Swan.Messaging.MessageHubSubscriptionToken.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:Swan.Net.Connection">
+            <summary>
+            Represents a network connection either on the server or on the client. It wraps a TcpClient
+            and its corresponding network streams. It is capable of working in 2 modes. Typically on the server side
+            you will need to enable continuous reading and events. On the client side you may want to disable continuous reading
+            and use the Read methods available. In continuous reading mode Read methods are not available and will throw
+            an invalid operation exceptions if they are used.
+            Continuous Reading Mode: Subscribe to data reception events, it runs a background thread, don't use Read methods
+            Manual Reading Mode: Data reception events are NEVER fired. No background threads are used. Use Read methods to receive data.
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+            <example>
+            The following code explains how to create a TCP server.
+            <code>
+            using System.Text;
+            using Swan.Net;
+            
+            class Example
+            {
+                static void Main()
+                {
+                    // create a new connection listener on a specific port
+                    var connectionListener = new ConnectionListener(1337);
+                    
+                    // handle the OnConnectionAccepting event
+                    connectionListener.OnConnectionAccepted += async (s, e) =>
+                    {
+                         // create a new connection 
+                         using (var con = new Connection(e.Client))
+                         {               
+                            await con.WriteLineAsync("Hello world!");
+                         }
+                    };
+                    
+                    connectionListener.Start();
+                    Console.ReadLine)=ñ
+                }
+            }
+            </code>
+            The following code describes how to create a TCP client.
+            <code>
+            using System.Net.Sockets;
+            using System.Text;
+            using System.Threading.Tasks;
+            using Swan.Net;
+            
+            class Example
+            {
+                static async Task Main()
+                {
+                    // create a new TcpClient object
+                    var client = new TcpClient();
+                    
+                    // connect to a specific address and port
+                    client.Connect("localhost", 1337);
+                    
+                    //create a new connection with specific encoding,
+                    //new line sequence and continuous reading disabled
+                    using (var cn = new Connection(client, Encoding.UTF8, "\r\n", true, 0))
+                    {               
+                       var response = await cn.ReadTextAsync();
+                    }
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Swan.Net.Connection.#ctor(System.Net.Sockets.TcpClient,System.Text.Encoding,System.String,System.Boolean,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.Connection"/> class.
+            </summary>
+            <param name="client">The client.</param>
+            <param name="textEncoding">The text encoding.</param>
+            <param name="newLineSequence">The new line sequence used for read and write operations.</param>
+            <param name="disableContinuousReading">if set to <c>true</c> [disable continuous reading].</param>
+            <param name="blockSize">Size of the block. -- set to 0 or less to disable.</param>
+        </member>
+        <member name="M:Swan.Net.Connection.#ctor(System.Net.Sockets.TcpClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.Connection"/> class in continuous reading mode.
+            It uses UTF8 encoding, CRLF as a new line sequence and disables a protocol block size.
+            </summary>
+            <param name="client">The client.</param>
+        </member>
+        <member name="M:Swan.Net.Connection.#ctor(System.Net.Sockets.TcpClient,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.Connection"/> class in continuous reading mode.
+            It uses UTF8 encoding, disables line sequences, and uses a protocol block size instead.
+            </summary>
+            <param name="client">The client.</param>
+            <param name="blockSize">Size of the block.</param>
+        </member>
+        <member name="E:Swan.Net.Connection.DataReceived">
+            <summary>
+            Occurs when the receive buffer has encounters a new line sequence, the buffer is flushed or the buffer is full.
+            </summary>
+        </member>
+        <member name="E:Swan.Net.Connection.ConnectionFailure">
+            <summary>
+            Occurs when an error occurs while upgrading, sending, or receiving data in this client
+            </summary>
+        </member>
+        <member name="E:Swan.Net.Connection.ClientDisconnected">
+            <summary>
+            Occurs when a client is disconnected
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Connection.Id">
+            <summary>
+            Gets the unique identifier of this connection.
+            This field is filled out upon instantiation of this class.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.ActiveStream">
+            <summary>
+            Gets the active stream. Returns an SSL stream if the connection is secure, otherwise returns
+            the underlying NetworkStream.
+            </summary>
+            <value>
+            The active stream.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.IsActiveStreamSecure">
+            <summary>
+            Gets a value indicating whether the current connection stream is an SSL stream.
+            </summary>
+            <value>
+              <c>true</c> if this instance is active stream secure; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.TextEncoding">
+            <summary>
+            Gets the text encoding for send and receive operations.
+            </summary>
+            <value>
+            The text encoding.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.RemoteEndPoint">
+            <summary>
+            Gets the remote end point of this TCP connection.
+            </summary>
+            <value>
+            The remote end point.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.LocalEndPoint">
+            <summary>
+            Gets the local end point of this TCP connection.
+            </summary>
+            <value>
+            The local end point.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.RemoteClient">
+            <summary>
+            Gets the remote client of this TCP connection.
+            </summary>
+            <value>
+            The remote client.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.ProtocolBlockSize">
+            <summary>
+            When in continuous reading mode, and if set to greater than 0,
+            a Data reception event will be fired whenever the amount of bytes
+            determined by this property has been received. Useful for fixed-length message protocols.
+            </summary>
+            <value>
+            The size of the protocol block.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.IsContinuousReadingEnabled">
+            <summary>
+            Gets a value indicating whether this connection is in continuous reading mode.
+            Remark: Whenever a disconnect event occurs, the background thread is terminated
+            and this property will return false whenever the reading thread is not active.
+            Therefore, even if continuous reading was not disabled in the constructor, this property
+            might return false.
+            </summary>
+            <value>
+              <c>true</c> if this instance is continuous reading enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.ConnectionStartTimeUtc">
+            <summary>
+            Gets the start time at which the connection was started in UTC.
+            </summary>
+            <value>
+            The connection start time UTC.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.ConnectionStartTime">
+            <summary>
+            Gets the start time at which the connection was started in local time.
+            </summary>
+            <value>
+            The connection start time.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.ConnectionDuration">
+            <summary>
+            Gets the duration of the connection.
+            </summary>
+            <value>
+            The duration of the connection.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.DataReceivedLastTimeUtc">
+            <summary>
+            Gets the last time data was received at in UTC.
+            </summary>
+            <value>
+            The data received last time UTC.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.DataReceivedIdleDuration">
+            <summary>
+            Gets how long has elapsed since data was last received.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Connection.DataSentLastTimeUtc">
+            <summary>
+            Gets the last time at which data was sent in UTC.
+            </summary>
+            <value>
+            The data sent last time UTC.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.DataSentIdleDuration">
+            <summary>
+            Gets how long has elapsed since data was last sent.
+            </summary>
+            <value>
+            The duration of the data sent idle.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Connection.IsConnected">
+            <summary>
+            Gets a value indicating whether this connection is connected.
+            Remarks: This property polls the socket internally and checks if it is available to read data from it.
+            If disconnect has been called, then this property will return false.
+            </summary>
+            <value>
+              <c>true</c> if this instance is connected; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Swan.Net.Connection.ReadDataAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Reads data from the remote client asynchronously and with the given timeout.
+            </summary>
+            <param name="timeout">The timeout.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A byte array containing the results of encoding the specified set of characters.</returns>
+            <exception cref="T:System.InvalidOperationException">Read methods have been disabled because continuous reading is enabled.</exception>
+            <exception cref="T:System.TimeoutException">Reading data from {ActiveStream} timed out in {timeout.TotalMilliseconds} m.</exception>
+        </member>
+        <member name="M:Swan.Net.Connection.ReadDataAsync(System.Threading.CancellationToken)">
+            <summary>
+            Reads data asynchronously from the remote stream with a 5000 millisecond timeout.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A byte array containing the results the specified sequence of bytes.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.Connection.ReadTextAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously reads data as text with the given timeout.
+            </summary>
+            <param name="timeout">The timeout.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A <see cref="T:System.String" /> that contains the results of decoding the specified sequence of bytes.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.Connection.ReadTextAsync(System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously reads data as text with a 5000 millisecond timeout.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            When this method completes successfully, it returns the contents of the file as a text string.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.Connection.ReadLineAsync(System.Threading.CancellationToken)">
+            <summary>
+            Performs the same task as this method's overload but it defaults to a read timeout of 30 seconds.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A task that represents the asynchronous read operation. The value of the TResult parameter 
+            contains the next line from the stream, or is null if all the characters have been read.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.Connection.ReadLineAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Reads the next available line of text in queue. Return null when no text is read.
+            This method differs from the rest of the read methods because it keeps an internal
+            queue of lines that are read from the stream and only returns the one line next in the queue.
+            It is only recommended to use this method when you are working with text-based protocols
+            and the rest of the read methods are not called.
+            </summary>
+            <param name="timeout">The timeout.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task with a string line from the queue.</returns>
+            <exception cref="T:System.InvalidOperationException">Read methods have been disabled because continuous reading is enabled.</exception>
+        </member>
+        <member name="M:Swan.Net.Connection.WriteDataAsync(System.Byte[],System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Writes data asynchronously.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="forceFlush">if set to <c>true</c> [force flush].</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that represents the asynchronous write operation.</returns>
+        </member>
+        <member name="M:Swan.Net.Connection.WriteTextAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Writes text asynchronously.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that represents the asynchronous write operation.</returns>
+        </member>
+        <member name="M:Swan.Net.Connection.WriteTextAsync(System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+            <summary>
+            Writes text asynchronously.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="encoding">The encoding.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that represents the asynchronous write operation.</returns>
+        </member>
+        <member name="M:Swan.Net.Connection.WriteLineAsync(System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+            <summary>
+            Writes a line of text asynchronously.
+            The new line sequence is added automatically at the end of the line.
+            </summary>
+            <param name="line">The line.</param>
+            <param name="encoding">The encoding.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that represents the asynchronous write operation.</returns>
+        </member>
+        <member name="M:Swan.Net.Connection.WriteLineAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Writes a line of text asynchronously.
+            The new line sequence is added automatically at the end of the line.
+            </summary>
+            <param name="line">The line.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that represents the asynchronous write operation.</returns>
+        </member>
+        <member name="M:Swan.Net.Connection.UpgradeToSecureAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+            Upgrades the active stream to an SSL stream if this connection object is hosted in the server.
+            </summary>
+            <param name="serverCertificate">The server certificate.</param>
+            <returns><c>true</c> if the object is hosted in the server; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Swan.Net.Connection.UpgradeToSecureAsClientAsync(System.String,System.Net.Security.RemoteCertificateValidationCallback)">
+            <summary>
+            Upgrades the active stream to an SSL stream if this connection object is hosted in the client.
+            </summary>
+            <param name="hostname">The hostname.</param>
+            <param name="callback">The callback.</param>
+            <returns>A tasks with <c>true</c> if the upgrade to SSL was successful; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Swan.Net.Connection.Disconnect">
+            <summary>
+            Disconnects this connection.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.Connection.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:Swan.Net.ConnectionDataReceivedTrigger">
+            <summary>
+            Enumerates the possible causes of the DataReceived event occurring.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.ConnectionDataReceivedTrigger.Flush">
+            <summary>
+            The trigger was a forceful flush of the buffer
+            </summary>
+        </member>
+        <member name="F:Swan.Net.ConnectionDataReceivedTrigger.NewLineSequenceEncountered">
+            <summary>
+            The new line sequence bytes were received
+            </summary>
+        </member>
+        <member name="F:Swan.Net.ConnectionDataReceivedTrigger.BufferFull">
+            <summary>
+            The buffer was full
+            </summary>
+        </member>
+        <member name="F:Swan.Net.ConnectionDataReceivedTrigger.BlockSizeReached">
+            <summary>
+            The block size reached
+            </summary>
+        </member>
+        <member name="T:Swan.Net.ConnectionListener">
+            <summary>
+            TCP Listener manager with built-in events and asynchronous functionality.
+            This networking component is typically used when writing server software.
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="E:Swan.Net.ConnectionListener.OnConnectionAccepting">
+            <summary>
+            Occurs when a new connection requests a socket from the listener.
+            Set Cancel = true to prevent the TCP client from being accepted.
+            </summary>
+        </member>
+        <member name="E:Swan.Net.ConnectionListener.OnConnectionAccepted">
+            <summary>
+            Occurs when a new connection is accepted.
+            </summary>
+        </member>
+        <member name="E:Swan.Net.ConnectionListener.OnConnectionFailure">
+            <summary>
+            Occurs when a connection fails to get accepted
+            </summary>
+        </member>
+        <member name="E:Swan.Net.ConnectionListener.OnListenerStopped">
+            <summary>
+            Occurs when the listener stops.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.ConnectionListener.#ctor(System.Net.IPEndPoint)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.ConnectionListener"/> class.
+            </summary>
+            <param name="listenEndPoint">The listen end point.</param>
+        </member>
+        <member name="M:Swan.Net.ConnectionListener.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.ConnectionListener"/> class.
+            It uses the loopback address for listening.
+            </summary>
+            <param name="listenPort">The listen port.</param>
+        </member>
+        <member name="M:Swan.Net.ConnectionListener.#ctor(System.Net.IPAddress,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.ConnectionListener"/> class.
+            </summary>
+            <param name="listenAddress">The listen address.</param>
+            <param name="listenPort">The listen port.</param>
+        </member>
+        <member name="M:Swan.Net.ConnectionListener.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:Swan.Net.ConnectionListener"/> class.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.ConnectionListener.LocalEndPoint">
+            <summary>
+            Gets the local end point on which we are listening.
+            </summary>
+            <value>
+            The local end point.
+            </value>
+        </member>
+        <member name="P:Swan.Net.ConnectionListener.IsListening">
+            <summary>
+            Gets a value indicating whether this listener is active.
+            </summary>
+            <value>
+              <c>true</c> if this instance is listening; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Swan.Net.ConnectionListener.Id">
+            <summary>
+            Gets a unique identifier that gets automatically assigned upon instantiation of this class.
+            </summary>
+            <value>
+            The unique identifier.
+            </value>
+        </member>
+        <member name="M:Swan.Net.ConnectionListener.Start">
+            <summary>
+            Starts the listener in an asynchronous, non-blocking fashion.
+            Subscribe to the events of this class to gain access to connected client sockets.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Cancellation has already been requested. This listener is not reusable.</exception>
+        </member>
+        <member name="M:Swan.Net.ConnectionListener.Stop">
+            <summary>
+            Stops the listener from receiving new connections.
+            This does not prevent the listener from .
+            </summary>
+        </member>
+        <member name="M:Swan.Net.ConnectionListener.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.ConnectionListener.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Net.ConnectionListener.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Swan.Net.ConnectionListener.DoWorkAsync">
+            <summary>
+            Continuously checks for client connections until the Close method has been called.
+            </summary>
+            <returns>A task that represents the asynchronous connection operation.</returns>
+        </member>
+        <member name="T:Swan.Net.Dns.DnsClient">
+            <summary>
+            DnsClient public methods.
+            </summary>
+            <summary>
+            DnsClient public interfaces.
+            </summary>
+            <summary>
+            DnsClient Request inner class.
+            </summary>
+            <summary>
+            DnsClient public methods.
+            </summary>
+            <summary>
+            DnsClient Response inner class.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.Dns.DnsClient.DnsClientRequest.Resolve">
+            <summary>
+            Resolves this request into a response using the provided DNS information. The given
+            request strategy is used to retrieve the response.
+            </summary>
+            <exception cref="T:Swan.Net.Dns.DnsQueryException">Throw if a malformed response is received from the server.</exception>
+            <exception cref="T:System.IO.IOException">Thrown if a IO error occurs.</exception>
+            <exception cref="T:System.Net.Sockets.SocketException">Thrown if a the reading or writing to the socket fails.</exception>
+            <returns>The response received from server.</returns>
+        </member>
+        <member name="T:Swan.Net.Dns.DnsQueryException">
+            <summary>
+            An exception thrown when the DNS query fails.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="T:Swan.Net.Dns.DnsQueryResult">
+            <summary>
+            Represents a response from a DNS server.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.Dns.DnsQueryResult.#ctor(Swan.Net.Dns.DnsClient.IDnsResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.Dns.DnsQueryResult"/> class.
+            </summary>
+            <param name="response">The response.</param>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsQueryResult.Id">
+            <summary>
+            Gets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsQueryResult.IsAuthoritativeServer">
+            <summary>
+            Gets a value indicating whether this instance is authoritative server.
+            </summary>
+            <value>
+            <c>true</c> if this instance is authoritative server; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsQueryResult.IsTruncated">
+            <summary>
+            Gets a value indicating whether this instance is truncated.
+            </summary>
+            <value>
+            <c>true</c> if this instance is truncated; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsQueryResult.IsRecursionAvailable">
+            <summary>
+            Gets a value indicating whether this instance is recursion available.
+            </summary>
+            <value>
+            <c>true</c> if this instance is recursion available; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsQueryResult.OperationCode">
+            <summary>
+            Gets the operation code.
+            </summary>
+            <value>
+            The operation code.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsQueryResult.ResponseCode">
+            <summary>
+            Gets the response code.
+            </summary>
+            <value>
+            The response code.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsQueryResult.AnswerRecords">
+            <summary>
+            Gets the answer records.
+            </summary>
+            <value>
+            The answer records.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsQueryResult.AdditionalRecords">
+            <summary>
+            Gets the additional records.
+            </summary>
+            <value>
+            The additional records.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsQueryResult.AuthorityRecords">
+            <summary>
+            Gets the authority records.
+            </summary>
+            <value>
+            The authority records.
+            </value>
+        </member>
+        <member name="T:Swan.Net.Dns.DnsRecord">
+            <summary>
+            Represents a DNS record entry.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.Dns.DnsRecord.#ctor(Swan.Net.Dns.DnsClient.IDnsResourceRecord)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.Dns.DnsRecord"/> class.
+            </summary>
+            <param name="record">The record.</param>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.Type">
+            <summary>
+            Gets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.Class">
+            <summary>
+            Gets the class.
+            </summary>
+            <value>
+            The class.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.TimeToLive">
+            <summary>
+            Gets the time to live.
+            </summary>
+            <value>
+            The time to live.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.Data">
+            <summary>
+            Gets the raw data of the record.
+            </summary>
+            <value>
+            The data.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.DataText">
+            <summary>
+            Gets the data text bytes in ASCII encoding.
+            </summary>
+            <value>
+            The data text.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.PointerDomainName">
+            <summary>
+            Gets the name of the pointer domain.
+            </summary>
+            <value>
+            The name of the pointer domain.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.IPAddress">
+            <summary>
+            Gets the ip address.
+            </summary>
+            <value>
+            The ip address.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.NameServerDomainName">
+            <summary>
+            Gets the name of the name server domain.
+            </summary>
+            <value>
+            The name of the name server domain.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.CanonicalDomainName">
+            <summary>
+            Gets the name of the canonical domain.
+            </summary>
+            <value>
+            The name of the canonical domain.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.MailExchangerPreference">
+            <summary>
+            Gets the mail exchanger preference.
+            </summary>
+            <value>
+            The mail exchanger preference.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.MailExchangerDomainName">
+            <summary>
+            Gets the name of the mail exchanger domain.
+            </summary>
+            <value>
+            The name of the mail exchanger domain.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.SoaMasterDomainName">
+            <summary>
+            Gets the name of the soa master domain.
+            </summary>
+            <value>
+            The name of the soa master domain.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.SoaResponsibleDomainName">
+            <summary>
+            Gets the name of the soa responsible domain.
+            </summary>
+            <value>
+            The name of the soa responsible domain.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.SoaSerialNumber">
+            <summary>
+            Gets the soa serial number.
+            </summary>
+            <value>
+            The soa serial number.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.SoaRefreshInterval">
+            <summary>
+            Gets the soa refresh interval.
+            </summary>
+            <value>
+            The soa refresh interval.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.SoaRetryInterval">
+            <summary>
+            Gets the soa retry interval.
+            </summary>
+            <value>
+            The soa retry interval.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.SoaExpireInterval">
+            <summary>
+            Gets the soa expire interval.
+            </summary>
+            <value>
+            The soa expire interval.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Dns.DnsRecord.SoaMinimumTimeToLive">
+            <summary>
+            Gets the soa minimum time to live.
+            </summary>
+            <value>
+            The soa minimum time to live.
+            </value>
+        </member>
+        <member name="T:Swan.Net.Dns.DnsRecordType">
+            <summary>
+            Enumerates the different DNS record types.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordType.A">
+            <summary>
+            A records
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordType.NS">
+            <summary>
+            Nameserver records
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordType.CNAME">
+            <summary>
+            CNAME records
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordType.SOA">
+            <summary>
+            SOA records
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordType.WKS">
+            <summary>
+            WKS records
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordType.PTR">
+            <summary>
+            PTR records
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordType.MX">
+            <summary>
+            MX records
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordType.TXT">
+            <summary>
+            TXT records
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordType.AAAA">
+            <summary>
+            A records fot IPv6
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordType.SRV">
+            <summary>
+            SRV records
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordType.ANY">
+            <summary>
+            ANY records
+            </summary> 
+        </member>
+        <member name="T:Swan.Net.Dns.DnsRecordClass">
+            <summary>
+            Enumerates the different DNS record classes.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordClass.IN">
+            <summary>
+            IN records
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsRecordClass.ANY">
+            <summary>
+            ANY records
+            </summary> 
+        </member>
+        <member name="T:Swan.Net.Dns.DnsOperationCode">
+            <summary>
+            Enumerates the different DNS operation codes.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Dns.DnsOperationCode.Query">
+            <summary>
+            Query operation
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsOperationCode.IQuery">
+            <summary>
+            IQuery operation
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsOperationCode.Status">
+            <summary>
+            Status operation
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsOperationCode.Notify">
+            <summary>
+            Notify operation
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsOperationCode.Update">
+            <summary>
+            Update operation
+            </summary> 
+        </member>
+        <member name="T:Swan.Net.Dns.DnsResponseCode">
+            <summary>
+            Enumerates the different DNS query response codes.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Dns.DnsResponseCode.NoError">
+            <summary>
+            No error
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsResponseCode.FormatError">
+            <summary>
+            No error
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsResponseCode.ServerFailure">
+            <summary>
+            Format error
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsResponseCode.NameError">
+            <summary>
+            Server failure error
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsResponseCode.NotImplemented">
+            <summary>
+            Name error
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsResponseCode.Refused">
+            <summary>
+            Not implemented error
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsResponseCode.YXDomain">
+            <summary>
+            Refused error
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsResponseCode.YXRRSet">
+            <summary>
+            YXRR error
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsResponseCode.NXRRSet">
+            <summary>
+            NXRR Set error
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsResponseCode.NotAuth">
+            <summary>
+            Not authorized error
+            </summary> 
+        </member>
+        <member name="F:Swan.Net.Dns.DnsResponseCode.NotZone">
+            <summary>
+            Not zone error
+            </summary> 
+        </member>
+        <member name="T:Swan.Net.ConnectionAcceptedEventArgs">
+            <summary>
+            The event arguments for when connections are accepted.
+            </summary>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="M:Swan.Net.ConnectionAcceptedEventArgs.#ctor(System.Net.Sockets.TcpClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.ConnectionAcceptedEventArgs" /> class.
+            </summary>
+            <param name="client">The client.</param>
+            <exception cref="T:System.ArgumentNullException">client.</exception>
+        </member>
+        <member name="P:Swan.Net.ConnectionAcceptedEventArgs.Client">
+            <summary>
+            Gets the client.
+            </summary>
+            <value>
+            The client.
+            </value>
+        </member>
+        <member name="T:Swan.Net.ConnectionAcceptingEventArgs">
+            <summary>
+            Occurs before a connection is accepted. Set the Cancel property to true to prevent the connection from being accepted.
+            </summary>
+            <seealso cref="T:Swan.Net.ConnectionAcceptedEventArgs" />
+        </member>
+        <member name="M:Swan.Net.ConnectionAcceptingEventArgs.#ctor(System.Net.Sockets.TcpClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.ConnectionAcceptingEventArgs"/> class.
+            </summary>
+            <param name="client">The client.</param>
+        </member>
+        <member name="P:Swan.Net.ConnectionAcceptingEventArgs.Cancel">
+            <summary>
+            Setting Cancel to true rejects the new TcpClient.
+            </summary>
+            <value>
+              <c>true</c> if cancel; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Swan.Net.ConnectionListenerStartedEventArgs">
+            <summary>
+            Event arguments for when a server listener is started.
+            </summary>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="M:Swan.Net.ConnectionListenerStartedEventArgs.#ctor(System.Net.IPEndPoint)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.ConnectionListenerStartedEventArgs" /> class.
+            </summary>
+            <param name="listenerEndPoint">The listener end point.</param>
+            <exception cref="T:System.ArgumentNullException">listenerEndPoint.</exception>
+        </member>
+        <member name="P:Swan.Net.ConnectionListenerStartedEventArgs.EndPoint">
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="T:Swan.Net.ConnectionListenerFailedEventArgs">
+            <summary>
+            Event arguments for when a server listener fails to start.
+            </summary>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="M:Swan.Net.ConnectionListenerFailedEventArgs.#ctor(System.Net.IPEndPoint,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.ConnectionListenerFailedEventArgs" /> class.
+            </summary>
+            <param name="listenerEndPoint">The listener end point.</param>
+            <param name="ex">The ex.</param>
+            <exception cref="T:System.ArgumentNullException">
+            listenerEndPoint
+            or
+            ex.
+            </exception>
+        </member>
+        <member name="P:Swan.Net.ConnectionListenerFailedEventArgs.EndPoint">
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Swan.Net.ConnectionListenerFailedEventArgs.Error">
+            <summary>
+            Gets the error.
+            </summary>
+            <value>
+            The error.
+            </value>
+        </member>
+        <member name="T:Swan.Net.ConnectionListenerStoppedEventArgs">
+            <summary>
+            Event arguments for when a server listener stopped.
+            </summary>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="M:Swan.Net.ConnectionListenerStoppedEventArgs.#ctor(System.Net.IPEndPoint,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.ConnectionListenerStoppedEventArgs" /> class.
+            </summary>
+            <param name="listenerEndPoint">The listener end point.</param>
+            <param name="ex">The ex.</param>
+            <exception cref="T:System.ArgumentNullException">
+            listenerEndPoint
+            or
+            ex.
+            </exception>
+        </member>
+        <member name="P:Swan.Net.ConnectionListenerStoppedEventArgs.EndPoint">
+            <summary>
+            Gets the end point.
+            </summary>
+            <value>
+            The end point.
+            </value>
+        </member>
+        <member name="P:Swan.Net.ConnectionListenerStoppedEventArgs.Error">
+            <summary>
+            Gets the error.
+            </summary>
+            <value>
+            The error.
+            </value>
+        </member>
+        <member name="T:Swan.Net.ConnectionFailureEventArgs">
+            <summary>
+            The event arguments for connection failure events.
+            </summary>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="M:Swan.Net.ConnectionFailureEventArgs.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.ConnectionFailureEventArgs"/> class.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="P:Swan.Net.ConnectionFailureEventArgs.Error">
+            <summary>
+            Gets the error.
+            </summary>
+            <value>
+            The error.
+            </value>
+        </member>
+        <member name="T:Swan.Net.ConnectionDataReceivedEventArgs">
+            <summary>
+            Event arguments for when data is received.
+            </summary>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="M:Swan.Net.ConnectionDataReceivedEventArgs.#ctor(System.Byte[],Swan.Net.ConnectionDataReceivedTrigger,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.ConnectionDataReceivedEventArgs"/> class.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="trigger">The trigger.</param>
+            <param name="moreAvailable">if set to <c>true</c> [more available].</param>
+        </member>
+        <member name="P:Swan.Net.ConnectionDataReceivedEventArgs.Buffer">
+            <summary>
+            Gets the buffer.
+            </summary>
+            <value>
+            The buffer.
+            </value>
+        </member>
+        <member name="P:Swan.Net.ConnectionDataReceivedEventArgs.Trigger">
+            <summary>
+            Gets the cause as to why this event was thrown.
+            </summary>
+            <value>
+            The trigger.
+            </value>
+        </member>
+        <member name="P:Swan.Net.ConnectionDataReceivedEventArgs.HasMoreAvailable">
+            <summary>
+            Gets a value indicating whether the receive buffer has more bytes available.
+            </summary>
+            <value>
+              <c>true</c> if this instance has more available; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Swan.Net.ConnectionDataReceivedEventArgs.GetStringFromBuffer(System.Text.Encoding)">
+            <summary>
+            Gets the string from buffer.
+            </summary>
+            <param name="encoding">The encoding.</param>
+            <returns>
+            A <see cref="T:System.String" /> that contains the results of decoding the specified sequence of bytes.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">encoding.</exception>
+        </member>
+        <member name="T:Swan.Net.JsonClient">
+            <summary>
+            Represents a HttpClient with extended methods to use with JSON payloads 
+            and bearer tokens authentication.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.JsonClient.Post``1(System.Uri,System.Object,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Post a object as JSON with optional authorization token.
+            </summary>
+            <typeparam name="T">The type of response object.</typeparam>
+            <param name="requestUri">The request URI.</param>
+            <param name="payload">The payload.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested type.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.JsonClient.Post(System.Uri,System.Object,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Posts the specified URL.
+            </summary>
+            <param name="requestUri">The request URI.</param>
+            <param name="payload">The payload.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A task with a result as a collection of key/value pairs.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.JsonClient.PostString(System.Uri,System.Object,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Posts the specified URL.
+            </summary>
+            <param name="requestUri">The request URI.</param>
+            <param name="payload">The payload.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested string.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">url.</exception>
+            <exception cref="T:Swan.Net.JsonRequestException">Error POST JSON.</exception>
+        </member>
+        <member name="M:Swan.Net.JsonClient.Put``1(System.Uri,System.Object,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Puts the specified URL.
+            </summary>
+            <typeparam name="T">The type of response object.</typeparam>
+            <param name="requestUri">The request URI.</param>
+            <param name="payload">The payload.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="ct">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested type.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.JsonClient.Put(System.Uri,System.Object,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Puts the specified URL.
+            </summary>
+            <param name="requestUri">The request URI.</param>
+            <param name="payload">The payload.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested collection of key/value pairs.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.JsonClient.PutString(System.Uri,System.Object,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Puts as string.
+            </summary>
+            <param name="requestUri">The request URI.</param>
+            <param name="payload">The payload.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="ct">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested string.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">url.</exception>
+            <exception cref="T:Swan.Net.JsonRequestException">Error PUT JSON.</exception>
+        </member>
+        <member name="M:Swan.Net.JsonClient.GetString(System.Uri,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets as string.
+            </summary>
+            <param name="requestUri">The request URI.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="ct">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested string.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">url.</exception>
+            <exception cref="T:Swan.Net.JsonRequestException">Error GET JSON.</exception>
+        </member>
+        <member name="M:Swan.Net.JsonClient.GetString(System.Uri,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IEnumerable{System.String}},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets the string.
+            </summary>
+            <param name="uri">The URI.</param>
+            <param name="headers">The headers.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="ct">The ct.</param>
+            <returns>
+            A task with a result of the requested string.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.JsonClient.Get``1(System.Uri,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets the specified URL and return the JSON data as object
+            with optional authorization token.
+            </summary>
+            <typeparam name="T">The response type.</typeparam>
+            <param name="requestUri">The request URI.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="ct">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested type.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.JsonClient.Get``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IEnumerable{System.String}},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets the specified URL and return the JSON data as object
+            with optional authorization token.
+            </summary>
+            <typeparam name="T">The response type.</typeparam>
+            <param name="requestUri">The request URI.</param>
+            <param name="headers">The headers.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="ct">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested type.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.JsonClient.GetBinary(System.Uri,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets the binary.
+            </summary>
+            <param name="requestUri">The request URI.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="ct">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested byte array.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">url.</exception>
+            <exception cref="T:Swan.Net.JsonRequestException">Error GET Binary.</exception>
+        </member>
+        <member name="M:Swan.Net.JsonClient.Authenticate(System.Uri,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Authenticate against a web server using Bearer Token.
+            </summary>
+            <param name="requestUri">The request URI.</param>
+            <param name="username">The username.</param>
+            <param name="password">The password.</param>
+            <param name="ct">The cancellation token.</param>
+            <returns>
+            A task with a Dictionary with authentication data.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">url
+            or
+            username.</exception>
+            <exception cref="T:System.Security.SecurityException">Error Authenticating.</exception>
+        </member>
+        <member name="M:Swan.Net.JsonClient.PostFileString(System.Uri,System.Byte[],System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Posts the file.
+            </summary>
+            <param name="requestUri">The request URI.</param>
+            <param name="buffer">The buffer.</param>
+            <param name="fileName">Name of the file.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="ct">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested string.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">fileName</exception>
+        </member>
+        <member name="M:Swan.Net.JsonClient.PostFile``1(System.Uri,System.Byte[],System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Posts the file.
+            </summary>
+            <typeparam name="T">The response type.</typeparam>
+            <param name="requestUri">The request URI.</param>
+            <param name="buffer">The buffer.</param>
+            <param name="fileName">Name of the file.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="ct">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested string.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            buffer
+            or
+            fileName
+            </exception>
+        </member>
+        <member name="M:Swan.Net.JsonClient.SendAsync(System.Net.Http.HttpMethod,System.Uri,System.Object,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IEnumerable{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            Sends the asynchronous request.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="requestUri">The request URI.</param>
+            <param name="payload">The payload.</param>
+            <param name="authorization">The authorization.</param>
+            <param name="headers">The headers.</param>
+            <param name="ct">The cancellation token.</param>
+            <returns>
+            A task with a result of the requested string.
+            </returns>
+            <exception cref="T:Swan.Net.JsonRequestException">Error {method} JSON.</exception>
+            <exception cref="T:System.ArgumentNullException">requestUri.</exception>
+        </member>
+        <member name="T:Swan.Net.JsonRequestException">
+            <summary>
+            Represents errors that occurs requesting a JSON file through HTTP.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:Swan.Net.JsonRequestException.#ctor(System.Uri,System.Net.Http.HttpMethod,System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.JsonRequestException" /> class.
+            </summary>
+            <param name="url">The URL.</param>
+            <param name="method">The method.</param>
+            <param name="httpErrorCode">The HTTP error code.</param>
+            <param name="errorContent">Content of the error.</param>
+        </member>
+        <member name="P:Swan.Net.JsonRequestException.Url">
+            <summary>
+            Gets the URL.
+            </summary>
+            <value>
+            The URL.
+            </value>
+        </member>
+        <member name="P:Swan.Net.JsonRequestException.Method">
+            <summary>
+            Gets the method.
+            </summary>
+            <value>
+            The method.
+            </value>
+        </member>
+        <member name="P:Swan.Net.JsonRequestException.HttpErrorCode">
+            <summary>
+            Gets the HTTP error code.
+            </summary>
+            <value>
+            The HTTP error code.
+            </value>
+        </member>
+        <member name="P:Swan.Net.JsonRequestException.HttpErrorContent">
+            <summary>
+            Gets the content of the HTTP error.
+            </summary>
+            <value>
+            The content of the HTTP error.
+            </value>
+        </member>
+        <member name="M:Swan.Net.JsonRequestException.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Swan.Net.Network">
+            <summary>
+            Provides miscellaneous network utilities such as a Public IP finder,
+            a DNS client to query DNS records of any kind, and an NTP client.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Network.DnsDefaultPort">
+            <summary>
+            The DNS default port.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Network.NtpDefaultPort">
+            <summary>
+            The NTP default port.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Network.HostName">
+            <summary>
+            Gets the name of the host.
+            </summary>
+            <value>
+            The name of the host.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Network.DomainName">
+            <summary>
+            Gets the name of the network domain.
+            </summary>
+            <value>
+            The name of the network domain.
+            </value>
+        </member>
+        <member name="M:Swan.Net.Network.GetIPv4Interfaces">
+            <summary>
+            Gets the active IPv4 interfaces.
+            Only those interfaces with a valid unicast address and a valid gateway will be returned in the collection.
+            </summary>
+            <returns>
+            A collection of NetworkInterface/IPInterfaceProperties pairs
+            that represents the active IPv4 interfaces.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.Network.GetIPv4Addresses(System.Boolean)">
+            <summary>
+            Retrieves the local ip addresses.
+            </summary>
+            <param name="includeLoopback">if set to <c>true</c> [include loopback].</param>
+            <returns>An array of local ip addresses.</returns>
+        </member>
+        <member name="M:Swan.Net.Network.GetIPv4Addresses(System.Net.NetworkInformation.NetworkInterfaceType,System.Boolean,System.Boolean)">
+            <summary>
+            Retrieves the local ip addresses.
+            </summary>
+            <param name="interfaceType">Type of the interface.</param>
+            <param name="skipTypeFilter">if set to <c>true</c> [skip type filter].</param>
+            <param name="includeLoopback">if set to <c>true</c> [include loopback].</param>
+            <returns>An array of local ip addresses.</returns>
+        </member>
+        <member name="M:Swan.Net.Network.GetPublicIPAddressAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets the public IP address using ipify.org.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A public IP address of the result produced by this Task.</returns>
+        </member>
+        <member name="M:Swan.Net.Network.GetIPv4DnsServers">
+            <summary>
+            Gets the configured IPv4 DNS servers for the active network interfaces.
+            </summary>
+            <returns>
+            A collection of NetworkInterface/IPInterfaceProperties pairs
+            that represents the active IPv4 interfaces.
+            </returns>
+        </member>
+        <member name="M:Swan.Net.Network.GetDnsHostEntryAsync(System.String)">
+            <summary>
+            Gets the DNS host entry (a list of IP addresses) for the domain name.
+            </summary>
+            <param name="fqdn">The FQDN.</param>
+            <returns>An array of local ip addresses of the result produced by this task.</returns>
+        </member>
+        <member name="M:Swan.Net.Network.GetDnsHostEntryAsync(System.String,System.Net.IPAddress,System.Int32)">
+            <summary>
+            Gets the DNS host entry (a list of IP addresses) for the domain name.
+            </summary>
+            <param name="fqdn">The FQDN.</param>
+            <param name="dnsServer">The DNS server.</param>
+            <param name="port">The port.</param>
+            <returns>
+            An array of local ip addresses of the result produced by this task.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">fqdn.</exception>
+        </member>
+        <member name="M:Swan.Net.Network.GetDnsPointerEntryAsync(System.Net.IPAddress,System.Net.IPAddress,System.Int32)">
+            <summary>
+            Gets the reverse lookup FQDN of the given IP Address.
+            </summary>
+            <param name="query">The query.</param>
+            <param name="dnsServer">The DNS server.</param>
+            <param name="port">The port.</param>
+            <returns>A <see cref="T:System.String" /> that represents the current object.</returns>
+        </member>
+        <member name="M:Swan.Net.Network.GetDnsPointerEntryAsync(System.Net.IPAddress)">
+            <summary>
+            Gets the reverse lookup FQDN of the given IP Address.
+            </summary>
+            <param name="query">The query.</param>
+            <returns>A <see cref="T:System.String" /> that represents the current object.</returns>
+        </member>
+        <member name="M:Swan.Net.Network.QueryDnsAsync(System.String,Swan.Net.Dns.DnsRecordType,System.Net.IPAddress,System.Int32)">
+            <summary>
+            Queries the DNS server for the specified record type.
+            </summary>
+            <param name="query">The query.</param>
+            <param name="recordType">Type of the record.</param>
+            <param name="dnsServer">The DNS server.</param>
+            <param name="port">The port.</param>
+            <returns>Queries the DNS server for the specified record type of the result produced by this Task.</returns>
+        </member>
+        <member name="M:Swan.Net.Network.QueryDnsAsync(System.String,Swan.Net.Dns.DnsRecordType)">
+            <summary>
+            Queries the DNS server for the specified record type.
+            </summary>
+            <param name="query">The query.</param>
+            <param name="recordType">Type of the record.</param>
+            <returns>Queries the DNS server for the specified record type of the result produced by this Task.</returns>
+        </member>
+        <member name="M:Swan.Net.Network.GetNetworkTimeUtcAsync(System.Net.IPAddress,System.Int32)">
+            <summary>
+            Gets the UTC time by querying from an NTP server.
+            </summary>
+            <param name="ntpServerAddress">The NTP server address.</param>
+            <param name="port">The port.</param>
+            <returns>The UTC time by querying from an NTP server of the result produced by this Task.</returns>
+        </member>
+        <member name="M:Swan.Net.Network.GetNetworkTimeUtcAsync(System.String,System.Int32)">
+            <summary>
+            Gets the UTC time by querying from an NTP server.
+            </summary>
+            <param name="ntpServerName">The NTP server, by default pool.ntp.org.</param>
+            <param name="port">The port, by default NTP 123.</param>
+            <returns>The UTC time by querying from an NTP server of the result produced by this Task.</returns>
+        </member>
+        <member name="T:Swan.Net.Smtp.SmtpCommandNames">
+            <summary>
+            Enumerates all of the well-known SMTP command names.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.Unknown">
+            <summary>
+            An unknown command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.HELO">
+            <summary>
+            The helo command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.EHLO">
+            <summary>
+            The ehlo command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.QUIT">
+            <summary>
+            The quit command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.HELP">
+            <summary>
+            The help command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.NOOP">
+            <summary>
+            The noop command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.RSET">
+            <summary>
+            The rset command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.MAIL">
+            <summary>
+            The mail command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.DATA">
+            <summary>
+            The data command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.SEND">
+            <summary>
+            The send command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.SOML">
+            <summary>
+            The soml command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.SAML">
+            <summary>
+            The saml command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.RCPT">
+            <summary>
+            The RCPT command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.VRFY">
+            <summary>
+            The vrfy command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.EXPN">
+            <summary>
+            The expn command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.STARTTLS">
+            <summary>
+            The starttls command
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpCommandNames.AUTH">
+            <summary>
+            The authentication command
+            </summary>
+        </member>
+        <member name="T:Swan.Net.Smtp.SmtpReplyCodeSeverities">
+            <summary>
+            Enumerates the reply code severities.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeSeverities.Unknown">
+            <summary>
+            The unknown severity
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeSeverities.PositiveCompletion">
+            <summary>
+            The positive completion severity
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeSeverities.PositiveIntermediate">
+            <summary>
+            The positive intermediate severity
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeSeverities.TransientNegative">
+            <summary>
+            The transient negative severity
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeSeverities.PermanentNegative">
+            <summary>
+            The permanent negative severity
+            </summary>
+        </member>
+        <member name="T:Swan.Net.Smtp.SmtpReplyCodeCategories">
+            <summary>
+            Enumerates the reply code categories.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeCategories.Unknown">
+            <summary>
+            The unknown category
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeCategories.Syntax">
+            <summary>
+            The syntax category
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeCategories.Information">
+            <summary>
+            The information category
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeCategories.Connections">
+            <summary>
+            The connections category
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeCategories.UnspecifiedA">
+            <summary>
+            The unspecified a category
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeCategories.UnspecifiedB">
+            <summary>
+            The unspecified b category
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpReplyCodeCategories.System">
+            <summary>
+            The system category
+            </summary>
+        </member>
+        <member name="T:Swan.Net.Smtp.SmtpClient">
+            <summary>
+            Represents a basic SMTP client that is capable of submitting messages to an SMTP server.
+            </summary>
+            <example>
+            The following code explains how to send a simple e-mail.
+            <code>
+            using System.Net.Mail;
+             
+            class Example
+            {
+                static void Main()
+                {
+                    // create a new smtp client using google's smtp server
+                    var client = new Swan.Net.Smtp.SmtpClient("smtp.gmail.com", 587);
+                    
+                    // send an email 
+                    client.SendMailAsync(
+                    new MailMessage("sender@test.com", "recipient@test.cm", "Subject", "Body"));
+                }
+            }
+            </code>
+            
+            The following code demonstrates how to sent an e-mail using a SmtpSessionState:
+            <code>
+            using Swan.Net.Smtp;
+            
+            class Example
+            {
+                static void Main()
+                {
+                    // create a new smtp client using google's smtp server
+                    var client = new SmtpClient("smtp.gmail.com", 587);
+                    
+                    // create a new session state with a sender address 
+                    var session = new SmtpSessionState { SenderAddress = "sender@test.com" };
+                    
+                    // add a recipient
+                    session.Recipients.Add("recipient@test.cm");
+                    
+                    // send
+                    client.SendMailAsync(session);
+                }
+            }
+            </code>
+            
+            The following code shows how to send an e-mail with an attachment using MimeKit:
+            <code>
+            using MimeKit;
+            using Swan.Net.Smtp;
+             
+            class Example
+            {
+                static void Main()
+                {
+                    // create a new smtp client using google's smtp server
+                    var client = new SmtpClient("smtp.gmail.com", 587);
+                    
+                    // create a new session state with a sender address 
+                    var session = new SmtpSessionState { SenderAddress = "sender@test.com" };
+                    
+                    // add a recipient
+                    session.Recipients.Add("recipient@test.cm");
+                    
+                    // load a file as an attachment
+                    var attachment = new MimePart("image", "gif")
+                    {
+                        Content = new 
+                            MimeContent(File.OpenRead("meme.gif"), ContentEncoding.Default),
+                        ContentDisposition = 
+                            new ContentDisposition(ContentDisposition.Attachment),
+                        ContentTransferEncoding = ContentEncoding.Base64,
+                        FileName = Path.GetFileName("meme.gif")
+                    };
+                    
+                    // send
+                    client.SendMailAsync(session);
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpClient.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.Smtp.SmtpClient" /> class.
+            </summary>
+            <param name="host">The host.</param>
+            <param name="port">The port.</param>
+            <exception cref="T:System.ArgumentNullException">host.</exception>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpClient.Credentials">
+            <summary>
+            Gets or sets the credentials. No credentials will be used if set to null.
+            </summary>
+            <value>
+            The credentials.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpClient.Host">
+            <summary>
+            Gets the host.
+            </summary>
+            <value>
+            The host.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpClient.Port">
+            <summary>
+            Gets the port.
+            </summary>
+            <value>
+            The port.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpClient.EnableSsl">
+            <summary>
+            Gets or sets a value indicating whether the SSL is enabled.
+            If set to false, communication between client and server will not be secured.
+            </summary>
+            <value>
+              <c>true</c> if [enable SSL]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpClient.ClientHostname">
+            <summary>
+            Gets or sets the name of the client that gets announced to the server.
+            </summary>
+            <value>
+            The client hostname.
+            </value>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpClient.SendMailAsync(System.Net.Mail.MailMessage,System.String,System.Net.Security.RemoteCertificateValidationCallback,System.Threading.CancellationToken)">
+            <summary>
+            Sends an email message asynchronously.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="sessionId">The session identifier.</param>
+            <param name="callback">The callback.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A task that represents the asynchronous of send email operation.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">message.</exception>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpClient.SendMailAsync(Swan.Net.Smtp.SmtpSessionState,System.String,System.Net.Security.RemoteCertificateValidationCallback,System.Threading.CancellationToken)">
+            <summary>
+            Sends an email message using a session state object.
+            Credentials, Enable SSL and Client Hostname are NOT taken from the state object but
+            rather from the properties of this class.
+            </summary>
+            <param name="sessionState">The state.</param>
+            <param name="sessionId">The session identifier.</param>
+            <param name="callback">The callback.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A task that represents the asynchronous of send email operation.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">sessionState.</exception>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpClient.SendMailAsync(System.Collections.Generic.IEnumerable{Swan.Net.Smtp.SmtpSessionState},System.String,System.Net.Security.RemoteCertificateValidationCallback,System.Threading.CancellationToken)">
+            <summary>
+            Sends an array of email messages using a session state object.
+            Credentials, Enable SSL and Client Hostname are NOT taken from the state object but
+            rather from the properties of this class.
+            </summary>
+            <param name="sessionStates">The session states.</param>
+            <param name="sessionId">The session identifier.</param>
+            <param name="callback">The callback.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A task that represents the asynchronous of send email operation.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">sessionStates.</exception>
+            <exception cref="T:System.Security.SecurityException">Could not upgrade the channel to SSL.</exception>
+            <exception cref="T:System.Net.Mail.SmtpException">Defines an SMTP Exceptions class.</exception>
+        </member>
+        <member name="T:Swan.Net.Smtp.SmtpDefinitions">
+            <summary>
+            Contains useful constants and definitions.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpDefinitions.SmtpDataCommandTerminator">
+            <summary>
+            The string sequence that delimits the end of the DATA command.
+            </summary>
+        </member>
+        <member name="T:Swan.Net.Smtp.SmtpDefinitions.SmtpAuthMethods">
+            <summary>
+            Lists the AUTH methods supported by default.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpDefinitions.SmtpAuthMethods.Plain">
+            <summary>
+            The plain method.
+            </summary>
+        </member>
+        <member name="F:Swan.Net.Smtp.SmtpDefinitions.SmtpAuthMethods.Login">
+            <summary>
+            The login method.
+            </summary>
+        </member>
+        <member name="T:Swan.Net.Smtp.SmtpSender">
+            <summary>
+            Use this class to store the sender session data.
+            </summary>
+        </member>
+        <member name="T:Swan.Net.Smtp.SmtpServerReply">
+            <summary>
+            Represents an SMTP server response object.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpServerReply.#ctor(System.Int32,System.String,System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.Smtp.SmtpServerReply"/> class.
+            </summary>
+            <param name="responseCode">The response code.</param>
+            <param name="statusCode">The status code.</param>
+            <param name="content">The content.</param>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpServerReply.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.Smtp.SmtpServerReply"/> class.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpServerReply.#ctor(System.Int32,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.Smtp.SmtpServerReply"/> class.
+            </summary>
+            <param name="responseCode">The response code.</param>
+            <param name="statusCode">The status code.</param>
+            <param name="content">The content.</param>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpServerReply.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.Smtp.SmtpServerReply"/> class.
+            </summary>
+            <param name="responseCode">The response code.</param>
+            <param name="content">The content.</param>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.CommandUnrecognized">
+            <summary>
+            Gets the command unrecognized reply.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.SyntaxErrorArguments">
+            <summary>
+            Gets the syntax error arguments reply.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.CommandNotImplemented">
+            <summary>
+            Gets the command not implemented reply.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.BadSequenceOfCommands">
+            <summary>
+            Gets the bad sequence of commands reply.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.ProtocolViolation">
+            <summary>
+            Gets the protocol violation reply.
+            </summary>=
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.SystemStatusBye">
+            <summary>
+            Gets the system status bye reply.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.SystemStatusHelp">
+            <summary>
+            Gets the system status help reply.
+            </summary>=
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.BadSyntaxCommandEmpty">
+            <summary>
+            Gets the bad syntax command empty reply.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.Ok">
+            <summary>
+            Gets the OK reply.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.AuthorizationRequired">
+            <summary>
+            Gets the authorization required reply.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.ReplyCodeSeverity">
+            <summary>
+            Gets the response severity.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.ReplyCodeCategory">
+            <summary>
+            Gets the response category.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.ReplyCode">
+            <summary>
+            Gets the numeric response code.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.EnhancedStatusCode">
+            <summary>
+            Gets the enhanced status code.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.Content">
+            <summary>
+            Gets the content.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.IsValid">
+            <summary>
+            Returns true if the response code is between 200 and 599.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpServerReply.IsPositive">
+            <summary>
+            Gets a value indicating whether this instance is positive.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpServerReply.Parse(System.String)">
+            <summary>
+            Parses the specified text into a Server Reply for thorough analysis.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>A new instance of SMTP server response object.</returns>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpServerReply.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Swan.Net.Smtp.SmtpSessionState">
+            <summary>
+            Represents the state of an SMTP session associated with a client.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpSessionState.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Net.Smtp.SmtpSessionState"/> class.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.DataBuffer">
+            <summary>
+            Gets the contents of the data buffer.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.HasInitiated">
+            <summary>
+            Gets or sets a value indicating whether this instance has initiated.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.SupportsExtensions">
+            <summary>
+            Gets or sets a value indicating whether the current session supports extensions.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.ClientHostname">
+            <summary>
+            Gets or sets the client hostname.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.IsInDataMode">
+            <summary>
+            Gets or sets a value indicating whether the session is currently receiving DATA.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.SenderAddress">
+            <summary>
+            Gets or sets the sender address.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.Recipients">
+            <summary>
+            Gets the recipients.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.ExtendedData">
+            <summary>
+            Gets or sets the extended data supporting any additional field for storage by a responder implementation.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.IsInAuthMode">
+            <summary>
+            Gets or sets a value indicating whether this instance is in authentication mode.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.Username">
+            <summary>
+            Gets or sets the username.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.Password">
+            <summary>
+            Gets or sets the password.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.HasProvidedUsername">
+            <summary>
+            Gets a value indicating whether this instance has provided username.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.IsAuthenticated">
+            <summary>
+            Gets or sets a value indicating whether this instance is authenticated.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.AuthMode">
+            <summary>
+            Gets or sets the authentication mode.
+            </summary>
+        </member>
+        <member name="P:Swan.Net.Smtp.SmtpSessionState.IsChannelSecure">
+            <summary>
+            Gets or sets a value indicating whether this instance is channel secure.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpSessionState.ResetAuthentication">
+            <summary>
+            Resets the authentication state.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpSessionState.ResetEmail">
+            <summary>
+            Resets the data mode to false, clears the recipients, the sender address and the data buffer.
+            </summary>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpSessionState.Reset(System.Boolean)">
+            <summary>
+            Resets the state table entirely.
+            </summary>
+            <param name="clearExtensionData">if set to <c>true</c> [clear extension data].</param>
+        </member>
+        <member name="M:Swan.Net.Smtp.SmtpSessionState.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>A clone.</returns>
+        </member>
+        <member name="T:Swan.ProcessResult">
+            <summary>
+            Represents the text of the standard output and standard error
+            of a process, including its exit code.
+            </summary>
+        </member>
+        <member name="M:Swan.ProcessResult.#ctor(System.Int32,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.ProcessResult" /> class.
+            </summary>
+            <param name="exitCode">The exit code.</param>
+            <param name="standardOutput">The standard output.</param>
+            <param name="standardError">The standard error.</param>
+        </member>
+        <member name="P:Swan.ProcessResult.ExitCode">
+            <summary>
+            Gets the exit code.
+            </summary>
+            <value>
+            The exit code.
+            </value>
+        </member>
+        <member name="P:Swan.ProcessResult.StandardOutput">
+            <summary>
+            Gets the text of the standard output.
+            </summary>
+            <value>
+            The standard output.
+            </value>
+        </member>
+        <member name="P:Swan.ProcessResult.StandardError">
+            <summary>
+            Gets the text of the standard error.
+            </summary>
+            <value>
+            The standard error.
+            </value>
+        </member>
+        <member name="T:Swan.ProcessRunner">
+            <summary>
+            Provides methods to help create external processes, and efficiently capture the
+            standard error and standard output streams.
+            </summary>
+        </member>
+        <member name="T:Swan.ProcessRunner.ProcessDataReceivedCallback">
+            <summary>
+            Defines a delegate to handle binary data reception from the standard 
+            output or standard error streams from a process.
+            </summary>
+            <param name="processData">The process data.</param>
+            <param name="process">The process.</param>
+        </member>
+        <member name="M:Swan.ProcessRunner.GetProcessOutputAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Runs the process asynchronously and if the exit code is 0,
+            returns all of the standard output text. If the exit code is something other than 0
+            it returns the contents of standard error.
+            This method is meant to be used for programs that output a relatively small amount of text.
+            </summary>
+            <param name="filename">The filename.</param>
+            <param name="arguments">The arguments.</param>
+            <param name="workingDirectory">The working directory.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The type of the result produced by this Task.</returns>
+            <example>
+            The following code explains how to run an external process using the 
+            <see cref="M:Swan.ProcessRunner.GetProcessOutputAsync(System.String,System.String,System.String,System.Threading.CancellationToken)"/> method.
+            <code>
+            class Example
+            {
+                using System.Threading.Tasks;
+                using Swan;
+                
+                static async Task Main()
+                {
+                    // execute a process and save its output
+                     var data = await ProcessRunner.
+                     GetProcessOutputAsync("dotnet", "--help");
+                
+                    // print the output
+                    data.WriteLine();
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Swan.ProcessRunner.GetProcessEncodedOutputAsync(System.String,System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+            <summary>
+            Runs the process asynchronously and if the exit code is 0,
+            returns all of the standard output text. If the exit code is something other than 0
+            it returns the contents of standard error.
+            This method is meant to be used for programs that output a relatively small amount 
+            of text using a different encoder.
+            </summary>
+            <param name="filename">The filename.</param>
+            <param name="arguments">The arguments.</param>
+            <param name="encoding">The encoding.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            The type of the result produced by this Task.
+            </returns>
+        </member>
+        <member name="M:Swan.ProcessRunner.GetProcessResultAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Executes a process asynchronously and returns the text of the standard output and standard error streams
+            along with the exit code. This method is meant to be used for programs that output a relatively small
+            amount of text.
+            </summary>
+            <param name="filename">The filename.</param>
+            <param name="arguments">The arguments.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Text of the standard output and standard error streams along with the exit code as a <see cref="T:Swan.ProcessResult" /> instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">filename.</exception>
+        </member>
+        <member name="M:Swan.ProcessRunner.GetProcessResultAsync(System.String,System.String,System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+             <summary>
+             Executes a process asynchronously and returns the text of the standard output and standard error streams
+             along with the exit code. This method is meant to be used for programs that output a relatively small
+             amount of text.
+             </summary>
+             <param name="filename">The filename.</param>
+             <param name="arguments">The arguments.</param>
+             <param name="workingDirectory">The working directory.</param>
+             <param name="encoding">The encoding.</param>
+             <param name="cancellationToken">The cancellation token.</param>
+             <returns>
+             Text of the standard output and standard error streams along with the exit code as a <see cref="T:Swan.ProcessResult" /> instance.
+             </returns>
+             <exception cref="T:System.ArgumentNullException">filename.</exception>
+             <example>
+             The following code describes how to run an external process using the <see cref="M:Swan.ProcessRunner.GetProcessResultAsync(System.String,System.String,System.String,System.Text.Encoding,System.Threading.CancellationToken)" /> method.
+             <code>
+             class Example
+             {
+                 using System.Threading.Tasks;
+                 using Swan;
+             
+                 static async Task Main()
+                 {
+                     // Execute a process asynchronously
+                     var data = await ProcessRunner.GetProcessResultAsync("dotnet", "--help");
+             
+                     // print out the exit code
+                     $"{data.ExitCode}".WriteLine();
+            
+                     // print out the output
+                     data.StandardOutput.WriteLine();
+                     // and the error if exists
+                     data.StandardError.Error();
+                 }
+             }
+             </code></example>
+        </member>
+        <member name="M:Swan.ProcessRunner.RunProcessAsync(System.String,System.String,System.String,Swan.ProcessRunner.ProcessDataReceivedCallback,Swan.ProcessRunner.ProcessDataReceivedCallback,System.Text.Encoding,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Runs an external process asynchronously, providing callbacks to
+            capture binary data from the standard error and standard output streams.
+            The callbacks contain a reference to the process so you can respond to output or
+            error streams by writing to the process' input stream.
+            The exit code (return value) will be -1 for forceful termination of the process.
+            </summary>
+            <param name="filename">The filename.</param>
+            <param name="arguments">The arguments.</param>
+            <param name="workingDirectory">The working directory.</param>
+            <param name="onOutputData">The on output data.</param>
+            <param name="onErrorData">The on error data.</param>
+            <param name="encoding">The encoding.</param>
+            <param name="syncEvents">if set to <c>true</c> the next data callback will wait until the current one completes.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Value type will be -1 for forceful termination of the process.
+            </returns>
+        </member>
+        <member name="M:Swan.ProcessRunner.RunProcessAsync(System.String,System.String,Swan.ProcessRunner.ProcessDataReceivedCallback,Swan.ProcessRunner.ProcessDataReceivedCallback,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Runs an external process asynchronously, providing callbacks to
+            capture binary data from the standard error and standard output streams.
+            The callbacks contain a reference to the process so you can respond to output or
+            error streams by writing to the process' input stream.
+            The exit code (return value) will be -1 for forceful termination of the process.
+            </summary>
+            <param name="filename">The filename.</param>
+            <param name="arguments">The arguments.</param>
+            <param name="onOutputData">The on output data.</param>
+            <param name="onErrorData">The on error data.</param>
+            <param name="syncEvents">if set to <c>true</c> the next data callback will wait until the current one completes.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Value type will be -1 for forceful termination of the process.</returns>
+            <example>
+            The following example illustrates how to run an external process using the 
+            <see cref="M:Swan.ProcessRunner.RunProcessAsync(System.String,System.String,Swan.ProcessRunner.ProcessDataReceivedCallback,Swan.ProcessRunner.ProcessDataReceivedCallback,System.Boolean,System.Threading.CancellationToken)"/>
+            method.
+            <code>
+            class Example
+            {
+                using System.Diagnostics;
+                using System.Text;
+                using System.Threading.Tasks;
+                using Swan;
+                
+                static async Task Main()
+                {
+                    // Execute a process asynchronously 
+                    var data = await ProcessRunner
+                    .RunProcessAsync("dotnet", "--help", Print, Print);
+                
+                    // flush all messages
+                    Terminal.Flush();
+                }
+                
+                // a callback to print both output or errors
+                static void Print(byte[] data, Process proc) =>
+                    Encoding.GetEncoding(0).GetString(data).WriteLine();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Swan.ProcessRunner.CopyStreamAsync(System.Diagnostics.Process,System.IO.Stream,Swan.ProcessRunner.ProcessDataReceivedCallback,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Copies the stream asynchronously.
+            </summary>
+            <param name="process">The process.</param>
+            <param name="baseStream">The source stream.</param>
+            <param name="onDataCallback">The on data callback.</param>
+            <param name="syncEvents">if set to <c>true</c> [synchronize events].</param>
+            <param name="ct">The cancellation token.</param>
+            <returns>Total copies stream.</returns>
+        </member>
+        <member name="T:Swan.Threading.DelayProvider">
+            <summary>
+            Represents logic providing several delay mechanisms.
+            </summary>
+            <example>
+             The following example shows how to implement delay mechanisms.
+            <code>
+            using Swan.Threading;
+            
+            public class Example
+            {
+                public static void Main()
+                {
+                    // using the ThreadSleep strategy
+                    using (var delay = new DelayProvider(DelayProvider.DelayStrategy.ThreadSleep))
+                    {
+                        // retrieve how much time was delayed
+                        var time = delay.WaitOne();
+                    }
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Swan.Threading.DelayProvider.#ctor(Swan.Threading.DelayProvider.DelayStrategy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Threading.DelayProvider"/> class.
+            </summary>
+            <param name="strategy">The strategy.</param>
+        </member>
+        <member name="T:Swan.Threading.DelayProvider.DelayStrategy">
+            <summary>
+            Enumerates the different ways of providing delays.
+            </summary>
+        </member>
+        <member name="F:Swan.Threading.DelayProvider.DelayStrategy.ThreadSleep">
+            <summary>
+            Using the Thread.Sleep(15) mechanism.
+            </summary>
+        </member>
+        <member name="F:Swan.Threading.DelayProvider.DelayStrategy.TaskDelay">
+            <summary>
+            Using the Task.Delay(1).Wait mechanism.
+            </summary>
+        </member>
+        <member name="F:Swan.Threading.DelayProvider.DelayStrategy.ThreadPool">
+            <summary>
+            Using a wait event that completes in a background ThreadPool thread.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.DelayProvider.Strategy">
+            <summary>
+            Gets the selected delay strategy.
+            </summary>
+        </member>
+        <member name="M:Swan.Threading.DelayProvider.WaitOne">
+            <summary>
+            Creates the smallest possible, synchronous delay based on the selected strategy.
+            </summary>
+            <returns>The elapsed time of the delay.</returns>
+        </member>
+        <member name="M:Swan.Threading.DelayProvider.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:Swan.Threading.ThreadWorkerBase">
+            <summary>
+            Provides a base implementation for application workers
+            that perform continuous, long-running tasks. This class
+            provides the ability to perform fine-grained control on these tasks.
+            </summary>
+            <seealso cref="T:Swan.Threading.IWorker" />
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.#ctor(System.String,System.Threading.ThreadPriority,System.TimeSpan,Swan.Threading.IWorkerDelayProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Threading.ThreadWorkerBase"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="priority">The thread priority.</param>
+            <param name="period">The interval of cycle execution.</param>
+            <param name="delayProvider">The cycle delay provide implementation.</param>
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.#ctor(System.String,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Threading.ThreadWorkerBase"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="period">The execution interval.</param>
+        </member>
+        <member name="P:Swan.Threading.ThreadWorkerBase.DelayProvider">
+            <summary>
+            Provides an implementation on a cycle delay provider.
+            </summary>
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.StartAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.PauseAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.ResumeAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.StopAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.ExecuteCycleDelay(System.Int32,System.Threading.Tasks.Task,System.Threading.CancellationToken)">
+            <summary>
+            Suspends execution queues a new new cycle for execution. The delay is given in
+            milliseconds. When overridden in a derived class the wait handle will be set
+            whenever an interrupt is received.
+            </summary>
+            <param name="wantedDelay">The remaining delay to wait for in the cycle.</param>
+            <param name="delayTask">Contains a reference to a task with the scheduled period delay.</param>
+            <param name="token">The cancellation token to cancel waiting.</param>
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.OnDisposing">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.RunWorkerLoop">
+            <summary>
+            Implements worker control, execution and delay logic in a loop.
+            </summary>
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.QueueStateChange(Swan.Threading.WorkerBase.StateChangeRequest)">
+            <summary>
+            Queues a transition in worker state for processing. Returns a task that can be awaited
+            when the operation completes.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The awaitable task.</returns>
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.ProcessStateChangeRequests">
+            <summary>
+            Processes the state change request by checking pending events and scheduling
+            cycle execution accordingly. The <see cref="T:Swan.Threading.WorkerState"/> is also updated.
+            </summary>
+            <returns>Returns <c>true</c> if the execution should be terminated. <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Swan.Threading.ThreadWorkerBase.ClearStateChangeRequests">
+            <summary>
+            Signals all state change requests to set.
+            </summary>
+        </member>
+        <member name="T:Swan.Threading.TimerWorkerBase">
+            <inheritdoc />
+            <summary>
+            Provides a base implementation for application workers.
+            </summary>
+            <seealso cref="T:Swan.Threading.IWorker" />
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.#ctor(System.String,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Threading.TimerWorkerBase" /> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="period">The execution interval.</param>
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.StartAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.PauseAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.ResumeAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.StopAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.ScheduleCycle(System.Int32)">
+            <summary>
+            Schedules a new cycle for execution. The delay is given in
+            milliseconds. Passing a delay of 0 means a new cycle should be executed
+            immediately.
+            </summary>
+            <param name="delay">The delay.</param>
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.Dispose(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.Interrupt">
+            <summary>
+            Cancels the current token and schedules a new cycle immediately.
+            </summary>
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.ExecuteWorkerCycle">
+            <summary>
+            Executes the worker cycle control logic.
+            This includes processing state change requests,
+            the execution of use cycle code,
+            and the scheduling of new cycles.
+            </summary>
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.ExecuteTimerCallback(System.Object)">
+            <summary>
+            Represents the callback that is executed when the <see cref="F:Swan.Threading.TimerWorkerBase._timer"/> ticks.
+            </summary>
+            <param name="state">The state -- this contains the worker.</param>
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.QueueStateChange(Swan.Threading.WorkerBase.StateChangeRequest)">
+            <summary>
+            Queues a transition in worker state for processing. Returns a task that can be awaited
+            when the operation completes.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The awaitable task.</returns>
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.ProcessStateChangeRequests">
+            <summary>
+            Processes the state change queue by checking pending events and scheduling
+            cycle execution accordingly. The <see cref="T:Swan.Threading.WorkerState"/> is also updated.
+            </summary>
+            <returns>Returns <c>true</c> if the execution should be terminated. <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Swan.Threading.TimerWorkerBase.ClearStateChangeRequests(System.Int32,Swan.Threading.WorkerState,Swan.Threading.WorkerState)">
+            <summary>
+            Signals all state change requests to set.
+            </summary>
+            <param name="schedule">The cycle schedule.</param>
+            <param name="oldState">The previous worker state.</param>
+            <param name="newState">The new worker state.</param>
+        </member>
+        <member name="T:Swan.Threading.WorkerBase">
+            <summary>
+            Provides base infrastructure for Timer and Thread workers.
+            </summary>
+            <seealso cref="T:Swan.Threading.IWorker" />
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.#ctor(System.String,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.Threading.WorkerBase"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="period">The execution interval.</param>
+        </member>
+        <member name="T:Swan.Threading.WorkerBase.StateChangeRequest">
+            <summary>
+            Enumerates all the different state change requests.
+            </summary>
+        </member>
+        <member name="F:Swan.Threading.WorkerBase.StateChangeRequest.None">
+            <summary>
+            No state change request.
+            </summary>
+        </member>
+        <member name="F:Swan.Threading.WorkerBase.StateChangeRequest.Start">
+            <summary>
+            Start state change request
+            </summary>
+        </member>
+        <member name="F:Swan.Threading.WorkerBase.StateChangeRequest.Pause">
+            <summary>
+            Pause state change request
+            </summary>
+        </member>
+        <member name="F:Swan.Threading.WorkerBase.StateChangeRequest.Resume">
+            <summary>
+            Resume state change request
+            </summary>
+        </member>
+        <member name="F:Swan.Threading.WorkerBase.StateChangeRequest.Stop">
+            <summary>
+            Stop state change request
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.Period">
+            <inheritdoc />
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.WorkerState">
+            <inheritdoc />
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.IsDisposed">
+            <inheritdoc />
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.IsDisposing">
+            <inheritdoc />
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.DefaultPeriod">
+            <summary>
+            Gets the default period of 15 milliseconds which is the default precision for timers.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.IsStopRequested">
+            <summary>
+            Gets a value indicating whether stop has been requested.
+            This is useful to prevent more requests from being issued.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.CycleStopwatch">
+            <summary>
+            Gets the cycle stopwatch.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.StateChangeRequests">
+            <summary>
+            Gets the state change requests.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.CycleCompletedEvent">
+            <summary>
+            Gets the cycle completed event.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.StateChangedEvent">
+            <summary>
+            Gets the state changed event.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.CycleCancellation">
+            <summary>
+            Gets the cycle logic cancellation owner.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerBase.StateChangeTask">
+            <summary>
+            Gets or sets the state change task.
+            </summary>
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.StartAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.PauseAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.ResumeAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.StopAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.OnCycleException(System.Exception)">
+            <summary>
+            Handles the cycle logic exceptions.
+            </summary>
+            <param name="ex">The exception that was thrown.</param>
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.ExecuteCycleLogic(System.Threading.CancellationToken)">
+            <summary>
+            Represents the user defined logic to be executed on a single worker cycle.
+            Check the cancellation token continuously if you need responsive interrupts.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.OnDisposing">
+            <summary>
+            This method is called automatically when <see cref="M:Swan.Threading.WorkerBase.Dispose"/> is called.
+            Makes sure you release all resources within this call.
+            </summary>
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.OnStateChangeProcessed(Swan.Threading.WorkerState,Swan.Threading.WorkerState)">
+            <summary>
+            Called when a state change request is processed.
+            </summary>
+            <param name="previousState">The state before the change.</param>
+            <param name="newState">The new state.</param>
+        </member>
+        <member name="M:Swan.Threading.WorkerBase.ComputeCycleDelay(Swan.Threading.WorkerState)">
+            <summary>
+            Computes the cycle delay.
+            </summary>
+            <param name="initialWorkerState">Initial state of the worker.</param>
+            <returns>The number of milliseconds to delay for.</returns>
+        </member>
+        <member name="T:Swan.Threading.WorkerDelayProvider">
+            <summary>
+            Represents a class that implements delay logic for thread workers.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerDelayProvider.Default">
+            <summary>
+            Gets the default delay provider.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerDelayProvider.Token">
+            <summary>
+            Provides a delay implementation which simply waits on the task and cancels on
+            the cancellation token.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerDelayProvider.TokenTimeout">
+            <summary>
+            Provides a delay implementation which waits on the task and cancels on both,
+            the cancellation token and a wanted delay timeout.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerDelayProvider.TokenSleep">
+            <summary>
+            Provides a delay implementation which uses short sleep intervals of 5ms.
+            </summary>
+        </member>
+        <member name="P:Swan.Threading.WorkerDelayProvider.SteppedToken">
+            <summary>
+            Provides a delay implementation which uses short delay intervals of 5ms and
+            a wait on the delay task in the final loop.
+            </summary>
+        </member>
+        <member name="T:Swan.ViewModelBase">
+            <summary>
+            A base class for implementing models that fire notifications when their properties change.
+            This class is ideal for implementing MVVM driven UIs.
+            </summary>
+            <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
+        </member>
+        <member name="M:Swan.ViewModelBase.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.ViewModelBase"/> class.
+            </summary>
+            <param name="useDeferredNotifications">Set to <c>true</c> to use deferred notifications in the background.</param>
+        </member>
+        <member name="M:Swan.ViewModelBase.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Swan.ViewModelBase"/> class.
+            </summary>
+        </member>
+        <member name="E:Swan.ViewModelBase.PropertyChanged">
+            <inheritdoc />
+        </member>
+        <member name="M:Swan.ViewModelBase.SetProperty``1(``0@,``0,System.String,System.String[])">
+            <summary>Checks if a property already matches a desired value.  Sets the property and
+            notifies listeners only when necessary.</summary>
+            <typeparam name="T">Type of the property.</typeparam>
+            <param name="storage">Reference to a property with both getter and setter.</param>
+            <param name="value">Desired value for the property.</param>
+            <param name="propertyName">Name of the property used to notify listeners.  This
+            value is optional and can be provided automatically when invoked from compilers that
+            support CallerMemberName.</param>
+            <param name="notifyAlso">An array of property names to notify in addition to notifying the changes on the current property name.</param>
+            <returns>True if the value was changed, false if the existing value matched the
+            desired value.</returns>
+        </member>
+        <member name="M:Swan.ViewModelBase.NotifyPropertyChanged(System.String[])">
+            <summary>
+            Notifies one or more properties changed.
+            </summary>
+            <param name="propertyNames">The property names.</param>
+        </member>
+        <member name="M:Swan.ViewModelBase.NotifyPropertyChanged(System.String,System.String[])">
+            <summary>
+            Notifies one or more properties changed.
+            </summary>
+            <param name="mainProperty">The main property.</param>
+            <param name="auxiliaryProperties">The auxiliary properties.</param>
+        </member>
+        <member name="M:Swan.ViewModelBase.NotifyQueuedProperties">
+            <summary>
+            Notifies the queued properties and resets the property name to a non-queued stated.
+            </summary>
+        </member>
+        <member name="M:Swan.ViewModelBase.OnPropertyChanged(System.String)">
+            <summary>
+            Called when a property changes its backing value.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+    </members>
+</doc>

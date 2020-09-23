@@ -1,0 +1,1791 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Unosquare.WiringPi</name>
+    </assembly>
+    <members>
+        <member name="T:Unosquare.WiringPi.BootstrapWiringPi">
+            <summary>
+            Represents the Bootstrap class to extract resources.
+            </summary>
+            <seealso cref="T:Unosquare.RaspberryIO.Abstractions.IBootstrap" />
+        </member>
+        <member name="M:Unosquare.WiringPi.BootstrapWiringPi.Bootstrap">
+            <inheritdoc />
+        </member>
+        <member name="T:Unosquare.WiringPi.WiringPiPin">
+            <summary>
+            Defines all the available Wiring Pi Pin Numbers.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Unknown">
+            <summary>
+            Unknown WiringPi pin.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin00">
+            <summary>
+            WiringPi pin 0.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin01">
+            <summary>
+            WiringPi pin 1.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin02">
+            <summary>
+            WiringPi pin 2.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin03">
+            <summary>
+            WiringPi pin 3.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin04">
+            <summary>
+            WiringPi pin 4.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin05">
+            <summary>
+            WiringPi pin 5.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin06">
+            <summary>
+            WiringPi pin 6.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin07">
+            <summary>
+            WiringPi pin 7.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin08">
+            <summary>
+            WiringPi pin 8.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin09">
+            <summary>
+            WiringPi pin 9.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin10">
+            <summary>
+            WiringPi pin 10.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin11">
+            <summary>
+            WiringPi pin 11.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin12">
+            <summary>
+            WiringPi pin 12.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin13">
+            <summary>
+            WiringPi pin 13.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin14">
+            <summary>
+            WiringPi pin 14.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin15">
+            <summary>
+            WiringPi pin 15.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin16">
+            <summary>
+            WiringPi pin 16.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin17">
+            <summary>
+            WiringPi pin 17.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin18">
+            <summary>
+            WiringPi pin 18.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin19">
+            <summary>
+            WiringPi pin 19.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin20">
+            <summary>
+            WiringPi pin 20.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin21">
+            <summary>
+            WiringPi pin 21.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin22">
+            <summary>
+            WiringPi pin 22.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin23">
+            <summary>
+            WiringPi pin 23.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin24">
+            <summary>
+            WiringPi pin 24.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin25">
+            <summary>
+            WiringPi pin 25.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin26">
+            <summary>
+            WiringPi pin 26.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin27">
+            <summary>
+            WiringPi pin 27.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin28">
+            <summary>
+            WiringPi pin 28.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin29">
+            <summary>
+            WiringPi pin 29.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin30">
+            <summary>
+            WiringPi pin 30.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.WiringPiPin.Pin31">
+            <summary>
+            WiringPi pin 31.
+            </summary>
+        </member>
+        <member name="T:Unosquare.WiringPi.PinCapability">
+            <summary>
+            Defines the different pin capabilities.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.GP">
+            <summary>
+            General Purpose capability: Digital and Analog Read/Write
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.GPCLK">
+            <summary>
+            General Purpose Clock (not PWM)
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.I2CSDA">
+            <summary>
+            i2c data channel
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.I2CSCL">
+            <summary>
+            i2c clock channel
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.SPIMOSI">
+            <summary>
+            SPI Master Out, Slave In channel
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.SPIMISO">
+            <summary>
+            SPI Master In, Slave Out channel
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.SPICLK">
+            <summary>
+            SPI Clock channel
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.SPICS">
+            <summary>
+            SPI Chip Select Channel
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.UARTRTS">
+            <summary>
+            UART Request to Send Channel
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.UARTTXD">
+            <summary>
+            UART Transmit Channel
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.UARTRXD">
+            <summary>
+            UART Receive Channel
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PinCapability.PWM">
+            <summary>
+            Hardware Pule Width Modulation
+            </summary>
+        </member>
+        <member name="T:Unosquare.WiringPi.PwmMode">
+            <summary>
+            The PWM mode.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PwmMode.MarkSign">
+            <summary>
+            PWM pulses are sent using mark-sign patterns (old school)
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.PwmMode.Balanced">
+            <summary>
+            PWM pulses are sent as a balanced signal (default, newer mode)
+            </summary>
+        </member>
+        <member name="T:Unosquare.WiringPi.ControllerMode">
+            <summary>
+            Defines GPIO controller initialization modes.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.ControllerMode.NotInitialized">
+            <summary>
+            The not initialized
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.ControllerMode.DirectWithWiringPiPins">
+            <summary>
+            The direct with wiring pi pins
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.ControllerMode.DirectWithBcmPins">
+            <summary>
+            The direct with BCM pins
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.ControllerMode.DirectWithHeaderPins">
+            <summary>
+            The direct with header pins
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.ControllerMode.FileStreamWithHardwarePins">
+            <summary>
+            The file stream with hardware pins
+            </summary>
+        </member>
+        <member name="T:Unosquare.WiringPi.GpioController">
+            <summary>
+            Represents the Raspberry Pi GPIO controller
+            as an IReadOnlyCollection of GpioPins.
+            
+            Low level operations are accomplished by using the Wiring Pi library.
+            </summary>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:Unosquare.WiringPi.GpioController"/> class.
+            </summary>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Unosquare.WiringPi.GpioController"/> class.
+            </summary>
+            <exception cref="T:System.Exception">Unable to initialize the GPIO controller.</exception>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.IsInitialized">
+            <summary>
+            Determines if the underlying GPIO controller has been initialized properly.
+            </summary>
+            <value>
+            <c>true</c> if the controller is properly initialized; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.WiringPiEdgeDetectionMapping">
+            <summary>
+            Gets the wiring pi edge detection mapping.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Count">
+            <inheritdoc />
+            <summary>
+            Gets the number of registered pins in the controller.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Mode">
+            <summary>
+            Gets or sets the initialization mode.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.PwmBaseFrequency">
+            <summary>
+            Gets the PWM base frequency (in Hz).
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pins">
+            <summary>
+            Gets a red-only collection of all pins.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.HeaderP1">
+            <summary>
+            Provides all the pins on Header P1 of the Pi as a lookup by physical header pin number.
+            This header is the main header and it is the one commonly used.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.HeaderP5">
+            <summary>
+            Provides all the pins on Header P5 of the Pi as a lookup by physical header pin number.
+            This header is the secondary header and it is rarely used.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin00">
+            <summary>
+            Provides direct access to Pin known as BCM0.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin01">
+            <summary>
+            Provides direct access to Pin known as BCM1.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin02">
+            <summary>
+            Provides direct access to Pin known as BCM2.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin03">
+            <summary>
+            Provides direct access to Pin known as BCM3.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin04">
+            <summary>
+            Provides direct access to Pin known as BCM4.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin05">
+            <summary>
+            Provides direct access to Pin known as BCM5.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin06">
+            <summary>
+            Provides direct access to Pin known as BCM6.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin07">
+            <summary>
+            Provides direct access to Pin known as BCM7.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin08">
+            <summary>
+            Provides direct access to Pin known as BCM8.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin09">
+            <summary>
+            Provides direct access to Pin known as BCM9.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin10">
+            <summary>
+            Provides direct access to Pin known as BCM10.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin11">
+            <summary>
+            Provides direct access to Pin known as BCM11.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin12">
+            <summary>
+            Provides direct access to Pin known as BCM12.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin13">
+            <summary>
+            Provides direct access to Pin known as BCM13.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin14">
+            <summary>
+            Provides direct access to Pin known as BCM14.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin15">
+            <summary>
+            Provides direct access to Pin known as BCM15.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin16">
+            <summary>
+            Provides direct access to Pin known as BCM16.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin17">
+            <summary>
+            Provides direct access to Pin known as BCM17.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin18">
+            <summary>
+            Provides direct access to Pin known as BCM18.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin19">
+            <summary>
+            Provides direct access to Pin known as BCM19.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin20">
+            <summary>
+            Provides direct access to Pin known as BCM20.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin21">
+            <summary>
+            Provides direct access to Pin known as BCM21.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin22">
+            <summary>
+            Provides direct access to Pin known as BCM22.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin23">
+            <summary>
+            Provides direct access to Pin known as BCM23.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin24">
+            <summary>
+            Provides direct access to Pin known as BCM24.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin25">
+            <summary>
+            Provides direct access to Pin known as BCM25.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin26">
+            <summary>
+            Provides direct access to Pin known as BCM26.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin27">
+            <summary>
+            Provides direct access to Pin known as BCM27.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin28">
+            <summary>
+            Provides direct access to Pin known as BCM28 (available on Header P5).
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin29">
+            <summary>
+            Provides direct access to Pin known as BCM29 (available on Header P5).
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin30">
+            <summary>
+            Provides direct access to Pin known as BCM30 (available on Header P5).
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Pin31">
+            <summary>
+            Provides direct access to Pin known as BCM31 (available on Header P5).
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Item(Unosquare.RaspberryIO.Abstractions.BcmPin)">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Item(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Item(Unosquare.RaspberryIO.Abstractions.P1)">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Item(Unosquare.RaspberryIO.Abstractions.P5)">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioController.Item(Unosquare.WiringPi.WiringPiPin)">
+            <summary>
+            Gets the <see cref="T:Unosquare.WiringPi.GpioPin"/> with the specified Wiring Pi pin number.
+            </summary>
+            <value>
+            The <see cref="T:Unosquare.WiringPi.GpioPin"/>.
+            </value>
+            <param name="pinNumber">The pin number.</param>
+            <returns>A reference to the GPIO pin.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.SetPadDrive(System.Int32,System.Int32)">
+            <summary>
+            This sets the “strength” of the pad drivers for a particular group of pins.
+            There are 3 groups of pins and the drive strength is from 0 to 7.
+            Do not use this unless you know what you are doing.
+            </summary>
+            <param name="group">The group.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.SetPadDriveAsync(System.Int32,System.Int32)">
+            <summary>
+            This sets the “strength” of the pad drivers for a particular group of pins.
+            There are 3 groups of pins and the drive strength is from 0 to 7.
+            Do not use this unless you know what you are doing.
+            </summary>
+            <param name="group">The group.</param>
+            <param name="value">The value.</param>
+            <returns>The awaitable task.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.WriteByte(System.Byte)">
+            <summary>
+            This writes the 8-bit byte supplied to the first 8 GPIO pins.
+            It’s the fastest way to set all 8 bits at once to a particular value,
+            although it still takes two write operations to the Pi’s GPIO hardware.
+            </summary>
+            <param name="value">The value.</param>
+            <exception cref="T:System.InvalidOperationException">PinMode.</exception>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.WriteByteAsync(System.Byte)">
+            <summary>
+            This writes the 8-bit byte supplied to the first 8 GPIO pins.
+            It’s the fastest way to set all 8 bits at once to a particular value,
+            although it still takes two write operations to the Pi’s GPIO hardware.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The awaitable task.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.ReadByte">
+            <summary>
+            This reads the 8-bit byte supplied to the first 8 GPIO pins.
+            It’s the fastest way to get all 8 bits at once to a particular value.
+            Please note this function is undocumented and unsupported.
+            </summary>
+            <returns>A byte from the GPIO.</returns>
+            <exception cref="T:System.InvalidOperationException">PinMode.</exception>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.ReadByteAsync">
+            <summary>
+            This reads the 8-bit byte supplied to the first 8 GPIO pins.
+            It’s the fastest way to get all 8 bits at once to a particular value.
+            Please note this function is undocumented and unsupported.
+            </summary>
+            <returns>A byte from the GPIO.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.System#Collections#Generic#IEnumerable{Unosquare#RaspberryIO#Abstractions#IGpioPin}#GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.WiringPiToBcmPinNumber(System.Int32)">
+            <summary>
+            Converts the Wirings Pi pin number to the BCM pin number.
+            </summary>
+            <param name="wiringPiPinNumber">The wiring pi pin number.</param>
+            <returns>The converted pin.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.HaderToBcmPinNumber(System.Int32)">
+            <summary>
+            Converts the Physical (Header) pin number to BCM pin number.
+            </summary>
+            <param name="headerPinNumber">The header pin number.</param>
+            <returns>The converted pin.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioController.Initialize(Unosquare.WiringPi.ControllerMode)">
+            <summary>
+            Initializes the controller given the initialization mode and pin numbering scheme.
+            </summary>
+            <param name="mode">The mode.</param>
+            <returns>True when successful.</returns>
+            <exception cref="T:System.PlatformNotSupportedException">
+            This library does not support the platform.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">Library was already Initialized.</exception>
+            <exception cref="T:System.ArgumentException">The init mode is invalid.</exception>
+        </member>
+        <member name="T:Unosquare.WiringPi.GpioPin">
+            <summary>
+            Represents a GPIO Pin, its location and its capabilities.
+            Full pin reference available here:
+            http://pinout.xyz/pinout/pin31_gpio6 and  http://wiringpi.com/pins/.
+            </summary>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.#ctor(Unosquare.RaspberryIO.Abstractions.BcmPin)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Unosquare.WiringPi.GpioPin"/> class.
+            </summary>
+            <param name="bcmPinNumber">The BCM pin number.</param>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.BcmPin">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.BcmPinNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.PhysicalPinNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.WiringPiPinNumber">
+            <summary>
+            Gets the WiringPi Pin number.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.Header">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.Name">
+            <summary>
+            Gets the friendly name of the pin.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.Capabilities">
+            <summary>
+            Gets the hardware mode capabilities of this pin.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.Value">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.PinMode">
+            <inheritdoc />
+            <exception cref="T:System.NotSupportedException">Thrown when a pin does not support the given operation mode.</exception>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.InterruptCallback">
+            <summary>
+            Gets the interrupt callback. Returns null if no interrupt
+            has been registered.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.InterruptEdgeDetection">
+            <summary>
+            Gets the interrupt edge detection mode.
+            </summary>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.HasCapability(Unosquare.WiringPi.PinCapability)">
+            <summary>
+            Determines whether the specified capability has capability.
+            </summary>
+            <param name="capability">The capability.</param>
+            <returns>
+              <c>true</c> if the specified capability has capability; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.InputPullMode">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.PwmRegister">
+            <summary>
+            Gets or sets the PWM register.
+            </summary>
+            <value>
+            The PWM register.
+            </value>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.PwmMode">
+            <summary>
+            The PWM generator can run in 2 modes – “balanced” and “mark:space”. The mark:space mode is traditional,
+            however the default mode in the Pi is “balanced”.
+            </summary>
+            <value>
+            The PWM mode.
+            </value>
+            <exception cref="T:System.InvalidOperationException">When pin mode is not set a Pwn output.</exception>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.PwmRange">
+            <summary>
+            This sets the range register in the PWM generator. The default is 1024.
+            </summary>
+            <value>
+            The PWM range.
+            </value>
+            <exception cref="T:System.InvalidOperationException">When pin mode is not set to PWM output.</exception>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.PwmClockDivisor">
+            <summary>
+            Gets or sets the PWM clock divisor.
+            </summary>
+            <value>
+            The PWM clock divisor.
+            </value>
+            <exception cref="T:System.InvalidOperationException">When pin mode is not set to PWM output.</exception>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.IsInSoftToneMode">
+            <summary>
+            Gets a value indicating whether this instance is in software based tone generator mode.
+            </summary>
+            <value>
+            <c>true</c> if this instance is in soft tone mode; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.SoftToneFrequency">
+            <summary>
+            Gets or sets the soft tone frequency. 0 to 5000 Hz is typical.
+            </summary>
+            <value>
+            The soft tone frequency.
+            </value>
+            <exception cref="T:System.InvalidOperationException">When soft tones cannot be initialized on the pin.</exception>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.IsInSoftPwmMode">
+            <summary>
+            Gets a value indicating whether this pin is in software based PWM mode.
+            </summary>
+            <value>
+            <c>true</c> if this instance is in soft PWM mode; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.SoftPwmValue">
+            <summary>
+            Gets or sets the software PWM value on the pin.
+            </summary>
+            <value>
+            The soft PWM value.
+            </value>
+            <exception cref="T:System.InvalidOperationException">StartSoftPwm.</exception>
+        </member>
+        <member name="P:Unosquare.WiringPi.GpioPin.SoftPwmRange">
+            <summary>
+            Gets the software PWM range used upon starting the PWM.
+            </summary>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.StartSoftPwm(System.Int32,System.Int32)">
+            <summary>
+            Starts the software based PWM on this pin.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="range">The range.</param>
+            <exception cref="T:System.NotSupportedException">When the pin does not suppoert PWM.</exception>
+            <exception cref="T:System.InvalidOperationException">StartSoftPwm
+            or.</exception>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.Write(Unosquare.RaspberryIO.Abstractions.GpioPinValue)">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.WriteAsync(Unosquare.RaspberryIO.Abstractions.GpioPinValue)">
+            <summary>
+            Writes the value asynchronously.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The awaitable task.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.Write(System.Boolean)">
+            <summary>
+            Writes the specified bit value.
+            This method performs a digital write.
+            </summary>
+            <param name="value">if set to <c>true</c> [value].</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.WriteAsync(System.Boolean)">
+            <summary>
+            Writes the specified bit value.
+            This method performs a digital write.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            The awaitable task.
+            </returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.Write(System.Int32)">
+            <summary>
+            Writes the specified value. 0 for low, any other value for high
+            This method performs a digital write.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.WriteAsync(System.Int32)">
+            <summary>
+            Writes the specified value. 0 for low, any other value for high
+            This method performs a digital write.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The awaitable task.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.WriteLevel(System.Int32)">
+            <summary>
+            Writes the specified value as an analog level.
+            You will need to register additional analog modules to enable this function for devices such as the Gertboard.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.WriteLevelAsync(System.Int32)">
+            <summary>
+            Writes the specified value as an analog level.
+            You will need to register additional analog modules to enable this function for devices such as the Gertboard.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The awaitable task.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.WaitForValue(Unosquare.RaspberryIO.Abstractions.GpioPinValue,System.Int32)">
+            <summary>
+            Wait for specific pin status.
+            </summary>
+            <param name="status">status to check.</param>
+            <param name="timeOutMillisecond">timeout to reach status.</param>
+            <returns>true/false.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.Read">
+            <summary>
+            Reads the digital value on the pin as a boolean value.
+            </summary>
+            <returns>The state of the pin.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.ReadAsync">
+            <summary>
+            Reads the digital value on the pin as a boolean value.
+            </summary>
+            <returns>The state of the pin.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.ReadValue">
+            <summary>
+            Reads the digital value on the pin as a High or Low value.
+            </summary>
+            <returns>The state of the pin.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.ReadValueAsync">
+            <summary>
+            Reads the digital value on the pin as a High or Low value.
+            </summary>
+            <returns>The state of the pin.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.ReadLevel">
+            <summary>
+            Reads the analog value on the pin.
+            This returns the value read on the supplied analog input pin. You will need to register
+            additional analog modules to enable this function for devices such as the Gertboard,
+            quick2Wire analog board, etc.
+            </summary>
+            <returns>The analog level.</returns>
+            <exception cref="T:System.InvalidOperationException">When the pin mode is not configured as an input.</exception>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.ReadLevelAsync">
+            <summary>
+            Reads the analog value on the pin.
+            This returns the value read on the supplied analog input pin. You will need to register
+            additional analog modules to enable this function for devices such as the Gertboard,
+            quick2Wire analog board, etc.
+            </summary>
+            <returns>The analog level.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Abstractions.EdgeDetection,System.Action)">
+            <inheritdoc />
+            <exception cref="T:System.ArgumentNullException">callback.</exception>
+        </member>
+        <member name="M:Unosquare.WiringPi.GpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Abstractions.EdgeDetection,System.Action{System.Int32,System.Int32,System.UInt32})">
+            <inheritdoc />
+        </member>
+        <member name="T:Unosquare.WiringPi.I2CBus">
+            <inheritdoc />
+            <summary>
+            A simple wrapper for the I2c bus on the Raspberry Pi.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.I2CBus.Devices">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.I2CBus.Item(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CBus.GetDeviceById(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CBus.AddDevice(System.Int32)">
+            <inheritdoc />
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">When the device file descriptor is not found.</exception>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CBus.SetupFileDescriptor(System.Int32)">
+            <summary>
+            This initializes the I2C system with your given device identifier.
+            The ID is the I2C number of the device and you can use the i2cdetect program to find this out.
+            wiringPiI2CSetup() will work out which revision Raspberry Pi you have and open the appropriate device in /dev.
+            The return value is the standard Linux filehandle, or -1 if any error – in which case, you can consult errno as usual.
+            </summary>
+            <param name="deviceId">The device identifier.</param>
+            <returns>The Linux file handle.</returns>
+        </member>
+        <member name="T:Unosquare.WiringPi.I2CDevice">
+            <summary>
+            Represents a device on the I2C Bus.
+            </summary>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Unosquare.WiringPi.I2CDevice"/> class.
+            </summary>
+            <param name="deviceId">The device identifier.</param>
+            <param name="fileDescriptor">The file descriptor.</param>
+        </member>
+        <member name="P:Unosquare.WiringPi.I2CDevice.DeviceId">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.I2CDevice.FileDescriptor">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.Read">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.ReadAsync">
+            <summary>
+            Reads a byte from the specified file descriptor.
+            </summary>
+            <returns>The byte from device.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.Read(System.Int32)">
+            <summary>
+            Reads a buffer of the specified length, one byte at a time.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The byte array from device.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.ReadAsync(System.Int32)">
+            <summary>
+            Reads a buffer of the specified length, one byte at a time.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The byte array from device.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.Write(System.Byte)">
+            <summary>
+            Writes a byte of data the specified file descriptor.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.WriteAsync(System.Byte)">
+            <summary>
+            Writes a byte of data the specified file descriptor.
+            </summary>
+            <param name="data">The data.</param>
+            <returns>The awaitable task.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.Write(System.Byte[])">
+            <summary>
+            Writes a set of bytes to the specified file descriptor.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.WriteAsync(System.Byte[])">
+            <summary>
+            Writes a set of bytes to the specified file descriptor.
+            </summary>
+            <param name="data">The data.</param>
+            <returns>The awaitable task.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.WriteAddressByte(System.Int32,System.Byte)">
+            <summary>
+            These write an 8 or 16-bit data value into the device register indicated.
+            </summary>
+            <param name="address">The register.</param>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.WriteAddressWord(System.Int32,System.UInt16)">
+            <summary>
+            These write an 8 or 16-bit data value into the device register indicated.
+            </summary>
+            <param name="address">The register.</param>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.ReadAddressByte(System.Int32)">
+            <summary>
+            These read an 8 or 16-bit value from the device register indicated.
+            </summary>
+            <param name="address">The register.</param>
+            <returns>The address byte from device.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.I2CDevice.ReadAddressWord(System.Int32)">
+            <summary>
+            These read an 8 or 16-bit value from the device register indicated.
+            </summary>
+            <param name="address">The register.</param>
+            <returns>The address word from device.</returns>
+        </member>
+        <member name="T:Unosquare.WiringPi.Native.InterruptServiceRoutineCallback">
+            <summary>
+            A delegate defining a callback for an Interrupt Service Routine.
+            </summary>
+        </member>
+        <member name="T:Unosquare.WiringPi.Native.ThreadWorker">
+            <summary>
+            Defines the body of a thread worker.
+            </summary>
+        </member>
+        <member name="T:Unosquare.WiringPi.Native.WiringPi">
+            <summary>
+            Provides native C WiringPi Library function call wrappers
+            All credit for the native library goes to the author of http://wiringpi.com/
+            The wrappers were written based on https://github.com/WiringPi/WiringPi/blob/master/wiringPi/wiringPi.h.
+            </summary>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiSetup">
+            <summary>
+            This initialises wiringPi and assumes that the calling program is going to be using the wiringPi pin numbering scheme.
+            This is a simplified numbering scheme which provides a mapping from virtual pin numbers 0 through 16 to the real underlying Broadcom GPIO pin numbers.
+            See the pins page for a table which maps the wiringPi pin number to the Broadcom GPIO pin number to the physical location on the edge connector.
+            This function needs to be called with root privileges.
+            </summary>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiSetupSys">
+             <summary>
+             This initialises wiringPi but uses the /sys/class/gpio interface rather than accessing the hardware directly.
+             This can be called as a non-root user provided the GPIO pins have been exported before-hand using the gpio program.
+             Pin numbering in this mode is the native Broadcom GPIO numbers – the same as wiringPiSetupGpio() above,
+             so be aware of the differences between Rev 1 and Rev 2 boards.
+            
+             Note: In this mode you can only use the pins which have been exported via the /sys/class/gpio interface before you run your program.
+             You can do this in a separate shell-script, or by using the system() function from inside your program to call the gpio program.
+             Also note that some functions have no effect when using this mode as they’re not currently possible to action unless called with root privileges.
+             (although you can use system() to call gpio to set/change modes if needed).
+             </summary>
+             <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiSetupGpio">
+            <summary>
+            This is identical to wiringPiSetup, however it allows the calling programs to use the Broadcom GPIO
+            pin numbers directly with no re-mapping.
+            As above, this function needs to be called with root privileges, and note that some pins are different
+            from revision 1 to revision 2 boards.
+            </summary>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiSetupPhys">
+            <summary>
+            Identical to wiringPiSetup, however it allows the calling programs to use the physical pin numbers on the P1 connector only.
+            This function needs to be called with root privileges.
+            </summary>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PinModeAlt(System.Int32,System.Int32)">
+            <summary>
+            This function is undocumented.
+            </summary>
+            <param name="pin">The pin.</param>
+            <param name="mode">The mode.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PinMode(System.Int32,System.Int32)">
+             <summary>
+             This sets the mode of a pin to either INPUT, OUTPUT, PWM_OUTPUT or GPIO_CLOCK.
+             Note that only wiringPi pin 1 (BCM_GPIO 18) supports PWM output and only wiringPi pin 7 (BCM_GPIO 4)
+             supports CLOCK output modes.
+            
+             This function has no effect when in Sys mode. If you need to change the pin mode, then you can
+             do it with the gpio program in a script before you start your program.
+             </summary>
+             <param name="pin">The pin.</param>
+             <param name="mode">The mode.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PullUpDnControl(System.Int32,System.Int32)">
+             <summary>
+             This sets the pull-up or pull-down resistor mode on the given pin, which should be set as an input.
+             Unlike the Arduino, the BCM2835 has both pull-up and down internal resistors. The parameter pud should be; PUD_OFF,
+             (no pull up/down), PUD_DOWN (pull to ground) or PUD_UP (pull to 3.3v) The internal pull up/down resistors
+             have a value of approximately 50KΩ on the Raspberry Pi.
+            
+             This function has no effect on the Raspberry Pi’s GPIO pins when in Sys mode.
+             If you need to activate a pull-up/pull-down, then you can do it with the gpio program in a script before you start your program.
+             </summary>
+             <param name="pin">The pin.</param>
+             <param name="pud">The pud.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.DigitalRead(System.Int32)">
+            <summary>
+            This function returns the value read at the given pin. It will be HIGH or LOW (1 or 0) depending on the logic level at the pin.
+            </summary>
+            <param name="pin">The pin.</param>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.DigitalWrite(System.Int32,System.Int32)">
+            <summary>
+            Writes the value HIGH or LOW (1 or 0) to the given pin which must have been previously set as an output.
+            WiringPi treats any non-zero number as HIGH, however 0 is the only representation of LOW.
+            </summary>
+            <param name="pin">The pin.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PwmWrite(System.Int32,System.Int32)">
+            <summary>
+            Writes the value to the PWM register for the given pin. The Raspberry Pi has one
+            on-board PWM pin, pin 1 (BMC_GPIO 18, Phys 12) and the range is 0-1024.
+            Other PWM devices may have other PWM ranges.
+            This function is not able to control the Pi’s on-board PWM when in Sys mode.
+            </summary>
+            <param name="pin">The pin.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.AnalogRead(System.Int32)">
+            <summary>
+            This returns the value read on the supplied analog input pin. You will need to
+            register additional analog modules to enable this function for devices such as the Gertboard, quick2Wire analog board, etc.
+            </summary>
+            <param name="pin">The pin.</param>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.AnalogWrite(System.Int32,System.Int32)">
+            <summary>
+            This writes the given value to the supplied analog pin. You will need to register additional
+            analog modules to enable this function for devices such as the Gertboard.
+            </summary>
+            <param name="pin">The pin.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PiBoardRev">
+            <summary>
+            This returns the board revision of the Raspberry Pi. It will be either 1 or 2. Some of the BCM_GPIO pins changed number and
+            function when moving from board revision 1 to 2, so if you are using BCM_GPIO pin numbers, then you need to be aware of the differences.
+            </summary>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PiBoardId(System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            This function is undocumented.
+            </summary>
+            <param name="model">The model.</param>
+            <param name="mem">The memory.</param>
+            <param name="maker">The maker.</param>
+            <param name="overVolted">The over volted.</param>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WpiPinToGpio(System.Int32)">
+            <summary>
+            This returns the BCM_GPIO pin number of the supplied wiringPi pin. It takes the board revision into account.
+            </summary>
+            <param name="wPiPin">The w pi pin.</param>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PhysPinToGpio(System.Int32)">
+            <summary>
+            This returns the BCM_GPIO pin number of the supplied physical pin on the P1 connector.
+            </summary>
+            <param name="physPin">The physical pin.</param>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SetPadDrive(System.Int32,System.Int32)">
+            <summary>
+            This sets the “strength” of the pad drivers for a particular group of pins.
+            There are 3 groups of pins and the drive strength is from 0 to 7. Do not use this unless you know what you are doing.
+            </summary>
+            <param name="group">The group.</param>
+            <param name="value">The value.</param>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.GetAlt(System.Int32)">
+            <summary>
+            Undocumented function.
+            </summary>
+            <param name="pin">The pin.</param>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PwmToneWrite(System.Int32,System.Int32)">
+            <summary>
+            Undocumented function.
+            </summary>
+            <param name="pin">The pin.</param>
+            <param name="freq">The freq.</param>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.DigitalWriteByte(System.Int32)">
+            <summary>
+            This writes the 8-bit byte supplied to the first 8 GPIO pins.
+            It’s the fastest way to set all 8 bits at once to a particular value, although it still takes two write operations to the Pi’s GPIO hardware.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.DigitalWriteByte2(System.Int32)">
+            <summary>
+            This writes the 8-bit byte supplied to the first 8 GPIO pins.
+            It’s the fastest way to set all 8 bits at once to a particular value, although it still takes two write operations to the Pi’s GPIO hardware.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.DigitalReadByte">
+            <summary>
+            Undocumented function
+            This reads the 8-bit byte supplied to the first 8 GPIO pins.
+            It’s the fastest way to get all 8 bits at once to a particular value.
+            </summary>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.DigitalReadByte2">
+            <summary>
+            Undocumented function
+            This reads the 8-bit byte supplied to the first 8 GPIO pins.
+            It’s the fastest way to get all 8 bits at once to a particular value.
+            </summary>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PwmSetMode(System.Int32)">
+            <summary>
+            The PWM generator can run in 2 modes – “balanced” and “mark:space”. The mark:space mode is traditional,
+            however the default mode in the Pi is “balanced”. You can switch modes by supplying the parameter: PWM_MODE_BAL or PWM_MODE_MS.
+            </summary>
+            <param name="mode">The mode.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PwmSetRange(System.UInt32)">
+            <summary>
+            This sets the range register in the PWM generator. The default is 1024.
+            </summary>
+            <param name="range">The range.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PwmSetClock(System.Int32)">
+            <summary>
+            This sets the divisor for the PWM clock.
+            Note: The PWM control functions can not be used when in Sys mode.
+            To understand more about the PWM system, you’ll need to read the Broadcom ARM peripherals manual.
+            </summary>
+            <param name="divisor">The divisor.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.GpioClockSet(System.Int32,System.Int32)">
+            <summary>
+            Undocumented function.
+            </summary>
+            <param name="pin">The pin.</param>
+            <param name="freq">The freq.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiISR(System.Int32,System.Int32,Unosquare.WiringPi.Native.InterruptServiceRoutineCallback)">
+            <summary>
+            This function registers a function to received interrupts on the specified pin.
+            The edgeType parameter is either INT_EDGE_FALLING, INT_EDGE_RISING, INT_EDGE_BOTH or INT_EDGE_SETUP.
+            If it is INT_EDGE_SETUP then no initialisation of the pin will happen – it’s assumed that you have already setup the pin elsewhere
+            (e.g. with the gpio program), but if you specify one of the other types, then the pin will be exported and initialised as specified.
+            This is accomplished via a suitable call to the gpio utility program, so it need to be available.
+            The pin number is supplied in the current mode – native wiringPi, BCM_GPIO, physical or Sys modes.
+            This function will work in any mode, and does not need root privileges to work.
+            The function will be called when the interrupt triggers. When it is triggered, it’s cleared in the dispatcher before calling your function,
+            so if a subsequent interrupt fires before you finish your handler, then it won’t be missed. (However it can only track one more interrupt,
+            if more than one interrupt fires while one is being handled then they will be ignored)
+            This function is run at a high priority (if the program is run using sudo, or as root) and executes concurrently with the main program.
+            It has full access to all the global variables, open file handles and so on.
+            </summary>
+            <param name="pin">The pin.</param>
+            <param name="mode">The mode.</param>
+            <param name="method">The method.</param>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PiThreadCreate(Unosquare.WiringPi.Native.ThreadWorker)">
+            <summary>
+            This function creates a thread which is another function in your program previously declared using the PI_THREAD declaration.
+            This function is then run concurrently with your main program. An example may be to have this function wait for an interrupt while
+            your program carries on doing other tasks. The thread can indicate an event, or action by using global variables to
+            communicate back to the main program, or other threads.
+            </summary>
+            <param name="method">The method.</param>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PiLock(System.Int32)">
+            <summary>
+            These allow you to synchronise variable updates from your main program to any threads running in your program. keyNum is a number from 0 to 3 and represents a key.
+            When another process tries to lock the same key, it will be stalled until the first process has unlocked the same key.
+            You may need to use these functions to ensure that you get valid data when exchanging data between your main program and a thread
+            – otherwise it’s possible that the thread could wake-up halfway during your data copy and change the data –
+            so the data you end up copying is incomplete, or invalid. See the wfi.c program in the examples directory for an example.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PiUnlock(System.Int32)">
+            <summary>
+            These allow you to synchronise variable updates from your main program to any threads running in your program. keyNum is a number from 0 to 3 and represents a key.
+            When another process tries to lock the same key, it will be stalled until the first process has unlocked the same key.
+            You may need to use these functions to ensure that you get valid data when exchanging data between your main program and a thread
+            – otherwise it’s possible that the thread could wake-up halfway during your data copy and change the data –
+            so the data you end up copying is incomplete, or invalid. See the wfi.c program in the examples directory for an example.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.PiHiPri(System.Int32)">
+            <summary>
+            This attempts to shift your program (or thread in a multi-threaded program) to a higher priority
+            and enables a real-time scheduling. The priority parameter should be from 0 (the default) to 99 (the maximum).
+            This won’t make your program go any faster, but it will give it a bigger slice of time when other programs are running.
+            The priority parameter works relative to others – so you can make one program priority 1 and another priority 2
+            and it will have the same effect as setting one to 10 and the other to 90 (as long as no other
+            programs are running with elevated priorities)
+            The return value is 0 for success and -1 for error. If an error is returned, the program should then consult the errno global variable, as per the usual conventions.
+            Note: Only programs running as root can change their priority. If called from a non-root program then nothing happens.
+            </summary>
+            <param name="priority">The priority.</param>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.Delay(System.UInt32)">
+            <summary>
+            This causes program execution to pause for at least howLong milliseconds.
+            Due to the multi-tasking nature of Linux it could be longer.
+            Note that the maximum delay is an unsigned 32-bit integer or approximately 49 days.
+            </summary>
+            <param name="howLong">The how long.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.DelayMicroseconds(System.UInt32)">
+            <summary>
+            This causes program execution to pause for at least howLong microseconds.
+            Due to the multi-tasking nature of Linux it could be longer.
+            Note that the maximum delay is an unsigned 32-bit integer microseconds or approximately 71 minutes.
+            Delays under 100 microseconds are timed using a hard-coded loop continually polling the system time,
+            Delays over 100 microseconds are done using the system nanosleep() function – You may need to consider the implications
+            of very short delays on the overall performance of the system, especially if using threads.
+            </summary>
+            <param name="howLong">The how long.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.Millis">
+            <summary>
+            This returns a number representing the number of milliseconds since your program called one of the wiringPiSetup functions.
+            It returns an unsigned 32-bit number which wraps after 49 days.
+            </summary>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.Micros">
+            <summary>
+            This returns a number representing the number of microseconds since your program called one of
+            the wiringPiSetup functions. It returns an unsigned 32-bit number which wraps after approximately 71 minutes.
+            </summary>
+            <returns>The result code.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiI2CRead(System.Int32)">
+            <summary>
+            Simple device read. Some devices present data when you read them without having to do any register transactions.
+            </summary>
+            <param name="fd">The fd.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiI2CReadReg8(System.Int32,System.Int32)">
+            <summary>
+            These read an 8-bit value from the device register indicated.
+            </summary>
+            <param name="fd">The fd.</param>
+            <param name="reg">The reg.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiI2CReadReg16(System.Int32,System.Int32)">
+            <summary>
+            These read a 16-bit value from the device register indicated.
+            </summary>
+            <param name="fd">The fd.</param>
+            <param name="reg">The reg.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiI2CWrite(System.Int32,System.Int32)">
+            <summary>
+            Simple device write. Some devices accept data this way without needing to access any internal registers.
+            </summary>
+            <param name="fd">The fd.</param>
+            <param name="data">The data.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiI2CWriteReg8(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            These write an 8-bit data value into the device register indicated.
+            </summary>
+            <param name="fd">The fd.</param>
+            <param name="reg">The reg.</param>
+            <param name="data">The data.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiI2CWriteReg16(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            These write a 16-bit data value into the device register indicated.
+            </summary>
+            <param name="fd">The fd.</param>
+            <param name="reg">The reg.</param>
+            <param name="data">The data.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiI2CSetup(System.Int32)">
+            <summary>
+            This initializes the I2C system with your given device identifier.
+            The ID is the I2C number of the device and you can use the i2cdetect program to find this out. wiringPiI2CSetup()
+            will work out which revision Raspberry Pi you have and open the appropriate device in /dev.
+            The return value is the standard Linux filehandle, or -1 if any error – in which case, you can consult errno as usual.
+            E.g. the popular MCP23017 GPIO expander is usually device Id 0x20, so this is the number you would pass into wiringPiI2CSetup().
+            </summary>
+            <param name="devId">The dev identifier.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SerialOpen(System.String,System.Int32)">
+            <summary>
+            This opens and initialises the serial device and sets the baud rate. It sets the port into “raw” mode (character at a time and no translations),
+            and sets the read timeout to 10 seconds. The return value is the file descriptor or -1 for any error, in which case errno will be set as appropriate.
+            The wiringSerial library is intended to provide simplified control – suitable for most applications, however if you need advanced control
+            – e.g. parity control, modem control lines (via a USB adapter, there are none on the Pi’s on-board UART!) and so on,
+            then you need to do some of this the old fashioned way.
+            </summary>
+            <param name="device">The device.</param>
+            <param name="baud">The baud.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SerialClose(System.Int32)">
+            <summary>
+            Closes the device identified by the file descriptor given.
+            </summary>
+            <param name="fd">The fd.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SerialPutchar(System.Int32,System.Byte)">
+            <summary>
+            Sends the single byte to the serial device identified by the given file descriptor.
+            </summary>
+            <param name="fd">The fd.</param>
+            <param name="c">The c.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SerialPuts(System.Int32,System.String)">
+            <summary>
+            Sends the nul-terminated string to the serial device identified by the given file descriptor.
+            </summary>
+            <param name="fd">The fd.</param>
+            <param name="s">The s.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SerialDataAvail(System.Int32)">
+            <summary>
+            Returns the number of characters available for reading, or -1 for any error condition,
+            in which case errno will be set appropriately.
+            </summary>
+            <param name="fd">The fd.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SerialGetchar(System.Int32)">
+            <summary>
+            Returns the next character available on the serial device.
+            This call will block for up to 10 seconds if no data is available (when it will return -1).
+            </summary>
+            <param name="fd">The fd.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SerialFlush(System.Int32)">
+            <summary>
+            This discards all data received, or waiting to be send down the given device.
+            </summary>
+            <param name="fd">The fd.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.ShiftIn(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            This shifts an 8-bit data value in with the data appearing on the dPin and the clock being sent out on the cPin.
+            Order is either LSBFIRST or MSBFIRST. The data is sampled after the cPin goes high.
+            (So cPin high, sample data, cPin low, repeat for 8 bits) The 8-bit value is returned by the function.
+            </summary>
+            <param name="dPin">The d pin.</param>
+            <param name="cPin">The c pin.</param>
+            <param name="order">The order.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.ShiftOut(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            The shifts an 8-bit data value val out with the data being sent out on dPin and the clock being sent out on the cPin.
+            order is as above. Data is clocked out on the rising or falling edge – ie. dPin is set, then cPin is taken high then low
+            – repeated for the 8 bits.
+            </summary>
+            <param name="dPin">The d pin.</param>
+            <param name="cPin">The c pin.</param>
+            <param name="order">The order.</param>
+            <param name="val">The value.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SoftPwmCreate(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This creates a software controlled PWM pin. You can use any GPIO pin and the pin numbering will be that of the wiringPiSetup()
+            function you used. Use 100 for the pwmRange, then the value can be anything from 0 (off) to 100 (fully on) for the given pin.
+            The return value is 0 for success. Anything else and you should check the global errno variable to see what went wrong.
+            </summary>
+            <param name="pin">The pin.</param>
+            <param name="initialValue">The initial value.</param>
+            <param name="pwmRange">The PWM range.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SoftPwmWrite(System.Int32,System.Int32)">
+            <summary>
+            This updates the PWM value on the given pin. The value is checked to be in-range and pins that haven’t previously
+            been initialized via softPwmCreate will be silently ignored.
+            </summary>
+            <param name="pin">The pin.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SoftPwmStop(System.Int32)">
+            <summary>
+            This function is undocumented.
+            </summary>
+            <param name="pin">The pin.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SoftToneCreate(System.Int32)">
+            <summary>
+            This creates a software controlled tone pin. You can use any GPIO pin and the pin numbering will be that of the wiringPiSetup() function you used.
+            The return value is 0 for success. Anything else and you should check the global errno variable to see what went wrong.
+            </summary>
+            <param name="pin">The pin.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SoftToneStop(System.Int32)">
+            <summary>
+            This function is undocumented.
+            </summary>
+            <param name="pin">The pin.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.SoftToneWrite(System.Int32,System.Int32)">
+            <summary>
+            This updates the tone frequency value on the given pin. The tone will be played until you set the frequency to 0.
+            </summary>
+            <param name="pin">The pin.</param>
+            <param name="freq">The freq.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiSPIGetFd(System.Int32)">
+            <summary>
+            This function is undocumented.
+            </summary>
+            <param name="channel">The channel.</param>
+            <returns>Unknown.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiSPIDataRW(System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            This performs a simultaneous write/read transaction over the selected SPI bus. Data that was in your buffer is overwritten by data returned from the SPI bus.
+            That’s all there is in the helper library. It is possible to do simple read and writes over the SPI bus using the standard read() and write() system calls though –
+            write() may be better to use for sending data to chains of shift registers, or those LED strings where you send RGB triplets of data.
+            Devices such as A/D and D/A converters usually need to perform a concurrent write/read transaction to work.
+            </summary>
+            <param name="channel">The channel.</param>
+            <param name="data">The data.</param>
+            <param name="len">The length.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiSPISetupMode(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This function is undocumented.
+            </summary>
+            <param name="channel">The channel.</param>
+            <param name="speed">The speed.</param>
+            <param name="mode">The mode.</param>
+            <returns>Unkown.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.Native.WiringPi.WiringPiSPISetup(System.Int32,System.Int32)">
+            <summary>
+            This is the way to initialize a channel (The Pi has 2 channels; 0 and 1). The speed parameter is an integer
+            in the range 500,000 through 32,000,000 and represents the SPI clock speed in Hz.
+            The returned value is the Linux file-descriptor for the device, or -1 on error. If an error has happened, you may use the standard errno global variable to see why.
+            </summary>
+            <param name="channel">The channel.</param>
+            <param name="speed">The speed.</param>
+            <returns>The Linux file descriptor for the device or -1 for error.</returns>
+        </member>
+        <member name="T:Unosquare.WiringPi.Resources.EmbeddedResources">
+            <summary>
+            Provides access to embedded assembly files.
+            </summary>
+        </member>
+        <member name="M:Unosquare.WiringPi.Resources.EmbeddedResources.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:Unosquare.WiringPi.Resources.EmbeddedResources"/> class.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.Resources.EmbeddedResources.ResourceNames">
+            <summary>
+            Gets the resource names.
+            </summary>
+            <value>
+            The resource names.
+            </value>
+        </member>
+        <member name="M:Unosquare.WiringPi.Resources.EmbeddedResources.ExtractAll">
+            <summary>
+            Extracts all the file resources to the specified base path.
+            </summary>
+        </member>
+        <member name="T:Unosquare.WiringPi.SpiBus">
+            <summary>
+            The SPI Bus containing the 2 SPI channels.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.SpiBus.Channel0Frequency">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.SpiBus.Channel1Frequency">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.SpiBus.DefaultFrequency">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.SpiBus.Channel0">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.SpiBus.Channel1">
+            <inheritdoc />
+        </member>
+        <member name="T:Unosquare.WiringPi.SpiChannel">
+            <summary>
+            Provides access to using the SPI buses on the GPIO.
+            SPI is a bus that works like a ring shift register
+            The number of bytes pushed is equal to the number of bytes received.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.SpiChannel.MinFrequency">
+            <summary>
+            The minimum frequency of a SPI Channel.
+            </summary>
+        </member>
+        <member name="F:Unosquare.WiringPi.SpiChannel.MaxFrequency">
+            <summary>
+            The maximum frequency of a SPI channel.
+            </summary>
+        </member>
+        <member name="M:Unosquare.WiringPi.SpiChannel.#ctor(Unosquare.RaspberryIO.Abstractions.SpiChannelNumber,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Unosquare.WiringPi.SpiChannel"/> class.
+            </summary>
+            <param name="channel">The channel.</param>
+            <param name="frequency">The frequency.</param>
+        </member>
+        <member name="P:Unosquare.WiringPi.SpiChannel.FileDescriptor">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.SpiChannel.Channel">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.SpiChannel.Frequency">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.SpiChannel.SendReceive(System.Byte[])">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.SpiChannel.SendReceiveAsync(System.Byte[])">
+            <summary>
+            Sends data and simultaneously receives the data in the return buffer.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <returns>
+            The read bytes from the ring-style bus.
+            </returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.SpiChannel.Write(System.Byte[])">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.SpiChannel.WriteAsync(System.Byte[])">
+            <summary>
+            Writes the specified buffer the the underlying FileDescriptor.
+            Do not use this method if you expect data back.
+            This method is efficient if used in a fire-and-forget scenario
+            like sending data over to those long RGB LED strips.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <returns>The awaitable task.</returns>
+        </member>
+        <member name="M:Unosquare.WiringPi.SpiChannel.Retrieve(Unosquare.RaspberryIO.Abstractions.SpiChannelNumber,System.Int32)">
+            <summary>
+            Retrieves the spi bus. If the bus channel is not registered it sets it up automatically.
+            If it had been previously registered, then the bus is simply returned.
+            </summary>
+            <param name="channel">The channel.</param>
+            <param name="frequency">The frequency.</param>
+            <returns>The usable SPI channel.</returns>
+        </member>
+        <member name="T:Unosquare.WiringPi.SystemInfo">
+            <summary>
+            Represents the WiringPi system info.
+            </summary>
+            <seealso cref="T:Unosquare.RaspberryIO.Abstractions.ISystemInfo" />
+        </member>
+        <member name="P:Unosquare.WiringPi.SystemInfo.BoardRevision">
+            <inheritdoc />
+        </member>
+        <member name="P:Unosquare.WiringPi.SystemInfo.LibraryVersion">
+            <inheritdoc />
+        </member>
+        <member name="T:Unosquare.WiringPi.Threading">
+            <summary>
+            Use this class to access threading methods using interop.
+            </summary>
+            <seealso cref="T:Unosquare.RaspberryIO.Abstractions.IThreading" />
+        </member>
+        <member name="M:Unosquare.WiringPi.Threading.SetThreadPriority(System.Int32)">
+            <summary>
+            This attempts to shift your program (or thread in a multi-threaded program) to a higher priority and
+            enables a real-time scheduling. The priority parameter should be from 0 (the default) to 99 (the maximum).
+            This won’t make your program go any faster, but it will give it a bigger slice of time when other programs
+            are running. The priority parameter works relative to others – so you can make one program priority 1 and
+            another priority 2 and it will have the same effect as setting one to 10 and the other to 90
+            (as long as no other programs are running with elevated priorities).
+            </summary>
+            <param name="priority">The priority.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Threading.Lock(Unosquare.RaspberryIO.Abstractions.ThreadLockKey)">
+            <summary>
+            These allow you to synchronize variable updates from your main program to any threads running in your program.
+            keyNum is a number from 0 to 3 and represents a “key”. When another process tries to lock the same key,
+            it will be stalled until the first process has unlocked the same key.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Threading.Unlock(Unosquare.RaspberryIO.Abstractions.ThreadLockKey)">
+            <summary>
+            These allow you to synchronize variable updates from your main program to any threads running in your program.
+            keyNum is a number from 0 to 3 and represents a “key”. When another process tries to lock the same key,
+            it will be stalled until the first process has unlocked the same key.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="M:Unosquare.WiringPi.Threading.StartThread(System.Action)">
+            <inheritdoc />
+            <summary>
+            This is really nothing more than a simplified interface to the Posix threads mechanism that Linux supports.
+            See the manual pages on Posix threads (man pthread) if you need more control over them.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">worker.</exception>
+        </member>
+        <member name="M:Unosquare.WiringPi.Threading.StartThreadEx(System.Action{System.UIntPtr},System.UIntPtr)">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.Threading.StopThreadEx(System.UIntPtr)">
+            <inheritdoc />
+        </member>
+        <member name="T:Unosquare.WiringPi.Timing">
+            <summary>
+            Provides access to timing and threading properties and methods.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.Timing.Milliseconds">
+            <inheritdoc />
+            <summary>
+            This returns a number representing the number of milliseconds since your program
+            initialized the GPIO controller.
+            It returns an unsigned 32-bit number which wraps after 49 days.
+            </summary>
+        </member>
+        <member name="P:Unosquare.WiringPi.Timing.Microseconds">
+            <inheritdoc />
+            <summary>
+            This returns a number representing the number of microseconds since your
+            program initialized the GPIO controller
+            It returns an unsigned 32-bit number which wraps after approximately 71 minutes.
+            </summary>
+        </member>
+        <member name="M:Unosquare.WiringPi.Timing.Sleep(System.UInt32)">
+            <inheritdoc cref="M:Unosquare.RaspberryIO.Abstractions.ITiming.SleepMilliseconds(System.UInt32)" />
+        </member>
+        <member name="M:Unosquare.WiringPi.Timing.SleepMilliseconds(System.UInt32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Unosquare.WiringPi.Timing.SleepMicroseconds(System.UInt32)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
